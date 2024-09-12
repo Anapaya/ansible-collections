@@ -40,9 +40,9 @@ class TestConfigPutRequest(unittest.TestCase):
                 config = openapi_client.models.config.Config(
                     advanced = openapi_client.models.config_advanced.Config_Advanced(
                         service_customizations = [
-                            openapi_client.models.config_advanced_service_customization.Config_Advanced_ServiceCustomization(
+                            openapi_client.models.config_advanced_service_customizations.Config_Advanced_ServiceCustomizations(
                                 disabled = True, 
-                                service_type = 'CA_FRONTEND', 
+                                service_type = 'CONTROL', 
                                 template = '', )
                             ], ), 
                     bgp = openapi_client.models.config_bgp.Config_Bgp(
@@ -384,7 +384,7 @@ path to be used.',
                                 openapi_client.models.config_system_resources_service_limit.Config_System_Resources_ServiceLimit(
                                     cpu = 1.5, 
                                     memory = '2.5G', 
-                                    name = 'CA_FRONTEND', )
+                                    name = 'CONTROL', )
                                 ], ), ), )
             )
         else:
@@ -392,9 +392,9 @@ path to be used.',
                 config = openapi_client.models.config.Config(
                     advanced = openapi_client.models.config_advanced.Config_Advanced(
                         service_customizations = [
-                            openapi_client.models.config_advanced_service_customization.Config_Advanced_ServiceCustomization(
+                            openapi_client.models.config_advanced_service_customizations.Config_Advanced_ServiceCustomizations(
                                 disabled = True, 
-                                service_type = 'CA_FRONTEND', 
+                                service_type = 'CONTROL', 
                                 template = '', )
                             ], ), 
                     bgp = openapi_client.models.config_bgp.Config_Bgp(
@@ -736,7 +736,7 @@ path to be used.',
                                 openapi_client.models.config_system_resources_service_limit.Config_System_Resources_ServiceLimit(
                                     cpu = 1.5, 
                                     memory = '2.5G', 
-                                    name = 'CA_FRONTEND', )
+                                    name = 'CONTROL', )
                                 ], ), ), ),
         )
         """

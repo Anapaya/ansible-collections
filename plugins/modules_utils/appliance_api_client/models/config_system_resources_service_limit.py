@@ -39,8 +39,8 @@ class ConfigSystemResourcesServiceLimit(BaseModel):
     @field_validator('name')
     def name_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('CA_FRONTEND', 'CONTROL', 'CRON', 'DAEMON', 'DATAPLANE', 'DATAPLANE_CONTROL', 'DISPATCHER', 'FRR', 'FRR_EXPORTER', 'GATEWAY', 'MOLE', 'NODE_EXPORTER', 'PROMTAIL', 'ROUTER', 'TELEMETRY'):
-            raise ValueError("must be one of enum values ('CA_FRONTEND', 'CONTROL', 'CRON', 'DAEMON', 'DATAPLANE', 'DATAPLANE_CONTROL', 'DISPATCHER', 'FRR', 'FRR_EXPORTER', 'GATEWAY', 'MOLE', 'NODE_EXPORTER', 'PROMTAIL', 'ROUTER', 'TELEMETRY')")
+        if value not in ('CONTROL', 'ROUTER', 'DISPATCHER', 'DAEMON', 'GATEWAY', 'CA_FRONTEND', 'DATAPLANE_CONTROL', 'MOLE', 'CRON', 'TELEMETRY', 'FRR', 'FRR_EXPORTER', 'NODE_EXPORTER', 'PROMTAIL'):
+            raise ValueError("must be one of enum values ('CONTROL', 'ROUTER', 'DISPATCHER', 'DAEMON', 'GATEWAY', 'CA_FRONTEND', 'DATAPLANE_CONTROL', 'MOLE', 'CRON', 'TELEMETRY', 'FRR', 'FRR_EXPORTER', 'NODE_EXPORTER', 'PROMTAIL')")
         return value
 
     model_config = {

@@ -27,7 +27,7 @@ try:
 except ImportError:
     from typing_extensions import Self
 
-class ConfigAdvancedServiceCustomization(BaseModel):
+class ConfigAdvancedServiceCustomizations(BaseModel):
     """
     List of service customizations that should be configured on the Anapaya appliance system, uniquely identified by the service type.
     """ # noqa: E501
@@ -39,8 +39,8 @@ class ConfigAdvancedServiceCustomization(BaseModel):
     @field_validator('service_type')
     def service_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('CA_FRONTEND', 'CONTROL', 'CRON', 'DAEMON', 'DATAPLANE', 'DATAPLANE_CONTROL', 'DISPATCHER', 'FRR', 'FRR_EXPORTER', 'GATEWAY', 'MOLE', 'NODE_EXPORTER', 'PROMTAIL', 'ROUTER', 'TELEMETRY'):
-            raise ValueError("must be one of enum values ('CA_FRONTEND', 'CONTROL', 'CRON', 'DAEMON', 'DATAPLANE', 'DATAPLANE_CONTROL', 'DISPATCHER', 'FRR', 'FRR_EXPORTER', 'GATEWAY', 'MOLE', 'NODE_EXPORTER', 'PROMTAIL', 'ROUTER', 'TELEMETRY')")
+        if value not in ('CONTROL', 'ROUTER', 'DISPATCHER', 'DAEMON', 'GATEWAY', 'CA_FRONTEND', 'DATAPLANE_CONTROL', 'MOLE', 'CRON', 'TELEMETRY', 'FRR', 'FRR_EXPORTER', 'NODE_EXPORTER', 'PROMTAIL'):
+            raise ValueError("must be one of enum values ('CONTROL', 'ROUTER', 'DISPATCHER', 'DAEMON', 'GATEWAY', 'CA_FRONTEND', 'DATAPLANE_CONTROL', 'MOLE', 'CRON', 'TELEMETRY', 'FRR', 'FRR_EXPORTER', 'NODE_EXPORTER', 'PROMTAIL')")
         return value
 
     model_config = {
@@ -61,7 +61,7 @@ class ConfigAdvancedServiceCustomization(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of ConfigAdvancedServiceCustomization from a JSON string"""
+        """Create an instance of ConfigAdvancedServiceCustomizations from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,7 +84,7 @@ class ConfigAdvancedServiceCustomization(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of ConfigAdvancedServiceCustomization from a dict"""
+        """Create an instance of ConfigAdvancedServiceCustomizations from a dict"""
         if obj is None:
             return None
 

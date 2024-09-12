@@ -27,27 +27,6 @@ class TestConfigApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_config_advanced_service_customization_get(self) -> None:
-        """Test case for config_advanced_service_customization_get
-
-        Get the customization for a service.
-        """
-        pass
-
-    def test_config_advanced_service_customization_template_get(self) -> None:
-        """Test case for config_advanced_service_customization_template_get
-
-        Get the custom template for a service.
-        """
-        pass
-
-    def test_config_advanced_service_customization_template_put(self) -> None:
-        """Test case for config_advanced_service_customization_template_put
-
-        Put a custom template for a service.
-        """
-        pass
-
     def test_config_get(self) -> None:
         """Test case for config_get
 

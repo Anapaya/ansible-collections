@@ -22,7 +22,7 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 from pydantic import Field
-from openapi_client.models.config_advanced_service_customization import ConfigAdvancedServiceCustomization
+from openapi_client.models.config_advanced_service_customizations import ConfigAdvancedServiceCustomizations
 try:
     from typing import Self
 except ImportError:
@@ -32,7 +32,7 @@ class ConfigAdvanced(BaseModel):
     """
     The necessary configuration data for the advanced section of the Anapaya appliance.
     """ # noqa: E501
-    service_customizations: Optional[List[ConfigAdvancedServiceCustomization]] = Field(default=None, description="The list of service-customizations on the Anapaya appliance.")
+    service_customizations: Optional[List[ConfigAdvancedServiceCustomizations]] = Field(default=None, description="The list of service-customizations on the Anapaya appliance.")
     __properties: ClassVar[List[str]] = ["service_customizations"]
 
     model_config = {
@@ -91,7 +91,7 @@ class ConfigAdvanced(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "service_customizations": [ConfigAdvancedServiceCustomization.from_dict(_item) for _item in obj.get("service_customizations")] if obj.get("service_customizations") is not None else None
+            "service_customizations": [ConfigAdvancedServiceCustomizations.from_dict(_item) for _item in obj.get("service_customizations")] if obj.get("service_customizations") is not None else None
         })
         return _obj
 

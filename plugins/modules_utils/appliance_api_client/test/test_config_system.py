@@ -57,7 +57,7 @@ class TestConfigSystem(unittest.TestCase):
                         openapi_client.models.config_system_resources_service_limit.Config_System_Resources_ServiceLimit(
                             cpu = 1.5, 
                             memory = '2.5G', 
-                            name = 'CA_FRONTEND', )
+                            name = 'CONTROL', )
                         ], ),
                 vpp = openapi_client.models.config_system_vpp.Config_System_Vpp(
                     buffers = openapi_client.models.config_system_vpp_buffers.Config_System_Vpp_Buffers(

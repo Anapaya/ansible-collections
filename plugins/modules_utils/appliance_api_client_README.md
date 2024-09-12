@@ -45,15 +45,16 @@ configuration = openapi_client.Configuration(
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.ConfigApi(api_client)
-    service_type = openapi_client.ServiceType() # ServiceType | Service Type
+    if_none_match = 'if_none_match_example' # str |  (optional)
+    suppress_secrets = True # bool | Do not expose secrets in the response. (optional)
 
     try:
-        # Get the customization for a service.
-        api_response = api_instance.config_advanced_service_customization_get(service_type)
-        print("The response of ConfigApi->config_advanced_service_customization_get:\n")
+        # Get the current configuration
+        api_response = api_instance.config_get(if_none_match=if_none_match, suppress_secrets=suppress_secrets)
+        print("The response of ConfigApi->config_get:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling ConfigApi->config_advanced_service_customization_get: %s\n" % e)
+        print("Exception when calling ConfigApi->config_get: %s\n" % e)
 
 ```
 
@@ -63,9 +64,6 @@ All URIs are relative to *http://localhost:443/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ConfigApi* | [**config_advanced_service_customization_get**](openapi_client/docs/ConfigApi.md#config_advanced_service_customization_get) | **GET** /config/advanced/service-customization/{service_type} | Get the customization for a service.
-*ConfigApi* | [**config_advanced_service_customization_template_get**](openapi_client/docs/ConfigApi.md#config_advanced_service_customization_template_get) | **GET** /config/advanced/service-customization/{service_type}/template | Get the custom template for a service.
-*ConfigApi* | [**config_advanced_service_customization_template_put**](openapi_client/docs/ConfigApi.md#config_advanced_service_customization_template_put) | **PUT** /config/advanced/service-customization/{service_type}/template | Put a custom template for a service.
 *ConfigApi* | [**config_get**](openapi_client/docs/ConfigApi.md#config_get) | **GET** /config | Get the current configuration
 *ConfigApi* | [**config_put**](openapi_client/docs/ConfigApi.md#config_put) | **PUT** /config | Put a new configuration
 *ConfigApi* | [**config_validate_post**](openapi_client/docs/ConfigApi.md#config_validate_post) | **POST** /config/validate | Validates a configuration
@@ -271,7 +269,7 @@ Class | Method | HTTP request | Description
  - [CheckSummary](openapi_client/docs/CheckSummary.md)
  - [Config](openapi_client/docs/Config.md)
  - [ConfigAdvanced](openapi_client/docs/ConfigAdvanced.md)
- - [ConfigAdvancedServiceCustomization](openapi_client/docs/ConfigAdvancedServiceCustomization.md)
+ - [ConfigAdvancedServiceCustomizations](openapi_client/docs/ConfigAdvancedServiceCustomizations.md)
  - [ConfigBgp](openapi_client/docs/ConfigBgp.md)
  - [ConfigBgpGlobal](openapi_client/docs/ConfigBgpGlobal.md)
  - [ConfigBgpNeighbor](openapi_client/docs/ConfigBgpNeighbor.md)
@@ -387,7 +385,6 @@ Class | Method | HTTP request | Description
  - [ConfigScionTunnelingStaticAnnouncement](openapi_client/docs/ConfigScionTunnelingStaticAnnouncement.md)
  - [ConfigScionTunnelingStaticAnnouncementNextHopTracking](openapi_client/docs/ConfigScionTunnelingStaticAnnouncementNextHopTracking.md)
  - [ConfigScionTunnelingTrafficMatcher](openapi_client/docs/ConfigScionTunnelingTrafficMatcher.md)
- - [ConfigServiceCustomizationResponseJson](openapi_client/docs/ConfigServiceCustomizationResponseJson.md)
  - [ConfigSystem](openapi_client/docs/ConfigSystem.md)
  - [ConfigSystemDns](openapi_client/docs/ConfigSystemDns.md)
  - [ConfigSystemDnsServers](openapi_client/docs/ConfigSystemDnsServers.md)
@@ -538,7 +535,6 @@ Class | Method | HTTP request | Description
  - [ScionTunnelingSummary](openapi_client/docs/ScionTunnelingSummary.md)
  - [ScionTunnelingTrafficMatcher](openapi_client/docs/ScionTunnelingTrafficMatcher.md)
  - [ScionTunnelingTrafficPolicy](openapi_client/docs/ScionTunnelingTrafficPolicy.md)
- - [ServiceType](openapi_client/docs/ServiceType.md)
  - [ShowpathsRun](openapi_client/docs/ShowpathsRun.md)
  - [SiblingInterfaceUp](openapi_client/docs/SiblingInterfaceUp.md)
  - [SiblingInterfaceUpData](openapi_client/docs/SiblingInterfaceUpData.md)

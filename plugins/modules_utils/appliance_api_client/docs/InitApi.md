@@ -343,7 +343,7 @@ configuration = openapi_client.Configuration(
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.InitApi(api_client)
-    body = [B@75c5ab79 # bytearray | 
+    body = [B@dc6a186 # bytearray | 
     force = False # bool | If force is true, the TRC is added regardless of validity. (optional) (default to False)
 
     try:
@@ -417,7 +417,7 @@ configuration = openapi_client.Configuration(
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.InitApi(api_client)
-    body = [B@35bfa7be # bytearray | 
+    body = [B@c1bcea1 # bytearray | 
     force = False # bool | If force is true, the TRC is added regardless of validity. (optional) (default to False)
 
     try:

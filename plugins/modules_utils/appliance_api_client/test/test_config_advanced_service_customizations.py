@@ -16,10 +16,10 @@
 import unittest
 import datetime
 
-from openapi_client.models.config_advanced_service_customization import ConfigAdvancedServiceCustomization
+from openapi_client.models.config_advanced_service_customizations import ConfigAdvancedServiceCustomizations
 
-class TestConfigAdvancedServiceCustomization(unittest.TestCase):
-    """ConfigAdvancedServiceCustomization unit test stubs"""
+class TestConfigAdvancedServiceCustomizations(unittest.TestCase):
+    """ConfigAdvancedServiceCustomizations unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,29 +27,29 @@ class TestConfigAdvancedServiceCustomization(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ConfigAdvancedServiceCustomization:
-        """Test ConfigAdvancedServiceCustomization
+    def make_instance(self, include_optional) -> ConfigAdvancedServiceCustomizations:
+        """Test ConfigAdvancedServiceCustomizations
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `ConfigAdvancedServiceCustomization`
+        # uncomment below to create an instance of `ConfigAdvancedServiceCustomizations`
         """
-        model = ConfigAdvancedServiceCustomization()
+        model = ConfigAdvancedServiceCustomizations()
         if include_optional:
-            return ConfigAdvancedServiceCustomization(
+            return ConfigAdvancedServiceCustomizations(
                 disabled = True,
-                service_type = 'CA_FRONTEND',
+                service_type = 'CONTROL',
                 template = ''
             )
         else:
-            return ConfigAdvancedServiceCustomization(
-                service_type = 'CA_FRONTEND',
+            return ConfigAdvancedServiceCustomizations(
+                service_type = 'CONTROL',
                 template = '',
         )
         """
 
-    def testConfigAdvancedServiceCustomization(self):
-        """Test ConfigAdvancedServiceCustomization"""
+    def testConfigAdvancedServiceCustomizations(self):
+        """Test ConfigAdvancedServiceCustomizations"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

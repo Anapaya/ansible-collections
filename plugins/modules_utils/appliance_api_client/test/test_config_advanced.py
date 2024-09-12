@@ -38,9 +38,9 @@ class TestConfigAdvanced(unittest.TestCase):
         if include_optional:
             return ConfigAdvanced(
                 service_customizations = [
-                    openapi_client.models.config_advanced_service_customization.Config_Advanced_ServiceCustomization(
+                    openapi_client.models.config_advanced_service_customizations.Config_Advanced_ServiceCustomizations(
                         disabled = True, 
-                        service_type = 'CA_FRONTEND', 
+                        service_type = 'CONTROL', 
                         template = '', )
                     ]
             )

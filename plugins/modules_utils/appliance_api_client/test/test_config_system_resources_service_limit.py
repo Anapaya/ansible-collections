@@ -39,11 +39,11 @@ class TestConfigSystemResourcesServiceLimit(unittest.TestCase):
             return ConfigSystemResourcesServiceLimit(
                 cpu = 1.5,
                 memory = '2.5G',
-                name = 'CA_FRONTEND'
+                name = 'CONTROL'
             )
         else:
             return ConfigSystemResourcesServiceLimit(
-                name = 'CA_FRONTEND',
+                name = 'CONTROL',
         )
         """
 

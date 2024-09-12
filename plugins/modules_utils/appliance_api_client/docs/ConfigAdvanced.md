@@ -6,7 +6,7 @@ The necessary configuration data for the advanced section of the Anapaya applian
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_customizations** | [**List[ConfigAdvancedServiceCustomization]**](ConfigAdvancedServiceCustomization.md) | The list of service-customizations on the Anapaya appliance. | [optional] 
+**service_customizations** | [**List[ConfigAdvancedServiceCustomizations]**](ConfigAdvancedServiceCustomizations.md) | The list of service-customizations on the Anapaya appliance. | [optional] 
 
 ## Example
 
