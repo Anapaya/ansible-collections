@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_cluster import ConfigCluster
+from ansible.module_utils.appliance_api_client.models.config_cluster import ConfigCluster  # noqa: E501
 
 class TestConfigCluster(unittest.TestCase):
     """ConfigCluster unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigCluster(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigCluster`
         """
-        model = ConfigCluster()
+        model = ConfigCluster()  # noqa: E501
         if include_optional:
             return ConfigCluster(
                 features = ansible.module_utils.appliance_api_client.models.config_cluster_features.Config_Cluster_Features(

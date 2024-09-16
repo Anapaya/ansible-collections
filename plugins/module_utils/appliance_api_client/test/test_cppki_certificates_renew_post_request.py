@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.cppki_certificates_renew_post_request import CppkiCertificatesRenewPostRequest
+from ansible.module_utils.appliance_api_client.models.cppki_certificates_renew_post_request import CppkiCertificatesRenewPostRequest  # noqa: E501
 
 class TestCppkiCertificatesRenewPostRequest(unittest.TestCase):
     """CppkiCertificatesRenewPostRequest unit test stubs"""
@@ -34,7 +34,7 @@ class TestCppkiCertificatesRenewPostRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CppkiCertificatesRenewPostRequest`
         """
-        model = CppkiCertificatesRenewPostRequest()
+        model = CppkiCertificatesRenewPostRequest()  # noqa: E501
         if include_optional:
             return CppkiCertificatesRenewPostRequest(
                 subject = ansible.module_utils.appliance_api_client.models.subject_of_a_certificate_signing_request/.Subject of a certificate signing request.(

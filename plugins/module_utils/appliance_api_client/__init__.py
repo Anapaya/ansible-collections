@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.1"
+__version__ = "1.0.0"
 
 # import apis into sdk package
 from ansible.module_utils.appliance_api_client.api.config_api import ConfigApi

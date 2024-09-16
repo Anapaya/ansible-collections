@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_failover_sequence_entry import ScionTunnelingFailoverSequenceEntry
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_failover_sequence_entry import ScionTunnelingFailoverSequenceEntry  # noqa: E501
 
 class TestScionTunnelingFailoverSequenceEntry(unittest.TestCase):
     """ScionTunnelingFailoverSequenceEntry unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingFailoverSequenceEntry(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingFailoverSequenceEntry`
         """
-        model = ScionTunnelingFailoverSequenceEntry()
+        model = ScionTunnelingFailoverSequenceEntry()  # noqa: E501
         if include_optional:
             return ScionTunnelingFailoverSequenceEntry(
                 path_filter_name = '',

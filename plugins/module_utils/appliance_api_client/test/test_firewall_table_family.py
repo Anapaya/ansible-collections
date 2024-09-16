@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.firewall_table_family import FirewallTableFamily
+from ansible.module_utils.appliance_api_client.models.firewall_table_family import FirewallTableFamily  # noqa: E501
 
 class TestFirewallTableFamily(unittest.TestCase):
     """FirewallTableFamily unit test stubs"""

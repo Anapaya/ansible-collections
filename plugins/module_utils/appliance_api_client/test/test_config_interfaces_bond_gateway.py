@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_gateway import ConfigInterfacesBondGateway
+from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_gateway import ConfigInterfacesBondGateway  # noqa: E501
 
 class TestConfigInterfacesBondGateway(unittest.TestCase):
     """ConfigInterfacesBondGateway unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesBondGateway(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesBondGateway`
         """
-        model = ConfigInterfacesBondGateway()
+        model = ConfigInterfacesBondGateway()  # noqa: E501
         if include_optional:
             return ConfigInterfacesBondGateway(
                 ipv4_gateway = '',

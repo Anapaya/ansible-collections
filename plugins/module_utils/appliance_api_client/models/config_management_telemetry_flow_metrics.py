@@ -19,75 +19,57 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictBool, StrictStr
-from pydantic import Field
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional
+from pydantic import BaseModel, Field, StrictBool, StrictStr
 
 class ConfigManagementTelemetryFlowMetrics(BaseModel):
     """
-    Configuration for the flow-metrics feature. The gateway collects information about outgoing flows, such as the source and destination ISD-AS and IP address, in order to export then number of gateway users. The flow information is sent to the flow-collector for storage and processing.
-    """ # noqa: E501
-    cleanup_task_interval: Optional[StrictStr] = Field(default='60s', description="Time interval at which expired flows are cleaned up.")
-    collector_url: Optional[StrictStr] = Field(default=None, description="URL of the flow-collector where the flow metric information is sent to. Supports 'http', 'https' and 'grpc' transport")
-    enabled: Optional[StrictBool] = Field(default=False, description="Whether the feature is enabled.")
-    export_task_interval: Optional[StrictStr] = Field(default='60s', description="Time interval at which flow metrics are exported to the collector.")
-    flow_expiration_interval: Optional[StrictStr] = Field(default='180s', description="Time interval after which inactive flows are considered expired and are marked for cleanup.")
-    proxy_url: Optional[StrictStr] = Field(default=None, description="URL of the optional HTTP(S) proxy. If set, the flow metric information is sent to the collector via the proxy.")
-    __properties: ClassVar[List[str]] = ["cleanup_task_interval", "collector_url", "enabled", "export_task_interval", "flow_expiration_interval", "proxy_url"]
+    Configuration for the flow-metrics feature. The gateway collects information about outgoing flows, such as the source and destination ISD-AS and IP address, in order to export then number of gateway users. The flow information is sent to the flow-collector for storage and processing.  # noqa: E501
+    """
+    cleanup_task_interval: Optional[StrictStr] = Field('60s', description="Time interval at which expired flows are cleaned up.")
+    collector_url: Optional[StrictStr] = Field(None, description="URL of the flow-collector where the flow metric information is sent to. Supports 'http', 'https' and 'grpc' transport")
+    enabled: Optional[StrictBool] = Field(False, description="Whether the feature is enabled.")
+    export_task_interval: Optional[StrictStr] = Field('60s', description="Time interval at which flow metrics are exported to the collector.")
+    flow_expiration_interval: Optional[StrictStr] = Field('180s', description="Time interval after which inactive flows are considered expired and are marked for cleanup.")
+    proxy_url: Optional[StrictStr] = Field(None, description="URL of the optional HTTP(S) proxy. If set, the flow metric information is sent to the collector via the proxy.")
+    __properties = ["cleanup_task_interval", "collector_url", "enabled", "export_task_interval", "flow_expiration_interval", "proxy_url"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigManagementTelemetryFlowMetrics:
         """Create an instance of ConfigManagementTelemetryFlowMetrics from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigManagementTelemetryFlowMetrics:
         """Create an instance of ConfigManagementTelemetryFlowMetrics from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigManagementTelemetryFlowMetrics.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigManagementTelemetryFlowMetrics.parse_obj({
             "cleanup_task_interval": obj.get("cleanup_task_interval") if obj.get("cleanup_task_interval") is not None else '60s',
             "collector_url": obj.get("collector_url"),
             "enabled": obj.get("enabled") if obj.get("enabled") is not None else False,

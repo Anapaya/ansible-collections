@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.cppki_trcs_bundle_post_response_json import CppkiTrcsBundlePostResponseJson
+from ansible.module_utils.appliance_api_client.models.cppki_trcs_bundle_post_response_json import CppkiTrcsBundlePostResponseJson  # noqa: E501
 
 class TestCppkiTrcsBundlePostResponseJson(unittest.TestCase):
     """CppkiTrcsBundlePostResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestCppkiTrcsBundlePostResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CppkiTrcsBundlePostResponseJson`
         """
-        model = CppkiTrcsBundlePostResponseJson()
+        model = CppkiTrcsBundlePostResponseJson()  # noqa: E501
         if include_optional:
             return CppkiTrcsBundlePostResponseJson(
                 trcs = [

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.trc_info import TRCInfo
+from ansible.module_utils.appliance_api_client.models.trc_info import TRCInfo  # noqa: E501
 
 class TestTRCInfo(unittest.TestCase):
     """TRCInfo unit test stubs"""
@@ -34,7 +34,7 @@ class TestTRCInfo(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TRCInfo`
         """
-        model = TRCInfo()
+        model = TRCInfo()  # noqa: E501
         if include_optional:
             return TRCInfo(
                 id = 'ISD64-B1-S3',

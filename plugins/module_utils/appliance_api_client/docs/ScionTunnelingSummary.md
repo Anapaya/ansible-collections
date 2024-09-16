@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sessions** | [**List[ScionTunnelingSession]**](ScionTunnelingSession.md) | A list of sessions. A session is a tunnel between two SCION appliances with a specific policy governing the selection of SCION paths.  | 

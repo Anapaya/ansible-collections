@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.license_payload_json import LicensePayloadJson
+from ansible.module_utils.appliance_api_client.models.license_payload_json import LicensePayloadJson  # noqa: E501
 
 class TestLicensePayloadJson(unittest.TestCase):
     """LicensePayloadJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestLicensePayloadJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LicensePayloadJson`
         """
-        model = LicensePayloadJson()
+        model = LicensePayloadJson()  # noqa: E501
         if include_optional:
             return LicensePayloadJson(
                 license_id = '',

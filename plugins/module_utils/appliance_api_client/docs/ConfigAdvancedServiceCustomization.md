@@ -3,7 +3,6 @@
 List of service customizations that should be configured on the Anapaya appliance system, uniquely identified by the service type.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **disabled** | **bool** | Whether the service customization should be disabled. | [optional] [default to False]

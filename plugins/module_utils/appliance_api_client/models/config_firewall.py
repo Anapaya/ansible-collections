@@ -19,24 +19,19 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr, field_validator
-from pydantic import Field
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictStr, conlist, validator
 from ansible.module_utils.appliance_api_client.models.config_firewall_table import ConfigFirewallTable
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class ConfigFirewall(BaseModel):
     """
-    The necessary configuration data for firewalling the Anapaya appliance.
-    """ # noqa: E501
-    mode: Optional[StrictStr] = Field(default=None, description="The firewall mode declares how the appliance handles firewall rules. Depending on the mode, the appliance either generates a default set of rules, prepends some custom rules, or uses only the specified custom rules.")
-    tables: Optional[List[ConfigFirewallTable]] = Field(default=None, description="The list of nftables tables on the Anapaya appliance. The usage of the list depends on the firewall mode.")
-    __properties: ClassVar[List[str]] = ["mode", "tables"]
+    The necessary configuration data for firewalling the Anapaya appliance.  # noqa: E501
+    """
+    mode: Optional[StrictStr] = Field(None, description="The firewall mode declares how the appliance handles firewall rules. Depending on the mode, the appliance either generates a default set of rules, prepends some custom rules, or uses only the specified custom rules.")
+    tables: Optional[conlist(ConfigFirewallTable)] = Field(None, description="The list of nftables tables on the Anapaya appliance. The usage of the list depends on the firewall mode.")
+    __properties = ["mode", "tables"]
 
-    @field_validator('mode')
+    @validator('mode')
     def mode_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -46,43 +41,30 @@ class ConfigFirewall(BaseModel):
             raise ValueError("must be one of enum values ('AUTO', 'PREPEND', 'CUSTOM', 'UNMANAGED')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigFirewall:
         """Create an instance of ConfigFirewall from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in tables (list)
         _items = []
         if self.tables:
@@ -93,15 +75,15 @@ class ConfigFirewall(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigFirewall:
         """Create an instance of ConfigFirewall from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigFirewall.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigFirewall.parse_obj({
             "mode": obj.get("mode"),
             "tables": [ConfigFirewallTable.from_dict(_item) for _item in obj.get("tables")] if obj.get("tables") is not None else None
         })

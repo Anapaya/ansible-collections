@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_path_hop import ScionPathHop
+from ansible.module_utils.appliance_api_client.models.scion_path_hop import ScionPathHop  # noqa: E501
 
 class TestScionPathHop(unittest.TestCase):
     """ScionPathHop unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionPathHop(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionPathHop`
         """
-        model = ScionPathHop()
+        model = ScionPathHop()  # noqa: E501
         if include_optional:
             return ScionPathHop(
                 ifid = 56,

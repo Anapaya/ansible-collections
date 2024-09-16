@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.debug_cluster_peer import DebugClusterPeer
+from ansible.module_utils.appliance_api_client.models.debug_cluster_peer import DebugClusterPeer  # noqa: E501
 
 class TestDebugClusterPeer(unittest.TestCase):
     """DebugClusterPeer unit test stubs"""
@@ -34,7 +34,7 @@ class TestDebugClusterPeer(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DebugClusterPeer`
         """
-        model = DebugClusterPeer()
+        model = DebugClusterPeer()  # noqa: E501
         if include_optional:
             return DebugClusterPeer(
                 name = '',

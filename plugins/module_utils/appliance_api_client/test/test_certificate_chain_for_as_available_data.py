@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.certificate_chain_for_as_available_data import CertificateChainForASAvailableData
+from ansible.module_utils.appliance_api_client.models.certificate_chain_for_as_available_data import CertificateChainForASAvailableData  # noqa: E501
 
 class TestCertificateChainForASAvailableData(unittest.TestCase):
     """CertificateChainForASAvailableData unit test stubs"""
@@ -34,7 +34,7 @@ class TestCertificateChainForASAvailableData(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CertificateChainForASAvailableData`
         """
-        model = CertificateChainForASAvailableData()
+        model = CertificateChainForASAvailableData()  # noqa: E501
         if include_optional:
             return CertificateChainForASAvailableData(
                 isd_as = '1-ff00:0:110',

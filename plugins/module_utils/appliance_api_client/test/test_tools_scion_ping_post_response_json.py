@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.tools_scion_ping_post_response_json import ToolsScionPingPostResponseJson
+from ansible.module_utils.appliance_api_client.models.tools_scion_ping_post_response_json import ToolsScionPingPostResponseJson  # noqa: E501
 
 class TestToolsScionPingPostResponseJson(unittest.TestCase):
     """ToolsScionPingPostResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestToolsScionPingPostResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ToolsScionPingPostResponseJson`
         """
-        model = ToolsScionPingPostResponseJson()
+        model = ToolsScionPingPostResponseJson()  # noqa: E501
         if include_optional:
             return ToolsScionPingPostResponseJson(
                 summary = ansible.module_utils.appliance_api_client.models.ping_summary.PingSummary(

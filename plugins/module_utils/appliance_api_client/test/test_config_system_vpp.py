@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_system_vpp import ConfigSystemVpp
+from ansible.module_utils.appliance_api_client.models.config_system_vpp import ConfigSystemVpp  # noqa: E501
 
 class TestConfigSystemVpp(unittest.TestCase):
     """ConfigSystemVpp unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSystemVpp(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSystemVpp`
         """
-        model = ConfigSystemVpp()
+        model = ConfigSystemVpp()  # noqa: E501
         if include_optional:
             return ConfigSystemVpp(
                 buffers = ansible.module_utils.appliance_api_client.models.config_system_vpp_buffers.Config_System_Vpp_Buffers(

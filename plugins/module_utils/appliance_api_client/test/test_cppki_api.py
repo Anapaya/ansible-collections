@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.cppki_api import CppkiApi
+from ansible.module_utils.appliance_api_client.api.cppki_api import CppkiApi  # noqa: E501
 
 
 class TestCppkiApi(unittest.TestCase):
     """CppkiApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = CppkiApi()
+        self.api = CppkiApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,105 +30,105 @@ class TestCppkiApi(unittest.TestCase):
     def test_cppki_certificate_blob_get(self) -> None:
         """Test case for cppki_certificate_blob_get
 
-        Get the certificate chain blob
+        Get the certificate chain blob  # noqa: E501
         """
         pass
 
     def test_cppki_certificate_get(self) -> None:
         """Test case for cppki_certificate_get
 
-        Get the certificate chain
+        Get the certificate chain  # noqa: E501
         """
         pass
 
     def test_cppki_certificates_get(self) -> None:
         """Test case for cppki_certificates_get
 
-        List the certificate chains
+        List the certificate chains  # noqa: E501
         """
         pass
 
     def test_cppki_certificates_post(self) -> None:
         """Test case for cppki_certificates_post
 
-        Add an AS certificate chain
+        Add an AS certificate chain  # noqa: E501
         """
         pass
 
     def test_cppki_certificates_renew_post(self) -> None:
         """Test case for cppki_certificates_renew_post
 
-        Manually renew an AS certificate chain
+        Manually renew an AS certificate chain  # noqa: E501
         """
         pass
 
     def test_cppki_certificates_request_post(self) -> None:
         """Test case for cppki_certificates_request_post
 
-        Manually request an AS certificate chain for a given CSR
+        Manually request an AS certificate chain for a given CSR  # noqa: E501
         """
         pass
 
     def test_cppki_csr_blob_get(self) -> None:
         """Test case for cppki_csr_blob_get
 
-        Get the certificate signing request blob
+        Get the certificate signing request blob  # noqa: E501
         """
         pass
 
     def test_cppki_csr_get(self) -> None:
         """Test case for cppki_csr_get
 
-        Get the certificate signing request
+        Get the certificate signing request  # noqa: E501
         """
         pass
 
     def test_cppki_csrs_get(self) -> None:
         """Test case for cppki_csrs_get
 
-        List the certificate signing requests
+        List the certificate signing requests  # noqa: E501
         """
         pass
 
     def test_cppki_csrs_post(self) -> None:
         """Test case for cppki_csrs_post
 
-        Create an AS certificate signing request
+        Create an AS certificate signing request  # noqa: E501
         """
         pass
 
     def test_cppki_trc_blob_get(self) -> None:
         """Test case for cppki_trc_blob_get
 
-        Get the TRC blob
+        Get the TRC blob  # noqa: E501
         """
         pass
 
     def test_cppki_trc_get(self) -> None:
         """Test case for cppki_trc_get
 
-        Get the TRC
+        Get the TRC  # noqa: E501
         """
         pass
 
     def test_cppki_trcs_bundle_post(self) -> None:
         """Test case for cppki_trcs_bundle_post
 
-        Add a bundle of TRC files
+        Add a bundle of TRC files  # noqa: E501
         """
         pass
 
     def test_cppki_trcs_get(self) -> None:
         """Test case for cppki_trcs_get
 
-        List the TRC files
+        List the TRC files  # noqa: E501
         """
         pass
 
     def test_cppki_trcs_post(self) -> None:
         """Test case for cppki_trcs_post
 
-        Add a TRC file
+        Add a TRC file  # noqa: E501
         """
         pass
 

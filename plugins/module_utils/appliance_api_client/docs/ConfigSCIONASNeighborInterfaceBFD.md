@@ -3,7 +3,6 @@
 SCION interface BFD configuration. BFD is used to detect faults on the link to the neighbor AS.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **desired_minimum_tx_interval** | **int** | The minimum interval between transmission of BFD control packets that the operator desires. This value is advertised to the peer, however the actual interval used is specified by taking the maximum of desired-minimum-tx-interval and the value of the remote required-minimum-receive interval value. This value is specified as an integer number of microseconds. | [optional] 

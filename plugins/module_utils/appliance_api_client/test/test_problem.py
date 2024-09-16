@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.problem import Problem
+from ansible.module_utils.appliance_api_client.models.problem import Problem  # noqa: E501
 
 class TestProblem(unittest.TestCase):
     """Problem unit test stubs"""
@@ -34,7 +34,7 @@ class TestProblem(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Problem`
         """
-        model = Problem()
+        model = Problem()  # noqa: E501
         if include_optional:
             return Problem(
                 type = 'about:blank',

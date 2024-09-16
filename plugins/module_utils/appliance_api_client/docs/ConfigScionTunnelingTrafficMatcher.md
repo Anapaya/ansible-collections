@@ -3,7 +3,6 @@
 List of traffic matchers.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **condition** | **str** | The condition for traffic to match this traffic matcher. | 

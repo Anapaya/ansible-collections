@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_cluster_peer_scion_tunneling_endpoint import ConfigClusterPeerScionTunnelingEndpoint
+from ansible.module_utils.appliance_api_client.models.config_cluster_peer_scion_tunneling_endpoint import ConfigClusterPeerScionTunnelingEndpoint  # noqa: E501
 
 class TestConfigClusterPeerScionTunnelingEndpoint(unittest.TestCase):
     """ConfigClusterPeerScionTunnelingEndpoint unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigClusterPeerScionTunnelingEndpoint(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigClusterPeerScionTunnelingEndpoint`
         """
-        model = ConfigClusterPeerScionTunnelingEndpoint()
+        model = ConfigClusterPeerScionTunnelingEndpoint()  # noqa: E501
         if include_optional:
             return ConfigClusterPeerScionTunnelingEndpoint(
                 allowed_interfaces = [

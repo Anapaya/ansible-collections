@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_metadata import ConfigMetadata
+from ansible.module_utils.appliance_api_client.models.config_metadata import ConfigMetadata  # noqa: E501
 
 class TestConfigMetadata(unittest.TestCase):
     """ConfigMetadata unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigMetadata(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigMetadata`
         """
-        model = ConfigMetadata()
+        model = ConfigMetadata()  # noqa: E501
         if include_optional:
             return ConfigMetadata(
                 release_version = 'v1.0.0',

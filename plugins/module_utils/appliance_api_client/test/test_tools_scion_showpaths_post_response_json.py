@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.tools_scion_showpaths_post_response_json import ToolsScionShowpathsPostResponseJson
+from ansible.module_utils.appliance_api_client.models.tools_scion_showpaths_post_response_json import ToolsScionShowpathsPostResponseJson  # noqa: E501
 
 class TestToolsScionShowpathsPostResponseJson(unittest.TestCase):
     """ToolsScionShowpathsPostResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestToolsScionShowpathsPostResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ToolsScionShowpathsPostResponseJson`
         """
-        model = ToolsScionShowpathsPostResponseJson()
+        model = ToolsScionShowpathsPostResponseJson()  # noqa: E501
         if include_optional:
             return ToolsScionShowpathsPostResponseJson(
                 paths = [

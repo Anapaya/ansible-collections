@@ -3,7 +3,6 @@
 The id of the identity provider.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **base_auth_url** | **str** | The base URL for the identity provider. | [optional] 

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.software_package_fetch_post_response_json import SoftwarePackageFetchPostResponseJson
+from ansible.module_utils.appliance_api_client.models.software_package_fetch_post_response_json import SoftwarePackageFetchPostResponseJson  # noqa: E501
 
 class TestSoftwarePackageFetchPostResponseJson(unittest.TestCase):
     """SoftwarePackageFetchPostResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestSoftwarePackageFetchPostResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SoftwarePackageFetchPostResponseJson`
         """
-        model = SoftwarePackageFetchPostResponseJson()
+        model = SoftwarePackageFetchPostResponseJson()  # noqa: E501
         if include_optional:
             return SoftwarePackageFetchPostResponseJson(
                 fetch = ansible.module_utils.appliance_api_client.models.software_package_fetch.SoftwarePackageFetch(

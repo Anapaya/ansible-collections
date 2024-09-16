@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_cluster_peer_scion_tunneling_endpoint_allowed_interfaces import ConfigClusterPeerScionTunnelingEndpointAllowedInterfaces
+from ansible.module_utils.appliance_api_client.models.config_cluster_peer_scion_tunneling_endpoint_allowed_interfaces import ConfigClusterPeerScionTunnelingEndpointAllowedInterfaces  # noqa: E501
 
 class TestConfigClusterPeerScionTunnelingEndpointAllowedInterfaces(unittest.TestCase):
     """ConfigClusterPeerScionTunnelingEndpointAllowedInterfaces unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigClusterPeerScionTunnelingEndpointAllowedInterfaces(unittest.Test
             optional params are included """
         # uncomment below to create an instance of `ConfigClusterPeerScionTunnelingEndpointAllowedInterfaces`
         """
-        model = ConfigClusterPeerScionTunnelingEndpointAllowedInterfaces()
+        model = ConfigClusterPeerScionTunnelingEndpointAllowedInterfaces()  # noqa: E501
         if include_optional:
             return ConfigClusterPeerScionTunnelingEndpointAllowedInterfaces(
                 interfaces = [2,3],

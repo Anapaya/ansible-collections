@@ -3,7 +3,6 @@
 The table family of the nftables table.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

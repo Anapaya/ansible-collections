@@ -3,7 +3,6 @@
 Top-level configuration and state for NAT.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **snat** | [**ConfigNatSnat**](ConfigNatSnat.md) |  | [optional] 

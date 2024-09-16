@@ -3,7 +3,6 @@
 List of chains that are part of an nftables table, uniquely idenified by their name.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chaintype** | **str** | The type and usage of the chain. This must be set for base chains and unset for regular chains. | [optional] 

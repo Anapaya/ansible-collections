@@ -3,7 +3,6 @@
 List of user credentials.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **password_hashed** | **str** | The user password hashed based on the hash algorithm indicated by the prefix in the string. The string takes the following form based on the Unix crypt function:  $id[$param&#x3D;value(,param&#x3D;value)*][$salt[$hash]]  Supported hash functions are:  - $2y$: bcrypt  The &#39;appliance-cli&#39; or the &#39;htpasswd&#39; tool can be used to create a password hash. E.g., &#39;appliance-cli crypto kdf hash&#39; or &#39;htpasswd -nB admin&#39; prompts for a password.  | 

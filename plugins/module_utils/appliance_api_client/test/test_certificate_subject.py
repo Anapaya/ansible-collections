@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.certificate_subject import CertificateSubject
+from ansible.module_utils.appliance_api_client.models.certificate_subject import CertificateSubject  # noqa: E501
 
 class TestCertificateSubject(unittest.TestCase):
     """CertificateSubject unit test stubs"""
@@ -34,7 +34,7 @@ class TestCertificateSubject(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CertificateSubject`
         """
-        model = CertificateSubject()
+        model = CertificateSubject()  # noqa: E501
         if include_optional:
             return CertificateSubject(
                 isd_as = '1-ff00:0:110',

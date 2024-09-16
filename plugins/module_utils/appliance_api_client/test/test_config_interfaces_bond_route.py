@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_route import ConfigInterfacesBondRoute
+from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_route import ConfigInterfacesBondRoute  # noqa: E501
 
 class TestConfigInterfacesBondRoute(unittest.TestCase):
     """ConfigInterfacesBondRoute unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesBondRoute(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesBondRoute`
         """
-        model = ConfigInterfacesBondRoute()
+        model = ConfigInterfacesBondRoute()  # noqa: E501
         if include_optional:
             return ConfigInterfacesBondRoute(
                 comment = '',

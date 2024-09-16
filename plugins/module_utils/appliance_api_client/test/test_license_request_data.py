@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.license_request_data import LicenseRequestData
+from ansible.module_utils.appliance_api_client.models.license_request_data import LicenseRequestData  # noqa: E501
 
 class TestLicenseRequestData(unittest.TestCase):
     """LicenseRequestData unit test stubs"""
@@ -34,7 +34,7 @@ class TestLicenseRequestData(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LicenseRequestData`
         """
-        model = LicenseRequestData()
+        model = LicenseRequestData()  # noqa: E501
         if include_optional:
             return LicenseRequestData(
                 appliance_id = '',

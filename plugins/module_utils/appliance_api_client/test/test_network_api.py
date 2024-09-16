@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.network_api import NetworkApi
+from ansible.module_utils.appliance_api_client.api.network_api import NetworkApi  # noqa: E501
 
 
 class TestNetworkApi(unittest.TestCase):
     """NetworkApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = NetworkApi()
+        self.api = NetworkApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,21 +30,21 @@ class TestNetworkApi(unittest.TestCase):
     def test_network_physical_interfaces_get(self) -> None:
         """Test case for network_physical_interfaces_get
 
-        List the available physical interfaces
+        List the available physical interfaces  # noqa: E501
         """
         pass
 
     def test_network_wireguards_get(self) -> None:
         """Test case for network_wireguards_get
 
-        Get list of Wireguard interfaces.
+        Get list of Wireguard interfaces.  # noqa: E501
         """
         pass
 
     def test_network_wireguards_interface_get(self) -> None:
         """Test case for network_wireguards_interface_get
 
-        Get a Wireguard interface.
+        Get a Wireguard interface.  # noqa: E501
         """
         pass
 

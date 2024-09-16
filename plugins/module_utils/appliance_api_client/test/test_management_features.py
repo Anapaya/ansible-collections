@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.management_features import ManagementFeatures
+from ansible.module_utils.appliance_api_client.models.management_features import ManagementFeatures  # noqa: E501
 
 class TestManagementFeatures(unittest.TestCase):
     """ManagementFeatures unit test stubs"""
@@ -34,7 +34,7 @@ class TestManagementFeatures(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ManagementFeatures`
         """
-        model = ManagementFeatures()
+        model = ManagementFeatures()  # noqa: E501
         if include_optional:
             return ManagementFeatures(
                 api_oauth_disallowed = True

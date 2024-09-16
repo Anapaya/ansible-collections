@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_nat import ConfigNat
+from ansible.module_utils.appliance_api_client.models.config_nat import ConfigNat  # noqa: E501
 
 class TestConfigNat(unittest.TestCase):
     """ConfigNat unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigNat(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigNat`
         """
-        model = ConfigNat()
+        model = ConfigNat()  # noqa: E501
         if include_optional:
             return ConfigNat(
                 snat = ansible.module_utils.appliance_api_client.models.config_nat_snat.Config_Nat_Snat(

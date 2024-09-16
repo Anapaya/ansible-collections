@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.trcid import TRCID
+from ansible.module_utils.appliance_api_client.models.trcid import TRCID  # noqa: E501
 
 class TestTRCID(unittest.TestCase):
     """TRCID unit test stubs"""
@@ -34,7 +34,7 @@ class TestTRCID(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TRCID`
         """
-        model = TRCID()
+        model = TRCID()  # noqa: E501
         if include_optional:
             return TRCID(
                 isd = 15,

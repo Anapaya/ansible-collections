@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.health_get_response_json import HealthGetResponseJson
+from ansible.module_utils.appliance_api_client.models.health_get_response_json import HealthGetResponseJson  # noqa: E501
 
 class TestHealthGetResponseJson(unittest.TestCase):
     """HealthGetResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestHealthGetResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `HealthGetResponseJson`
         """
-        model = HealthGetResponseJson()
+        model = HealthGetResponseJson()  # noqa: E501
         if include_optional:
             return HealthGetResponseJson(
                 health = ansible.module_utils.appliance_api_client.models.health.Health(

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_experiments import ConfigExperiments
+from ansible.module_utils.appliance_api_client.models.config_experiments import ConfigExperiments  # noqa: E501
 
 class TestConfigExperiments(unittest.TestCase):
     """ConfigExperiments unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigExperiments(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigExperiments`
         """
-        model = ConfigExperiments()
+        model = ConfigExperiments()  # noqa: E501
         if include_optional:
             return ConfigExperiments(
                 features = [

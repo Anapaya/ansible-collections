@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_put_request import ConfigPutRequest
+from ansible.module_utils.appliance_api_client.models.config_put_request import ConfigPutRequest  # noqa: E501
 
 class TestConfigPutRequest(unittest.TestCase):
     """ConfigPutRequest unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigPutRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigPutRequest`
         """
-        model = ConfigPutRequest()
+        model = ConfigPutRequest()  # noqa: E501
         if include_optional:
             return ConfigPutRequest(
                 config = ansible.module_utils.appliance_api_client.models.config.Config(

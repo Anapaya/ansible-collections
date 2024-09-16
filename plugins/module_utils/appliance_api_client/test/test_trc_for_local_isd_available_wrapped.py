@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_wrapped import TRCForLocalISDAvailableWrapped
+from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_wrapped import TRCForLocalISDAvailableWrapped  # noqa: E501
 
 class TestTRCForLocalISDAvailableWrapped(unittest.TestCase):
     """TRCForLocalISDAvailableWrapped unit test stubs"""
@@ -34,7 +34,7 @@ class TestTRCForLocalISDAvailableWrapped(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TRCForLocalISDAvailableWrapped`
         """
-        model = TRCForLocalISDAvailableWrapped()
+        model = TRCForLocalISDAvailableWrapped()  # noqa: E501
         if include_optional:
             return TRCForLocalISDAvailableWrapped(
                 component = 'appliance',

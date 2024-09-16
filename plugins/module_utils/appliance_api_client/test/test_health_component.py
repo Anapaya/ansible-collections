@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.health_component import HealthComponent
+from ansible.module_utils.appliance_api_client.models.health_component import HealthComponent  # noqa: E501
 
 class TestHealthComponent(unittest.TestCase):
     """HealthComponent unit test stubs"""

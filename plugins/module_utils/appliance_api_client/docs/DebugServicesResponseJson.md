@@ -3,7 +3,6 @@
 The list of services and service groups.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **services** | **List[str]** | The list of services. | 

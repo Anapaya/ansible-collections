@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.external_interface_up_wrapped import ExternalInterfaceUpWrapped
+from ansible.module_utils.appliance_api_client.models.external_interface_up_wrapped import ExternalInterfaceUpWrapped  # noqa: E501
 
 class TestExternalInterfaceUpWrapped(unittest.TestCase):
     """ExternalInterfaceUpWrapped unit test stubs"""
@@ -34,7 +34,7 @@ class TestExternalInterfaceUpWrapped(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ExternalInterfaceUpWrapped`
         """
-        model = ExternalInterfaceUpWrapped()
+        model = ExternalInterfaceUpWrapped()  # noqa: E501
         if include_optional:
             return ExternalInterfaceUpWrapped(
                 component = 'appliance',

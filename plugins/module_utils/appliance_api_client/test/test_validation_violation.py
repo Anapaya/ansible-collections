@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.validation_violation import ValidationViolation
+from ansible.module_utils.appliance_api_client.models.validation_violation import ValidationViolation  # noqa: E501
 
 class TestValidationViolation(unittest.TestCase):
     """ValidationViolation unit test stubs"""
@@ -34,7 +34,7 @@ class TestValidationViolation(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ValidationViolation`
         """
-        model = ValidationViolation()
+        model = ValidationViolation()  # noqa: E501
         if include_optional:
             return ValidationViolation(
                 path = '/scion/ases/1-ff00:0:1/id',

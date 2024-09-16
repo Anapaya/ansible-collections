@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.health_response import HealthResponse
+from ansible.module_utils.appliance_api_client.models.health_response import HealthResponse  # noqa: E501
 
 class TestHealthResponse(unittest.TestCase):
     """HealthResponse unit test stubs"""
@@ -34,7 +34,7 @@ class TestHealthResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `HealthResponse`
         """
-        model = HealthResponse()
+        model = HealthResponse()  # noqa: E501
         if include_optional:
             return HealthResponse(
                 health = ansible.module_utils.appliance_api_client.models.summary_of_health_status_and_checks/.Summary of health status and checks.(

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.software_package_delete_response_json import SoftwarePackageDeleteResponseJson
+from ansible.module_utils.appliance_api_client.models.software_package_delete_response_json import SoftwarePackageDeleteResponseJson  # noqa: E501
 
 class TestSoftwarePackageDeleteResponseJson(unittest.TestCase):
     """SoftwarePackageDeleteResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestSoftwarePackageDeleteResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SoftwarePackageDeleteResponseJson`
         """
-        model = SoftwarePackageDeleteResponseJson()
+        model = SoftwarePackageDeleteResponseJson()  # noqa: E501
         if include_optional:
             return SoftwarePackageDeleteResponseJson(
                 package = ansible.module_utils.appliance_api_client.models.package_information.Package information(

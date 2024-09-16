@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scionas_details import ConfigSCIONASDetails
+from ansible.module_utils.appliance_api_client.models.config_scionas_details import ConfigSCIONASDetails  # noqa: E501
 
 class TestConfigSCIONASDetails(unittest.TestCase):
     """ConfigSCIONASDetails unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONASDetails(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONASDetails`
         """
-        model = ConfigSCIONASDetails()
+        model = ConfigSCIONASDetails()  # noqa: E501
         if include_optional:
             return ConfigSCIONASDetails(
                 description = '',

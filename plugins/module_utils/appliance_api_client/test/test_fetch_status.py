@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.fetch_status import FetchStatus
+from ansible.module_utils.appliance_api_client.models.fetch_status import FetchStatus  # noqa: E501
 
 class TestFetchStatus(unittest.TestCase):
     """FetchStatus unit test stubs"""

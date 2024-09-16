@@ -3,7 +3,6 @@
 The firewall named counters definition.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the named counter. | 

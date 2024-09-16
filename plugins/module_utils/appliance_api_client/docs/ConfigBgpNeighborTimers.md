@@ -3,7 +3,6 @@
 Timers related to a BGP neighbor
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **connect_retry** | **int** | Time interval in seconds between attempts to establish a session with the peer. | [optional] [default to 30]

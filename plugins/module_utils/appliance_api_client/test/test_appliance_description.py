@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.appliance_description import ApplianceDescription
+from ansible.module_utils.appliance_api_client.models.appliance_description import ApplianceDescription  # noqa: E501
 
 class TestApplianceDescription(unittest.TestCase):
     """ApplianceDescription unit test stubs"""
@@ -34,7 +34,7 @@ class TestApplianceDescription(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ApplianceDescription`
         """
-        model = ApplianceDescription()
+        model = ApplianceDescription()  # noqa: E501
         if include_optional:
             return ApplianceDescription(
                 hostname = ''

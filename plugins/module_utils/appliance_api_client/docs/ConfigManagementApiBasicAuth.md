@@ -3,7 +3,6 @@
 Basic auth configuration that restricts the access to the Anapaya appliance management API.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **enabled** | **bool** | Enable basic authentication for the Anapaya appliance management API. | [optional] 

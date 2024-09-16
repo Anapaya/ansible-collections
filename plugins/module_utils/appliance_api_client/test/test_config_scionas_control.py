@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scionas_control import ConfigSCIONASControl
+from ansible.module_utils.appliance_api_client.models.config_scionas_control import ConfigSCIONASControl  # noqa: E501
 
 class TestConfigSCIONASControl(unittest.TestCase):
     """ConfigSCIONASControl unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONASControl(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONASControl`
         """
-        model = ConfigSCIONASControl()
+        model = ConfigSCIONASControl()  # noqa: E501
         if include_optional:
             return ConfigSCIONASControl(
                 address = '192.168.1.1:30100',

@@ -3,7 +3,6 @@
 The relevant SCION configuration of the peer. This can be used to define the relevant SCION components on the peer appliance so that paths via the peer appliance can also be used.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ases** | [**List[ConfigClusterPeerScionAS]**](ConfigClusterPeerScionAS.md) | The list of SCION ASes on the peer. | [optional] 

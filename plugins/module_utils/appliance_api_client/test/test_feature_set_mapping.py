@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.feature_set_mapping import FeatureSetMapping
+from ansible.module_utils.appliance_api_client.models.feature_set_mapping import FeatureSetMapping  # noqa: E501
 
 class TestFeatureSetMapping(unittest.TestCase):
     """FeatureSetMapping unit test stubs"""
@@ -34,7 +34,7 @@ class TestFeatureSetMapping(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FeatureSetMapping`
         """
-        model = FeatureSetMapping()
+        model = FeatureSetMapping()  # noqa: E501
         if include_optional:
             return FeatureSetMapping(
                 version = '',

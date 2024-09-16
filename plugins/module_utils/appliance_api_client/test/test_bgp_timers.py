@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.bgp_timers import BGPTimers
+from ansible.module_utils.appliance_api_client.models.bgp_timers import BGPTimers  # noqa: E501
 
 class TestBGPTimers(unittest.TestCase):
     """BGPTimers unit test stubs"""
@@ -34,7 +34,7 @@ class TestBGPTimers(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BGPTimers`
         """
-        model = BGPTimers()
+        model = BGPTimers()  # noqa: E501
         if include_optional:
             return BGPTimers(
                 keepalive_interval = 56,

@@ -3,7 +3,6 @@
 The number of paths per failover sequence in a traffic policy in a domain. 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **domain** | **str** | The domain in which the traffic policy is.  | 

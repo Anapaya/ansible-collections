@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.tier_mapping import TierMapping
+from ansible.module_utils.appliance_api_client.models.tier_mapping import TierMapping  # noqa: E501
 
 class TestTierMapping(unittest.TestCase):
     """TierMapping unit test stubs"""
@@ -34,7 +34,7 @@ class TestTierMapping(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TierMapping`
         """
-        model = TierMapping()
+        model = TierMapping()  # noqa: E501
         if include_optional:
             return TierMapping(
                 lite = ansible.module_utils.appliance_api_client.models.product_tier_features.ProductTierFeatures(

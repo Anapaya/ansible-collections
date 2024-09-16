@@ -3,7 +3,6 @@
 List of labels which are attached to telemetry data.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **label** | **str** | Name of the label. | [optional] 

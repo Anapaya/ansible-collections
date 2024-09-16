@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.domain_remote_gateway import DomainRemoteGateway
+from ansible.module_utils.appliance_api_client.models.domain_remote_gateway import DomainRemoteGateway  # noqa: E501
 
 class TestDomainRemoteGateway(unittest.TestCase):
     """DomainRemoteGateway unit test stubs"""
@@ -34,7 +34,7 @@ class TestDomainRemoteGateway(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DomainRemoteGateway`
         """
-        model = DomainRemoteGateway()
+        model = DomainRemoteGateway()  # noqa: E501
         if include_optional:
             return DomainRemoteGateway(
                 isd_as = '',

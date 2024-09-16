@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_vlan import ConfigInterfacesVlan
+from ansible.module_utils.appliance_api_client.models.config_interfaces_vlan import ConfigInterfacesVlan  # noqa: E501
 
 class TestConfigInterfacesVlan(unittest.TestCase):
     """ConfigInterfacesVlan unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesVlan(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesVlan`
         """
-        model = ConfigInterfacesVlan()
+        model = ConfigInterfacesVlan()  # noqa: E501
         if include_optional:
             return ConfigInterfacesVlan(
                 accept_ra = True,

@@ -13,27 +13,24 @@
 """  # noqa: E501
 
 
+import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
-from typing import Dict, List, Optional, Tuple, Union, Any
+from pydantic import validate_arguments, ValidationError
 
-try:
-    from typing import Annotated
-except ImportError:
-    from typing_extensions import Annotated
-
-from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import StrictInt, StrictStr
+from pydantic import Field, StrictInt, StrictStr
 
 from typing import Any, Dict, List, Optional
 
 
 from ansible.module_utils.appliance_api_client.api_client import ApiClient
 from ansible.module_utils.appliance_api_client.api_response import ApiResponse
-from ansible.module_utils.appliance_api_client.rest import RESTResponseType
+from ansible.module_utils.appliance_api_client.exceptions import (  # noqa: F401
+    ApiTypeError,
+    ApiValueError
+)
 
 
 class VppApi:
@@ -48,12501 +45,6717 @@ class VppApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_arguments
+    def get_debug_vpp_address(self, **kwargs) -> str:  # noqa: E501
+        """Status page listing addresses on VPP interfaces.  # noqa: E501
 
-    @validate_call
-    def get_debug_vpp_address(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page listing addresses on VPP interfaces.
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_address(async_req=True)
+        >>> result = thread.get()
 
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_address_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_address_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_address_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page listing addresses on VPP interfaces.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_address_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_address_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_address_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page listing addresses on VPP interfaces.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_address_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_address" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_address_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page listing addresses on VPP interfaces.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_address_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_address_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/address',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/address', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_bfd(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting the bfd session states.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_bfd(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_bfd(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting the bfd session states.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_bfd_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_bfd_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_bfd_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting the bfd session states.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_bfd_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_bfd_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_bfd_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting the bfd session states.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_bfd_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_bfd" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_bfd_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting the bfd session states.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_bfd_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_bfd_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/bfd',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/bfd', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_bond(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting bonds created by VPP.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_bond(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_bond(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting bonds created by VPP.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_bond_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_bond_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_bond_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting bonds created by VPP.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_bond_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_bond_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_bond_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting bonds created by VPP.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_bond_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_bond" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_bond_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting bonds created by VPP.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_bond_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_bond_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/bond',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/bond', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_buffers(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP buffers.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_buffers(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_buffers(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP buffers.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_buffers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_buffers_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_buffers_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP buffers.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_buffers_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_buffers_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_buffers_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP buffers.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_buffers_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_buffers" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_buffers_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP buffers.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_buffers_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_buffers_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/buffers',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/buffers', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_clear_errors(self, **kwargs) -> str:  # noqa: E501
+        """Action path to clear VPP errors.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_clear_errors(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_clear_errors(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Action path to clear VPP errors.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_clear_errors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_clear_errors_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_clear_errors_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Action path to clear VPP errors.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_clear_errors_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_clear_errors_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_clear_errors_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Action path to clear VPP errors.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_clear_errors_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_clear_errors" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_clear_errors_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Action path to clear VPP errors.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_clear_errors_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_clear_errors_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/clear_errors',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/clear_errors', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_clear_interfaces(self, **kwargs) -> str:  # noqa: E501
+        """Action path to clear the metrics on VPP interfaces.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_clear_interfaces(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_clear_interfaces(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Action path to clear the metrics on VPP interfaces.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_clear_interfaces_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_clear_interfaces_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_clear_interfaces_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Action path to clear the metrics on VPP interfaces.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_clear_interfaces_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_clear_interfaces_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_clear_interfaces_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Action path to clear the metrics on VPP interfaces.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_clear_interfaces_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_clear_interfaces" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_clear_interfaces_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Action path to clear the metrics on VPP interfaces.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_clear_interfaces_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_clear_interfaces_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/clear_interfaces',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/clear_interfaces', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_clear_runtime(self, **kwargs) -> str:  # noqa: E501
+        """Action path to clear the VPP runtime.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_clear_runtime(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_clear_runtime(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Action path to clear the VPP runtime.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_clear_runtime_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_clear_runtime_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_clear_runtime_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Action path to clear the VPP runtime.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_clear_runtime_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_clear_runtime_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_clear_runtime_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Action path to clear the VPP runtime.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_clear_runtime_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_clear_runtime" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_clear_runtime_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Action path to clear the VPP runtime.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_clear_runtime_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_clear_runtime_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/clear_runtime',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/clear_runtime', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_coredump(self, filename : Annotated[StrictStr, Field(..., description="Filename of the coredump.")], **kwargs) -> List[str]:  # noqa: E501
+        """Download the coredump.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_coredump(
-        self,
-        filename: Annotated[StrictStr, Field(description="Filename of the coredump.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[str]:
-        """Download the coredump.
-
+        >>> thread = api.get_debug_vpp_coredump(filename, async_req=True)
+        >>> result = thread.get()
 
         :param filename: Filename of the coredump. (required)
         :type filename: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: List[str]
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_coredump_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_coredump_with_http_info(filename, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_coredump_serialize(
-            filename=filename,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_coredump_with_http_info(self, filename : Annotated[StrictStr, Field(..., description="Filename of the coredump.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Download the coredump.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
-            '500': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_coredump_with_http_info(
-        self,
-        filename: Annotated[StrictStr, Field(description="Filename of the coredump.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[str]]:
-        """Download the coredump.
-
+        >>> thread = api.get_debug_vpp_coredump_with_http_info(filename, async_req=True)
+        >>> result = thread.get()
 
         :param filename: Filename of the coredump. (required)
         :type filename: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(List[str], status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_coredump_serialize(
-            filename=filename,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
+        _params = locals()
+
+        _all_params = [
+            'filename'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_coredump" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['filename'] is not None:
+            _path_params['filename'] = _params['filename']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
             '200': "List[str]",
             '500': "Problem",
         }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
+
+        return self.api_client.call_api(
+            '/debug/vpp/coredumps/{filename}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
             response_types_map=_response_types_map,
-        )
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_coredumps(self, **kwargs) -> List[str]:  # noqa: E501
+        """Get the list of avaiable VPP coredumps.  # noqa: E501
 
-    @validate_call
-    def get_debug_vpp_coredump_without_preload_content(
-        self,
-        filename: Annotated[StrictStr, Field(description="Filename of the coredump.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Download the coredump.
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_coredumps(async_req=True)
+        >>> result = thread.get()
 
-        :param filename: Filename of the coredump. (required)
-        :type filename: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: List[str]
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_coredumps_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_coredumps_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_coredumps_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Get the list of avaiable VPP coredumps.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_coredumps_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(List[str], status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_coredump_serialize(
-            filename=filename,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_coredumps" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
             '200': "List[str]",
             '500': "Problem",
         }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
 
-
-    def _get_debug_vpp_coredump_serialize(
-        self,
-        filename,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if filename is not None:
-            _path_params['filename'] = filename
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/coredumps/{filename}',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        return self.api_client.call_api(
+            '/debug/vpp/coredumps', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_dataplane_control(self, **kwargs) -> object:  # noqa: E501
+        """Dump of the VPP state set up by dataplane-control service.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_dataplane_control(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_coredumps(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[str]:
-        """Get the list of avaiable VPP coredumps.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: object
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_dataplane_control_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_dataplane_control_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_dataplane_control_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Dump of the VPP state set up by dataplane-control service.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_dataplane_control_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_coredumps_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
-            '500': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_coredumps_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[str]]:
-        """Get the list of avaiable VPP coredumps.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_coredumps_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
-            '500': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_dataplane_control" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_coredumps_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get the list of avaiable VPP coredumps.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_coredumps_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[str]",
-            '500': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_coredumps_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'application/json+problem'
-            ]
-        )
-
+            ['application/json', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/coredumps',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_debug_vpp_dataplane_control(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
-        """Dump of the VPP state set up by dataplane-control service.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_dataplane_control_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map = {
             '200': "object",
             '500': "Problem",
         }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
+
+        return self.api_client.call_api(
+            '/debug/vpp/dataplane-control', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
             response_types_map=_response_types_map,
-        ).data
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_error(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP errors.  # noqa: E501
 
-    @validate_call
-    def get_debug_vpp_dataplane_control_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
-        """Dump of the VPP state set up by dataplane-control service.
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_error(async_req=True)
+        >>> result = thread.get()
 
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_error_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_error_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_error_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP errors.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_error_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_dataplane_control_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_error" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/error', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_debug_vpp_events(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP events.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_events(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_events_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_events_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_events_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP events.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_events_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_events" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/events', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_debug_vpp_fib_ip4(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP IPv4 FIB.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_fib_ip4(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_fib_ip4_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_fib_ip4_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_fib_ip4_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP IPv4 FIB.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_fib_ip4_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_fib_ip4" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/fib-ip4', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_debug_vpp_fib_ip6(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP IPv6 FIB.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_fib_ip6(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_fib_ip6_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_fib_ip6_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_fib_ip6_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP IPv6 FIB.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_fib_ip6_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_fib_ip6" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/fib-ip6', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_debug_vpp_fib_ll(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP IPv6 link-local FIB.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_fib_ll(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_fib_ll_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_fib_ll_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_fib_ll_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP IPv6 link-local FIB.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_fib_ll_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_fib_ll" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/fib-ll', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_debug_vpp_gateway(self, **kwargs) -> object:  # noqa: E501
+        """Dump of the VPP state set up by the gateway service.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_gateway(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: object
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_gateway_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_gateway_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_gateway_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Dump of the VPP state set up by the gateway service.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_gateway_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_gateway" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
             '200': "object",
             '500': "Problem",
         }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
 
-
-    @validate_call
-    def get_debug_vpp_dataplane_control_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Dump of the VPP state set up by dataplane-control service.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_dataplane_control_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
-            '500': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_dataplane_control_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/dataplane-control',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        return self.api_client.call_api(
+            '/debug/vpp/gateway', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_hardware(self, **kwargs) -> str:  # noqa: E501
+        """Status page listing hardware interfaces managed by VPP.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_hardware(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_error(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP errors.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_hardware_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_hardware_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_hardware_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page listing hardware interfaces managed by VPP.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_hardware_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_error_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_error_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP errors.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_error_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_hardware" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_error_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP errors.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_error_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_error_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/error',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/hardware', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_interface(self, **kwargs) -> str:  # noqa: E501
+        """Status page listing internal VPP interfaces.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_interface(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_events(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP events.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_interface_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_interface_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_interface_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page listing internal VPP interfaces.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_interface_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_events_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_events_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP events.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_events_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_interface" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_events_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP events.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_events_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_events_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/events',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/interface', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_lacp(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP LACP info.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_lacp(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_fib_ip4(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP IPv4 FIB.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_lacp_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_lacp_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_lacp_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP LACP info.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_lacp_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_fib_ip4_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_fib_ip4_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP IPv4 FIB.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_fib_ip4_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_lacp" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_fib_ip4_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP IPv4 FIB.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_fib_ip4_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_fib_ip4_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/fib-ip4',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/lacp', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_lcp(self, **kwargs) -> str:  # noqa: E501
+        """Status page listing interfaces mirrored from VPP to Linux.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_lcp(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_fib_ip6(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP IPv6 FIB.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_lcp_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_lcp_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_lcp_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page listing interfaces mirrored from VPP to Linux.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_lcp_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_fib_ip6_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_fib_ip6_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP IPv6 FIB.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_fib_ip6_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_lcp" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_fib_ip6_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP IPv6 FIB.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_fib_ip6_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_fib_ip6_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/fib-ip6',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/lcp', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_logging(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP logs.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_logging(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_fib_ll(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP IPv6 link-local FIB.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_logging_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_logging_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_logging_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP logs.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_logging_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_fib_ll_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_fib_ll_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP IPv6 link-local FIB.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_fib_ll_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_logging" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_fib_ll_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP IPv6 link-local FIB.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_fib_ll_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_fib_ll_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/fib-ll',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/logging', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_memory(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP memory.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_memory(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_gateway(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
-        """Dump of the VPP state set up by the gateway service.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_memory_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_memory_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_memory_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP memory.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_memory_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_gateway_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
-            '500': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_gateway_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
-        """Dump of the VPP state set up by the gateway service.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_gateway_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
-            '500': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_memory" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_gateway_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Dump of the VPP state set up by the gateway service.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_gateway_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
-            '500': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_gateway_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/gateway',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/memory', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_neighbors_ip4(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP IPv4 neighbors.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_neighbors_ip4(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_hardware(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page listing hardware interfaces managed by VPP.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_neighbors_ip4_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_neighbors_ip4_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_neighbors_ip4_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP IPv4 neighbors.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_neighbors_ip4_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_hardware_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_hardware_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page listing hardware interfaces managed by VPP.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_hardware_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_neighbors_ip4" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_hardware_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page listing hardware interfaces managed by VPP.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_hardware_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_hardware_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/hardware',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/neighbors-ip4', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_neighbors_ip6(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP IPv6 neighbors.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_neighbors_ip6(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_interface(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page listing internal VPP interfaces.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_neighbors_ip6_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_neighbors_ip6_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_neighbors_ip6_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP IPv6 neighbors.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_neighbors_ip6_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_interface_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_interface_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page listing internal VPP interfaces.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_interface_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_neighbors_ip6" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_interface_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page listing internal VPP interfaces.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_interface_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_interface_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/interface',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/neighbors-ip6', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_plugins(self, **kwargs) -> str:  # noqa: E501
+        """Status page listing of loaded VPP plugins.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_plugins(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_lacp(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP LACP info.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_plugins_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_plugins_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_plugins_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page listing of loaded VPP plugins.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_plugins_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_lacp_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_lacp_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP LACP info.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_lacp_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_plugins" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_lacp_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP LACP info.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_lacp_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_lacp_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/lacp',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/plugins', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_runtime(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP runtime.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_runtime(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_lcp(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page listing interfaces mirrored from VPP to Linux.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_runtime_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_runtime_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_runtime_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP runtime.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_runtime_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_lcp_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_lcp_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page listing interfaces mirrored from VPP to Linux.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_lcp_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_runtime" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_lcp_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page listing interfaces mirrored from VPP to Linux.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_lcp_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_lcp_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/lcp',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/runtime', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_interface(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting the SCION interfaces.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_interface(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_logging(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP logs.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_interface_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_interface_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_interface_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting the SCION interfaces.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_interface_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_logging_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_logging_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP logs.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_logging_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_interface" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_logging_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP logs.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_logging_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_logging_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/logging',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion/interface', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_ipfix_params(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting the SCION router IPFIX parameters.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_ipfix_params(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_memory(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP memory.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_ipfix_params_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_ipfix_params_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_ipfix_params_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting the SCION router IPFIX parameters.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_ipfix_params_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_memory_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_memory_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP memory.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_memory_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_ipfix_params" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_memory_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP memory.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_memory_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_memory_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/memory',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion/ipfix/params', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_ipfix_statistics(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting the SCION router IPFIX statistics.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_ipfix_statistics(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_neighbors_ip4(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP IPv4 neighbors.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_ipfix_statistics_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_ipfix_statistics_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_ipfix_statistics_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting the SCION router IPFIX statistics.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_ipfix_statistics_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_neighbors_ip4_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_neighbors_ip4_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP IPv4 neighbors.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_neighbors_ip4_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_ipfix_statistics" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_neighbors_ip4_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP IPv4 neighbors.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_neighbors_ip4_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_neighbors_ip4_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/neighbors-ip4',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion/ipfix/statistics', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_ipfix_table(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting the SCION router IPFIX table.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_ipfix_table(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_neighbors_ip6(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP IPv6 neighbors.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_ipfix_table_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_ipfix_table_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_ipfix_table_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting the SCION router IPFIX table.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_ipfix_table_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_neighbors_ip6_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_neighbors_ip6_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP IPv6 neighbors.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_neighbors_ip6_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_ipfix_table" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_neighbors_ip6_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP IPv6 neighbors.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_neighbors_ip6_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_neighbors_ip6_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/neighbors-ip6',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion/ipfix/table', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_isd_as(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting the SCION router ASes.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_isd_as(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_plugins(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page listing of loaded VPP plugins.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_isd_as_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_isd_as_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_isd_as_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting the SCION router ASes.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_isd_as_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_plugins_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_plugins_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page listing of loaded VPP plugins.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_plugins_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_isd_as" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_plugins_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page listing of loaded VPP plugins.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_plugins_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_plugins_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/plugins',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion/isd-as', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_reservation(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting the SCION router bandwidth reservations.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_reservation(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_runtime(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP runtime.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_reservation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_reservation_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_reservation_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting the SCION router bandwidth reservations.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_reservation_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_runtime_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_runtime_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP runtime.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_runtime_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_reservation" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_runtime_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP runtime.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_runtime_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_runtime_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/runtime',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion/reservation', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_svc(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting the SCION services.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_svc(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_scion_interface(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting the SCION interfaces.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_svc_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_svc_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_svc_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting the SCION services.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_svc_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_interface_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_interface_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting the SCION interfaces.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_interface_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_svc" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_scion_interface_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting the SCION interfaces.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_interface_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_interface_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion/interface',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion/svc', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_decap_to_output(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: trace all ingress IP packets.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_ipfix_params(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting the SCION router IPFIX parameters.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_ipfix_params_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_ipfix_params_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting the SCION router IPFIX parameters.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_ipfix_params_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_ipfix_params_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting the SCION router IPFIX parameters.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_ipfix_params_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_ipfix_params_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion/ipfix/params',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_debug_vpp_scion_ipfix_statistics(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting the SCION router IPFIX statistics.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_ipfix_statistics_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_ipfix_statistics_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting the SCION router IPFIX statistics.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_ipfix_statistics_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_ipfix_statistics_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting the SCION router IPFIX statistics.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_ipfix_statistics_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_ipfix_statistics_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion/ipfix/statistics',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_debug_vpp_scion_ipfix_table(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting the SCION router IPFIX table.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_ipfix_table_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_ipfix_table_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting the SCION router IPFIX table.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_ipfix_table_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_ipfix_table_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting the SCION router IPFIX table.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_ipfix_table_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_ipfix_table_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion/ipfix/table',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_debug_vpp_scion_isd_as(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting the SCION router ASes.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_isd_as_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_isd_as_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting the SCION router ASes.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_isd_as_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_isd_as_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting the SCION router ASes.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_isd_as_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_isd_as_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion/isd-as',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_debug_vpp_scion_reservation(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting the SCION router bandwidth reservations.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_reservation_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_reservation_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting the SCION router bandwidth reservations.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_reservation_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_reservation_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting the SCION router bandwidth reservations.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_reservation_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_reservation_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion/reservation',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_debug_vpp_scion_svc(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting the SCION services.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_svc_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_svc_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting the SCION services.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_svc_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_svc_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting the SCION services.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_svc_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_svc_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion/svc',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_decap_to_output(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: trace all ingress IP packets.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_decap_to_output(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_decap_to_output_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_decap_to_output_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_scion_tunneling_decap_to_output_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_decap_to_output_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: trace all ingress IP packets.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_decap_to_output_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: trace all ingress IP packets.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_decap_to_output_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_decap_to_output_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_decap_to_output_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: trace all ingress IP packets.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_decap_to_output_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_decap_to_output" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_scion_tunneling_decap_to_output_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/decap-to-output',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/decap-to-output', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_dpdk_to_decap(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: trace all ingress frames entering via dpdk.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_dpdk_to_decap(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: trace all ingress frames entering via dpdk.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_dpdk_to_decap(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_dpdk_to_decap_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_dpdk_to_decap_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_scion_tunneling_dpdk_to_decap_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_dpdk_to_decap_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: trace all ingress frames entering via dpdk.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_dpdk_to_decap_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: trace all ingress frames entering via dpdk.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_dpdk_to_decap_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_dpdk_to_decap_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_dpdk_to_decap_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: trace all ingress frames entering via dpdk.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_dpdk_to_decap_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_dpdk_to_decap" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_scion_tunneling_dpdk_to_decap_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/dpdk-to-decap',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/dpdk-to-decap', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_dpdk_to_encap4(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: trace all egress IPv4 packets entering via dpdk.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_dpdk_to_encap4(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: trace all egress IPv4 packets entering via dpdk.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_dpdk_to_encap4(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_dpdk_to_encap4_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_dpdk_to_encap4_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_scion_tunneling_dpdk_to_encap4_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_dpdk_to_encap4_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: trace all egress IPv4 packets entering via dpdk.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_dpdk_to_encap4_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: trace all egress IPv4 packets entering via dpdk.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_dpdk_to_encap4_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_dpdk_to_encap4_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_dpdk_to_encap4_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: trace all egress IPv4 packets entering via dpdk.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_dpdk_to_encap4_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_dpdk_to_encap4" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_scion_tunneling_dpdk_to_encap4_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/dpdk-to-encap4',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/dpdk-to-encap4', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_dpdk_to_encap6(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: trace all egress IPv6 packets entering via dpdk.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_dpdk_to_encap6(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: trace all egress IPv6 packets entering via dpdk.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_dpdk_to_encap6(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_dpdk_to_encap6_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_dpdk_to_encap6_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_scion_tunneling_dpdk_to_encap6_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_dpdk_to_encap6_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: trace all egress IPv6 packets entering via dpdk.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_dpdk_to_encap6_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: trace all egress IPv6 packets entering via dpdk.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_dpdk_to_encap6_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_dpdk_to_encap6_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_dpdk_to_encap6_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: trace all egress IPv6 packets entering via dpdk.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_dpdk_to_encap6_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_dpdk_to_encap6" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_scion_tunneling_dpdk_to_encap6_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/dpdk-to-encap6',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/dpdk-to-encap6', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_encap4_to_output(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: trace all egress frames on top of IPv4 underlay.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_encap4_to_output(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: trace all egress frames on top of IPv4 underlay.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_encap4_to_output(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_encap4_to_output_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_encap4_to_output_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_scion_tunneling_encap4_to_output_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_encap4_to_output_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: trace all egress frames on top of IPv4 underlay.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_encap4_to_output_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: trace all egress frames on top of IPv4 underlay.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_encap4_to_output_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_encap4_to_output_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_encap4_to_output_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: trace all egress frames on top of IPv4 underlay.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_encap4_to_output_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_encap4_to_output" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_scion_tunneling_encap4_to_output_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/encap4-to-output',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/encap4-to-output', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_encap6_to_output(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: trace all egress frames on top of IPv6 underlay.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_encap6_to_output(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: trace all egress frames on top of IPv6 underlay.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_encap6_to_output(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_encap6_to_output_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_encap6_to_output_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_scion_tunneling_encap6_to_output_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_encap6_to_output_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: trace all egress frames on top of IPv6 underlay.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_encap6_to_output_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: trace all egress frames on top of IPv6 underlay.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_encap6_to_output_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_encap6_to_output_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
+        _params = locals()
+
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_encap6_to_output" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
             '200': "str",
             '400': "Problem",
         }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/encap6-to-output', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
             response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_info(self, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: global settings.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_info_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_info_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_info_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: global settings.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_info_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
         )
 
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_info" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-    @validate_call
-    def get_debug_vpp_scion_tunneling_encap6_to_output_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/info', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_iremote_ia(self, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: remote ASes.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_iremote_ia(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_iremote_ia_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_iremote_ia_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_iremote_ia_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: remote ASes.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_iremote_ia_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: trace all egress frames on top of IPv6 underlay.
+        )
 
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_iremote_ia" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/iremote-ia', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_memif_to_decap(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: trace all ingress frames entering via memif.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_memif_to_decap(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_encap6_to_output_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_tunneling_encap6_to_output_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/encap6-to-output',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: global settings.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_info_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_info_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: global settings.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_info_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_info_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: global settings.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_info_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_tunneling_info_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/info',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_iremote_ia(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: remote ASes.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_iremote_ia_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_iremote_ia_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: remote ASes.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_iremote_ia_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_iremote_ia_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: remote ASes.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_iremote_ia_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_tunneling_iremote_ia_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/iremote-ia',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_memif_to_decap(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: trace all ingress frames entering via memif.
-
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_memif_to_decap_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_memif_to_decap_with_http_info(t, p, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_memif_to_decap_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: trace all ingress frames entering via memif.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_memif_to_decap_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_memif_to_decap_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
+        _params = locals()
+
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_memif_to_decap" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
             '200': "str",
             '400': "Problem",
         }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/memif-to-decap', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
             response_types_map=_response_types_map,
-        ).data
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_memif_to_encap4(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: trace all egress IPv4 packets entering via memif.  # noqa: E501
 
-    @validate_call
-    def get_debug_vpp_scion_tunneling_memif_to_decap_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: trace all ingress frames entering via memif.
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_tunneling_memif_to_encap4(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_memif_to_encap4_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_memif_to_encap4_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_scion_tunneling_memif_to_decap_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_memif_to_encap4_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: trace all egress IPv4 packets entering via memif.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_memif_to_decap_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: trace all ingress frames entering via memif.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_memif_to_encap4_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_memif_to_decap_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
+        _params = locals()
+
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_memif_to_encap4" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json+problem'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
             '200': "str",
             '400': "Problem",
         }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
 
-
-    def _get_debug_vpp_scion_tunneling_memif_to_decap_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/memif-to-decap',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/memif-to-encap4', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_memif_to_encap6(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: trace all egress IPv6 packets entering via memif.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_memif_to_encap4(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: trace all egress IPv4 packets entering via memif.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_memif_to_encap6(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_memif_to_encap6_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_memif_to_encap6_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_scion_tunneling_memif_to_encap4_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_memif_to_encap6_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: trace all egress IPv6 packets entering via memif.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_memif_to_encap4_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: trace all egress IPv4 packets entering via memif.
-
+        >>> thread = api.get_debug_vpp_scion_tunneling_memif_to_encap6_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_memif_to_encap4_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_memif_to_encap4_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: trace all egress IPv4 packets entering via memif.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_memif_to_encap4_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_memif_to_encap6" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_scion_tunneling_memif_to_encap4_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/memif-to-encap4',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/memif-to-encap6', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_path(self, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: known paths.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_tunneling_path(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_scion_tunneling_memif_to_encap6(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: trace all egress IPv6 packets entering via memif.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_path_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_path_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_path_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: known paths.  # noqa: E501
 
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_path_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_memif_to_encap6_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_memif_to_encap6_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: trace all egress IPv6 packets entering via memif.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_memif_to_encap6_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_path" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_memif_to_encap6_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: trace all egress IPv6 packets entering via memif.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_memif_to_encap6_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_tunneling_memif_to_encap6_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/memif-to-encap6',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/path', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_routing(self, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: routing hierarchy.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_tunneling_routing(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_scion_tunneling_path(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: known paths.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_routing_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_routing_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_routing_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: routing hierarchy.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_routing_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_path_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_path_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: known paths.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_path_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_routing" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_path_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: known paths.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_path_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_tunneling_path_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/path',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/routing', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_routing_chain(self, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: routing chains.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_tunneling_routing_chain(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_scion_tunneling_routing(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: routing hierarchy.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_routing_chain_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_routing_chain_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_routing_chain_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: routing chains.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_routing_chain_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_routing_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_routing_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: routing hierarchy.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_routing_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_routing_chain" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_routing_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: routing hierarchy.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_routing_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_tunneling_routing_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/routing',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/routing-chain', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_session(self, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: sessions.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_tunneling_session(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_scion_tunneling_routing_chain(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: routing chains.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_session_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_session_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_session_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: sessions.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_session_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_routing_chain_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_routing_chain_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: routing chains.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_routing_chain_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_session" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_routing_chain_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: routing chains.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_routing_chain_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_tunneling_routing_chain_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/routing-chain',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/session', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_traffic_class(self, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: traffic classes.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_tunneling_traffic_class(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_scion_tunneling_session(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: sessions.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_traffic_class_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_traffic_class_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_traffic_class_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: traffic classes.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_traffic_class_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_session_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_session_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: sessions.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_session_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_traffic_class" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_session_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: sessions.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_session_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_tunneling_session_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/session',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/traffic-class', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_tun(self, **kwargs) -> str:  # noqa: E501
+        """SCION gateway: TUN device.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_scion_tunneling_tun(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_scion_tunneling_traffic_class(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: traffic classes.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_scion_tunneling_tun_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_scion_tunneling_tun_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_scion_tunneling_tun_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """SCION gateway: TUN device.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_scion_tunneling_tun_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_scion_tunneling_traffic_class_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_traffic_class_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: traffic classes.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_traffic_class_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_scion_tunneling_tun" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_traffic_class_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: traffic classes.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_traffic_class_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_tunneling_traffic_class_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/traffic-class',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/scion-tunneling/tun', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_tun(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """SCION gateway: TUN device.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_tun_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_tun_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """SCION gateway: TUN device.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_tun_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_scion_tunneling_tun_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """SCION gateway: TUN device.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_scion_tunneling_tun_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_scion_tunneling_tun_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/scion-tunneling/tun',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_trace(self, n : Annotated[Optional[StrictStr], Field(description="VPP node to trace.")] = None, i : Annotated[Optional[StrictStr], Field(description="Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None, e : Annotated[Optional[StrictStr], Field(description="Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """Action path to execute free form packet trace.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace(
-        self,
-        n: Annotated[Optional[StrictStr], Field(description="VPP node to trace.")] = None,
-        i: Annotated[Optional[StrictStr], Field(description="Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        e: Annotated[Optional[StrictStr], Field(description="Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Action path to execute free form packet trace.
-
+        >>> thread = api.get_debug_vpp_trace(n, i, e, t, p, async_req=True)
+        >>> result = thread.get()
 
         :param n: VPP node to trace.
         :type n: str
@@ -12554,78 +6767,32 @@ class VppApi:
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_trace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_trace_with_http_info(n, i, e, t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_trace_serialize(
-            n=n,
-            i=i,
-            e=e,
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_trace_with_http_info(self, n : Annotated[Optional[StrictStr], Field(description="VPP node to trace.")] = None, i : Annotated[Optional[StrictStr], Field(description="Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None, e : Annotated[Optional[StrictStr], Field(description="Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Action path to execute free form packet trace.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_with_http_info(
-        self,
-        n: Annotated[Optional[StrictStr], Field(description="VPP node to trace.")] = None,
-        i: Annotated[Optional[StrictStr], Field(description="Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        e: Annotated[Optional[StrictStr], Field(description="Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Action path to execute free form packet trace.
-
+        >>> thread = api.get_debug_vpp_trace_with_http_info(n, i, e, t, p, async_req=True)
+        >>> result = thread.get()
 
         :param n: VPP node to trace.
         :type n: str
@@ -12637,793 +6804,423 @@ class VppApi:
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_trace_serialize(
-            n=n,
-            i=i,
-            e=e,
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_trace_without_preload_content(
-        self,
-        n: Annotated[Optional[StrictStr], Field(description="VPP node to trace.")] = None,
-        i: Annotated[Optional[StrictStr], Field(description="Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        e: Annotated[Optional[StrictStr], Field(description="Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            'n',
+            'i',
+            'e',
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Action path to execute free form packet trace.
-
-
-        :param n: VPP node to trace.
-        :type n: str
-        :param i: Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.
-        :type i: str
-        :param e: Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.
-        :type e: str
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_trace_serialize(
-            n=n,
-            i=i,
-            e=e,
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_trace" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_trace_serialize(
-        self,
-        n,
-        i,
-        e,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if n is not None:
-            
-            _query_params.append(('n', n))
-            
-        if i is not None:
-            
-            _query_params.append(('i', i))
-            
-        if e is not None:
-            
-            _query_params.append(('e', e))
-            
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('n') is not None:  # noqa: E501
+            _query_params.append(('n', _params['n']))
+
+        if _params.get('i') is not None:  # noqa: E501
+            _query_params.append(('i', _params['i']))
+
+        if _params.get('e') is not None:  # noqa: E501
+            _query_params.append(('e', _params['e']))
+
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/trace',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/trace', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_trace_dpdk(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """Action path to execute a trace for packets entering via DPDK.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_dpdk(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Action path to execute a trace for packets entering via DPDK.
-
+        >>> thread = api.get_debug_vpp_trace_dpdk(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_trace_dpdk_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_trace_dpdk_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_trace_dpdk_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_trace_dpdk_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Action path to execute a trace for packets entering via DPDK.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_dpdk_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Action path to execute a trace for packets entering via DPDK.
-
+        >>> thread = api.get_debug_vpp_trace_dpdk_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_trace_dpdk_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_trace_dpdk_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Action path to execute a trace for packets entering via DPDK.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_trace_dpdk_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_trace_dpdk" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_trace_dpdk_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/trace/dpdk',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/trace/dpdk', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_trace_memif(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """Action path to execute a trace for packets entering via memif.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_memif(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Action path to execute a trace for packets entering via memif.
-
+        >>> thread = api.get_debug_vpp_trace_memif(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_trace_memif_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_trace_memif_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_trace_memif_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_trace_memif_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Action path to execute a trace for packets entering via memif.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_memif_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Action path to execute a trace for packets entering via memif.
-
+        >>> thread = api.get_debug_vpp_trace_memif_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_trace_memif_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_trace_memif_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Action path to execute a trace for packets entering via memif.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_trace_memif_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_trace_memif" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_trace_memif_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/trace/memif',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/trace/memif', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_trace_start(self, n : Annotated[Optional[StrictStr], Field(description="VPP node to trace.")] = None, i : Annotated[Optional[StrictStr], Field(description="Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None, e : Annotated[Optional[StrictStr], Field(description="Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """Action path that starts a trace without timeout. The trace can be stopped with the `/vpp/trace/stop` endpoint.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_start(
-        self,
-        n: Annotated[Optional[StrictStr], Field(description="VPP node to trace.")] = None,
-        i: Annotated[Optional[StrictStr], Field(description="Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        e: Annotated[Optional[StrictStr], Field(description="Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Action path that starts a trace without timeout. The trace can be stopped with the `/vpp/trace/stop` endpoint.
-
+        >>> thread = api.get_debug_vpp_trace_start(n, i, e, p, async_req=True)
+        >>> result = thread.get()
 
         :param n: VPP node to trace.
         :type n: str
@@ -13433,76 +7230,32 @@ class VppApi:
         :type e: str
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_trace_start_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_trace_start_with_http_info(n, i, e, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_trace_start_serialize(
-            n=n,
-            i=i,
-            e=e,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_trace_start_with_http_info(self, n : Annotated[Optional[StrictStr], Field(description="VPP node to trace.")] = None, i : Annotated[Optional[StrictStr], Field(description="Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None, e : Annotated[Optional[StrictStr], Field(description="Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Action path that starts a trace without timeout. The trace can be stopped with the `/vpp/trace/stop` endpoint.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_start_with_http_info(
-        self,
-        n: Annotated[Optional[StrictStr], Field(description="VPP node to trace.")] = None,
-        i: Annotated[Optional[StrictStr], Field(description="Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        e: Annotated[Optional[StrictStr], Field(description="Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Action path that starts a trace without timeout. The trace can be stopped with the `/vpp/trace/stop` endpoint.
-
+        >>> thread = api.get_debug_vpp_trace_start_with_http_info(n, i, e, p, async_req=True)
+        >>> result = thread.get()
 
         :param n: VPP node to trace.
         :type n: str
@@ -13512,1779 +7265,954 @@ class VppApi:
         :type e: str
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_trace_start_serialize(
-            n=n,
-            i=i,
-            e=e,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_trace_start_without_preload_content(
-        self,
-        n: Annotated[Optional[StrictStr], Field(description="VPP node to trace.")] = None,
-        i: Annotated[Optional[StrictStr], Field(description="Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        e: Annotated[Optional[StrictStr], Field(description="Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            'n',
+            'i',
+            'e',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Action path that starts a trace without timeout. The trace can be stopped with the `/vpp/trace/stop` endpoint.
-
-
-        :param n: VPP node to trace.
-        :type n: str
-        :param i: Include only packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.
-        :type i: str
-        :param e: Exclude packets passing through the specified VPP node. Include and exclude parameters are mutually exclusive.
-        :type e: str
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_trace_start_serialize(
-            n=n,
-            i=i,
-            e=e,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_trace_start" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_trace_start_serialize(
-        self,
-        n,
-        i,
-        e,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if n is not None:
-            
-            _query_params.append(('n', n))
-            
-        if i is not None:
-            
-            _query_params.append(('i', i))
-            
-        if e is not None:
-            
-            _query_params.append(('e', e))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('n') is not None:  # noqa: E501
+            _query_params.append(('n', _params['n']))
+
+        if _params.get('i') is not None:  # noqa: E501
+            _query_params.append(('i', _params['i']))
+
+        if _params.get('e') is not None:  # noqa: E501
+            _query_params.append(('e', _params['e']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/trace/start',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/trace/start', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_trace_stop(self, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """Action path that stops tracing.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_stop(
-        self,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Action path that stops tracing.
-
+        >>> thread = api.get_debug_vpp_trace_stop(p, async_req=True)
+        >>> result = thread.get()
 
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_trace_stop_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_trace_stop_with_http_info(p, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_debug_vpp_trace_stop_with_http_info(self, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Action path that stops tracing.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_trace_stop_with_http_info(p, async_req=True)
+        >>> result = thread.get()
+
+        :param p: maximum number of packets to return.
+        :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_trace_stop_serialize(
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_trace_stop_with_http_info(
-        self,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Action path that stops tracing.
-
-
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_trace_stop_serialize(
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_trace_stop" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_trace_stop_without_preload_content(
-        self,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Action path that stops tracing.
-
-
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_trace_stop_serialize(
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_trace_stop_serialize(
-        self,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/trace/stop',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/trace/stop', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_trace_udp4_socket(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """Action path to execute a trace for IPv4 packets entering via VPP UDP socket.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_udp4_socket(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Action path to execute a trace for IPv4 packets entering via VPP UDP socket.
-
+        >>> thread = api.get_debug_vpp_trace_udp4_socket(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_trace_udp4_socket_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_trace_udp4_socket_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_trace_udp4_socket_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_trace_udp4_socket_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Action path to execute a trace for IPv4 packets entering via VPP UDP socket.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_udp4_socket_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Action path to execute a trace for IPv4 packets entering via VPP UDP socket.
-
+        >>> thread = api.get_debug_vpp_trace_udp4_socket_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_trace_udp4_socket_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_trace_udp4_socket_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Action path to execute a trace for IPv4 packets entering via VPP UDP socket.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_trace_udp4_socket_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_trace_udp4_socket" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_trace_udp4_socket_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/trace/udp4-socket',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/trace/udp4-socket', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_trace_udp6_socket(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """Action path to execute a trace for IPv6 packets entering via VPP UDP socket.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_udp6_socket(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Action path to execute a trace for IPv6 packets entering via VPP UDP socket.
-
+        >>> thread = api.get_debug_vpp_trace_udp6_socket(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_trace_udp6_socket_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_trace_udp6_socket_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_trace_udp6_socket_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_trace_udp6_socket_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Action path to execute a trace for IPv6 packets entering via VPP UDP socket.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_udp6_socket_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Action path to execute a trace for IPv6 packets entering via VPP UDP socket.
-
+        >>> thread = api.get_debug_vpp_trace_udp6_socket_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_trace_udp6_socket_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_trace_udp6_socket_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Action path to execute a trace for IPv6 packets entering via VPP UDP socket.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_trace_udp6_socket_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_trace_udp6_socket" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_trace_udp6_socket_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/trace/udp6-socket',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/trace/udp6-socket', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_trace_virtio(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> str:  # noqa: E501
+        """Action path to execute a trace for packets entering via TUN/TAP.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_virtio(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Action path to execute a trace for packets entering via TUN/TAP.
-
+        >>> thread = api.get_debug_vpp_trace_virtio(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_trace_virtio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_trace_virtio_with_http_info(t, p, **kwargs)  # noqa: E501
 
-        _param = self._get_debug_vpp_trace_virtio_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def get_debug_vpp_trace_virtio_with_http_info(self, t : Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None, p : Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Action path to execute a trace for packets entering via TUN/TAP.  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def get_debug_vpp_trace_virtio_with_http_info(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Action path to execute a trace for packets entering via TUN/TAP.
-
+        >>> thread = api.get_debug_vpp_trace_virtio_with_http_info(t, p, async_req=True)
+        >>> result = thread.get()
 
         :param t: Timeout (in ms) for the trace to be stopped.
         :type t: int
         :param p: maximum number of packets to return.
         :type p: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_trace_virtio_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_debug_vpp_trace_virtio_without_preload_content(
-        self,
-        t: Annotated[Optional[StrictInt], Field(description="Timeout (in ms) for the trace to be stopped.")] = None,
-        p: Annotated[Optional[StrictInt], Field(description="maximum number of packets to return.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            't',
+            'p'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Action path to execute a trace for packets entering via TUN/TAP.
-
-
-        :param t: Timeout (in ms) for the trace to be stopped.
-        :type t: int
-        :param p: maximum number of packets to return.
-        :type p: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_trace_virtio_serialize(
-            t=t,
-            p=p,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_trace_virtio" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _get_debug_vpp_trace_virtio_serialize(
-        self,
-        t,
-        p,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if t is not None:
-            
-            _query_params.append(('t', t))
-            
-        if p is not None:
-            
-            _query_params.append(('p', p))
-            
+        _query_params = []
+        if _params.get('t') is not None:  # noqa: E501
+            _query_params.append(('t', _params['t']))
+
+        if _params.get('p') is not None:  # noqa: E501
+            _query_params.append(('p', _params['p']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/trace/virtio',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/trace/virtio', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_tun(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting TUN/TAP devices created by VPP.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_tun(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_tun(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting TUN/TAP devices created by VPP.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_tun_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_tun_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_tun_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting TUN/TAP devices created by VPP.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_tun_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_tun_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_tun_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting TUN/TAP devices created by VPP.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_tun_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_tun" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_tun_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting TUN/TAP devices created by VPP.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_tun_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_tun_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/tun',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/tun', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def get_debug_vpp_vrrp(self, **kwargs) -> str:  # noqa: E501
+        """Status page reporting VPP VRRP.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
+        >>> thread = api.get_debug_vpp_vrrp(async_req=True)
+        >>> result = thread.get()
 
-    @validate_call
-    def get_debug_vpp_vrrp(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
-        """Status page reporting VPP VRRP.
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_debug_vpp_vrrp_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.get_debug_vpp_vrrp_with_http_info(**kwargs)  # noqa: E501
 
+    @validate_arguments
+    def get_debug_vpp_vrrp_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Status page reporting VPP VRRP.  # noqa: E501
 
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_debug_vpp_vrrp_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._get_debug_vpp_vrrp_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_debug_vpp_vrrp_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
-        """Status page reporting VPP VRRP.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_vrrp_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_debug_vpp_vrrp" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    @validate_call
-    def get_debug_vpp_vrrp_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Status page reporting VPP VRRP.
-
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_debug_vpp_vrrp_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
-            '400': "Problem",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_debug_vpp_vrrp_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
+        _query_params = []
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-
-
+        _body_params = None
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'text/plain', 
-                'application/json+problem'
-            ]
-        )
-
+            ['text/plain', 'application/json+problem'])  # noqa: E501
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/debug/vpp/vrrp',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "str",
+            '400': "Problem",
+        }
+
+        return self.api_client.call_api(
+            '/debug/vpp/vrrp', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
+            _request_auth=_params.get('_request_auth'))

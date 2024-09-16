@@ -21,7 +21,6 @@ Put a new configuration to the appliance.
 
 ### Example
 
-
 ```python
 import time
 import os
@@ -60,7 +59,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **config_put_request** | [**ConfigPutRequest**](ConfigPutRequest.md)| The config to be pushed to the appliance. | 
@@ -82,7 +80,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -100,7 +97,6 @@ Validates a configuration
 Validates a configuration.
 
 ### Example
-
 
 ```python
 import time
@@ -138,7 +134,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **config_put_request** | [**ConfigPutRequest**](ConfigPutRequest.md)| The config to be validated. | 
@@ -158,7 +153,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -175,7 +169,6 @@ Add an AS certificate chain
 Add a SCION CPPKI AS certificate chain to the device by promoting an existing certificate signing request. The certificate chain is first verified against the active TRC of the local ISD before it is added. Only verifiable certificate chains are added.  Use the 'force' query parameter to force the addition of the certificate chain regardless of validity or verifiability. 
 
 ### Example
-
 
 ```python
 import time
@@ -212,7 +205,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **bytearray**|  | 
@@ -232,7 +224,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -249,7 +240,6 @@ Create an AS certificate signing request
 Create a SCION CPPKI AS Certificate Signing Request (CSR). The CSR needs to be signed by a SCION CPPKI Certificate Authority in the local ISD. The fully signed certificate chain then needs to be installed via the /cppki/certificates endpoint. 
 
 ### Example
-
 
 ```python
 import time
@@ -286,7 +276,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **certificate_signing_request** | [**CertificateSigningRequest**](CertificateSigningRequest.md)| The parameters for the CSR.  | 
@@ -305,7 +294,6 @@ No authorization required
  - **Accept**: application/json, application/x-pem-file, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -322,7 +310,6 @@ Add a bundle of TRC files
 Add a bundle SCION CPPKI Trust Root Configuration (TRC) files to the device. The TRCs are first validated before they are added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRCs regardless of validity. 
 
 ### Example
-
 
 ```python
 import time
@@ -343,7 +330,7 @@ configuration = ansible.module_utils.appliance_api_client.Configuration(
 with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ansible.module_utils.appliance_api_client.InitApi(api_client)
-    body = [B@293dd4b3 # bytearray | 
+    body = [B@4a0dd851 # bytearray | 
     force = False # bool | If force is true, the TRC is added regardless of validity. (optional) (default to False)
 
     try:
@@ -358,7 +345,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -379,7 +365,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -396,7 +381,6 @@ Add a TRC file
 Add a SCION CPPKI Trust Root Configuration (TRC) file to the device. The TRC is first validated before it is added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRC regardless of validity. 
 
 ### Example
-
 
 ```python
 import time
@@ -417,7 +401,7 @@ configuration = ansible.module_utils.appliance_api_client.Configuration(
 with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ansible.module_utils.appliance_api_client.InitApi(api_client)
-    body = [B@2f95ce11 # bytearray | 
+    body = [B@3152d449 # bytearray | 
     force = False # bool | If force is true, the TRC is added regardless of validity. (optional) (default to False)
 
     try:
@@ -432,7 +416,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -453,7 +436,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |

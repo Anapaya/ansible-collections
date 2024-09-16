@@ -19,76 +19,58 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictInt, StrictStr
-from pydantic import Field
+from typing import Optional
+from pydantic import BaseModel, Field, StrictInt, StrictStr
 from ansible.module_utils.appliance_api_client.models.config_system_vpp_connection_health_check import ConfigSystemVppConnectionHealthCheck
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class ConfigSystemVppConnection(BaseModel):
     """
-    Connection configuration.
-    """ # noqa: E501
+    Connection configuration.  # noqa: E501
+    """
     health_check: Optional[ConfigSystemVppConnectionHealthCheck] = None
-    reconnect_attempts: Optional[StrictInt] = Field(default=5, description="The number of connect attempts on start from VPP control services to the VPP dataplane.")
-    reconnect_interval: Optional[StrictStr] = Field(default='1s', description="The interval at which a connection is attempted on start from VPP  control services to the VPP dataplane.  It requires a unit suffix out of ['d', 'h', 'm', 's', 'ms', 'us', 'ns'].  The encoding consists of a decimal number concatenated with a  suffix; for example, '5us', '10m', '12h', and '1d'.")
-    __properties: ClassVar[List[str]] = ["health_check", "reconnect_attempts", "reconnect_interval"]
+    reconnect_attempts: Optional[StrictInt] = Field(5, description="The number of connect attempts on start from VPP control services to the VPP dataplane.")
+    reconnect_interval: Optional[StrictStr] = Field('1s', description="The interval at which a connection is attempted on start from VPP  control services to the VPP dataplane.  It requires a unit suffix out of ['d', 'h', 'm', 's', 'ms', 'us', 'ns'].  The encoding consists of a decimal number concatenated with a  suffix; for example, '5us', '10m', '12h', and '1d'.")
+    __properties = ["health_check", "reconnect_attempts", "reconnect_interval"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigSystemVppConnection:
         """Create an instance of ConfigSystemVppConnection from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of health_check
         if self.health_check:
             _dict['health_check'] = self.health_check.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigSystemVppConnection:
         """Create an instance of ConfigSystemVppConnection from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigSystemVppConnection.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigSystemVppConnection.parse_obj({
             "health_check": ConfigSystemVppConnectionHealthCheck.from_dict(obj.get("health_check")) if obj.get("health_check") is not None else None,
             "reconnect_attempts": obj.get("reconnect_attempts") if obj.get("reconnect_attempts") is not None else 5,
             "reconnect_interval": obj.get("reconnect_interval") if obj.get("reconnect_interval") is not None else '1s'

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.chain import Chain
+from ansible.module_utils.appliance_api_client.models.chain import Chain  # noqa: E501
 
 class TestChain(unittest.TestCase):
     """Chain unit test stubs"""
@@ -34,7 +34,7 @@ class TestChain(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Chain`
         """
-        model = Chain()
+        model = Chain()  # noqa: E501
         if include_optional:
             return Chain(
                 as_certificate = ansible.module_utils.appliance_api_client.models.certificate_information.Certificate information(

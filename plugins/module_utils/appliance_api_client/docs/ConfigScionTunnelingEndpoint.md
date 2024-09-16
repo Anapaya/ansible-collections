@@ -3,7 +3,6 @@
 Local IP-in-SCION tunnel endpoint configuration
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **allowed_interfaces** | [**List[ConfigScionTunnelingEndpointAllowedInterfaces]**](ConfigScionTunnelingEndpointAllowedInterfaces.md) | The SCION interfaces for each local SCION AS that are allowed to be used by this IP-in-SCION tunneling endpoint. This can be used to control incoming traffic, e.g., if a tunnel endpoint should only be reachable via SCION interfaces 1 and 2, allowed-interfaces should list them explicitly. Remote tunnel endpoints will then only choose paths entering the respective local AS via SCION interface 1 or 2. If the IP-in-SCION tunneling endpoint on this appliance should be reachable via a SCION interface of a peer appliance, the allowed-interfaces list must be configured with the respective SCION interface of the peer appliance. By default the list is empty, in this case the appliance will automatically configure the locally configured SCION interfaces as allowed-interfaces. Automatic configuration is disabled if topology synchronization is enabled or if disable_auto_allowed_interfaces is set. | [optional] 

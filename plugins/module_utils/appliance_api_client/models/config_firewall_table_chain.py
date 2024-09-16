@@ -19,28 +19,23 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictInt, StrictStr, field_validator
-from pydantic import Field
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
 from ansible.module_utils.appliance_api_client.models.config_firewall_table_chain_rule import ConfigFirewallTableChainRule
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class ConfigFirewallTableChain(BaseModel):
     """
-    List of chains that are part of an nftables table, uniquely idenified by their name.
-    """ # noqa: E501
-    chaintype: Optional[StrictStr] = Field(default=None, description="The type and usage of the chain. This must be set for base chains and unset for regular chains.")
-    hook: Optional[StrictStr] = Field(default=None, description="The packet processing step during which the chain should be executed. This must be set for base chains and unset for regular chains. For more information on the chain hooks, please refer to https://wiki.nftables.org/wiki-nftables/index.php/Configuring_chains#Base_chain_hooks.")
-    name: StrictStr = Field(description="The name of the chain.")
-    policy: Optional[StrictStr] = Field(default=None, description="The default policy that will be applied to packets that reach the end of the chain. For more information on chain policies, please refer to https://wiki.nftables.org/wiki-nftables/index.php/Configuring_chains#Base_chain_policy.")
-    priority: Optional[StrictInt] = Field(default=None, description="The priority of the chain. This must be set for base chains and unset for regular chains.")
-    rules: Optional[List[ConfigFirewallTableChainRule]] = Field(default=None, description="Rules defined as part of a chain within a firewall table.")
-    __properties: ClassVar[List[str]] = ["chaintype", "hook", "name", "policy", "priority", "rules"]
+    List of chains that are part of an nftables table, uniquely idenified by their name.  # noqa: E501
+    """
+    chaintype: Optional[StrictStr] = Field(None, description="The type and usage of the chain. This must be set for base chains and unset for regular chains.")
+    hook: Optional[StrictStr] = Field(None, description="The packet processing step during which the chain should be executed. This must be set for base chains and unset for regular chains. For more information on the chain hooks, please refer to https://wiki.nftables.org/wiki-nftables/index.php/Configuring_chains#Base_chain_hooks.")
+    name: StrictStr = Field(..., description="The name of the chain.")
+    policy: Optional[StrictStr] = Field(None, description="The default policy that will be applied to packets that reach the end of the chain. For more information on chain policies, please refer to https://wiki.nftables.org/wiki-nftables/index.php/Configuring_chains#Base_chain_policy.")
+    priority: Optional[StrictInt] = Field(None, description="The priority of the chain. This must be set for base chains and unset for regular chains.")
+    rules: Optional[conlist(ConfigFirewallTableChainRule)] = Field(None, description="Rules defined as part of a chain within a firewall table.")
+    __properties = ["chaintype", "hook", "name", "policy", "priority", "rules"]
 
-    @field_validator('chaintype')
+    @validator('chaintype')
     def chaintype_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -50,7 +45,7 @@ class ConfigFirewallTableChain(BaseModel):
             raise ValueError("must be one of enum values ('FILTER', 'ROUTE', 'NAT')")
         return value
 
-    @field_validator('hook')
+    @validator('hook')
     def hook_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -60,7 +55,7 @@ class ConfigFirewallTableChain(BaseModel):
             raise ValueError("must be one of enum values ('PREROUTING', 'INPUT', 'FORWARD', 'OUTPUT', 'POSTROUTING')")
         return value
 
-    @field_validator('policy')
+    @validator('policy')
     def policy_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -70,43 +65,30 @@ class ConfigFirewallTableChain(BaseModel):
             raise ValueError("must be one of enum values ('ACCEPT', 'DROP')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigFirewallTableChain:
         """Create an instance of ConfigFirewallTableChain from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in rules (list)
         _items = []
         if self.rules:
@@ -117,15 +99,15 @@ class ConfigFirewallTableChain(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigFirewallTableChain:
         """Create an instance of ConfigFirewallTableChain from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigFirewallTableChain.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigFirewallTableChain.parse_obj({
             "chaintype": obj.get("chaintype"),
             "hook": obj.get("hook"),
             "name": obj.get("name"),

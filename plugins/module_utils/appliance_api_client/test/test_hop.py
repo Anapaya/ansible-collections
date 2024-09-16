@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.hop import Hop
+from ansible.module_utils.appliance_api_client.models.hop import Hop  # noqa: E501
 
 class TestHop(unittest.TestCase):
     """Hop unit test stubs"""
@@ -34,7 +34,7 @@ class TestHop(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Hop`
         """
-        model = Hop()
+        model = Hop()  # noqa: E501
         if include_optional:
             return Hop(
                 isd_as = '1-ff00:0:110',

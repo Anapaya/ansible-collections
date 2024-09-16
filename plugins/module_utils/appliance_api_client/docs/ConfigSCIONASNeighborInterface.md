@@ -3,7 +3,6 @@
 SCION interface that links to the neighbor AS.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | UDP/IP underlay endpoint of the SCION Interface. The data plane traffic is received on this address. The address must be specified as host:port. Both host and port must be specified. | [optional] 

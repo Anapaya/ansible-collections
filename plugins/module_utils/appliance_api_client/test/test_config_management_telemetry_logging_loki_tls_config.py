@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_telemetry_logging_loki_tls_config import ConfigManagementTelemetryLoggingLokiTlsConfig
+from ansible.module_utils.appliance_api_client.models.config_management_telemetry_logging_loki_tls_config import ConfigManagementTelemetryLoggingLokiTlsConfig  # noqa: E501
 
 class TestConfigManagementTelemetryLoggingLokiTlsConfig(unittest.TestCase):
     """ConfigManagementTelemetryLoggingLokiTlsConfig unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementTelemetryLoggingLokiTlsConfig(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementTelemetryLoggingLokiTlsConfig`
         """
-        model = ConfigManagementTelemetryLoggingLokiTlsConfig()
+        model = ConfigManagementTelemetryLoggingLokiTlsConfig()  # noqa: E501
         if include_optional:
             return ConfigManagementTelemetryLoggingLokiTlsConfig(
                 insecure_skip_verify = True

@@ -3,7 +3,6 @@
 The tunneling features
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **config_disallowed** | **bool** | If true, any tunneling configuration is disallowed.  | [optional] 

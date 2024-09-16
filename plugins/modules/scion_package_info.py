@@ -13,8 +13,11 @@ extends_documentation_fragment:
     - anapaya.appliance.scion_package_info
 author:
     - Lukas Bischofberger (@worxli)
-requirements:
-    - pydantic
+options:
+    address:
+        description: Address of the appliance.
+        required: true
+        type: str
 '''
 
 EXAMPLES = r'''
@@ -47,28 +50,31 @@ def main():
     )
 
     module = AnsibleModule(
-        argument_spec=dict(),
+        argument_spec=dict(
+            address=dict(type='str', required=True),
+        ),
         supports_check_mode=True
     )
 
     if module.check_mode:
         module.exit_json(**result)
 
+
     # See configuration.py for a list of all supported configuration parameters.
     configuration = Configuration(
-        host = "https://localhost/api/v1",
-        verify_ssl = False
+        host = "https://localhost/api/v1"
     )
+    configuration.verify_ssl = False
+    if module.params['address']:
+        configuration.host = module.params['address']+ "/api/v1"
 
     # Enter a context with an instance of the API client
     with ApiClient(configuration) as api_client:
-        # Create an instance of the API class
         api_instance = software_api.SoftwareApi(api_client)
 
         try:
-            # Get the current package version
+            # Get the current SCION package
             api_response = api_instance.software_scion_installed_get()
-            pprint(api_response)
             result['checksum'] = api_response.checksum
             result['version'] = api_response.version
         except ApiException as e:

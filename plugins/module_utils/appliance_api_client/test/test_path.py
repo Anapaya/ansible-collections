@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.path import Path
+from ansible.module_utils.appliance_api_client.models.path import Path  # noqa: E501
 
 class TestPath(unittest.TestCase):
     """Path unit test stubs"""
@@ -34,7 +34,7 @@ class TestPath(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Path`
         """
-        model = Path()
+        model = Path()  # noqa: E501
         if include_optional:
             return Path(
                 fingerprint = 'f',

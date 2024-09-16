@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config import Config
+from ansible.module_utils.appliance_api_client.models.config import Config  # noqa: E501
 
 class TestConfig(unittest.TestCase):
     """Config unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfig(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Config`
         """
-        model = Config()
+        model = Config()  # noqa: E501
         if include_optional:
             return Config(
                 advanced = ansible.module_utils.appliance_api_client.models.config_advanced.Config_Advanced(

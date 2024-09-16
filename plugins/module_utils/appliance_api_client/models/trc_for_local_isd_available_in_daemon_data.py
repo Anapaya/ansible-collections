@@ -19,75 +19,57 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictInt, StrictStr
-from pydantic import Field
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional
+from pydantic import BaseModel, Field, StrictInt, StrictStr
 
 class TRCForLocalISDAvailableInDaemonData(BaseModel):
     """
-    The TRC for the local ISD is available on the SCION Daemon. A TRC is required to establish trust in the SCION network. The TRC is used to verify the CPPKI certificates which are used to sign the SCION control plane messages. If the TRC is not present, applications on this appliance will not be able to connect to the SCION network. 
-    """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="The TRC identifier composed of the ISD identfier, base and serial number.")
-    isd: StrictInt = Field(description="The ISD of the TRC.")
-    base: Optional[StrictInt] = Field(default=None, description="The base number of the TRC. Usually 1, unless a trust reset has been performed.")
-    serial: Optional[StrictInt] = Field(default=None, description="The serial number of the TRC. Incremented with each new TRC.")
-    not_before: Optional[datetime] = Field(default=None, description="The time at which the validity period starts.")
-    not_after: Optional[datetime] = Field(default=None, description="The time at which the validity period stops.")
-    __properties: ClassVar[List[str]] = ["id", "isd", "base", "serial", "not_before", "not_after"]
+    The TRC for the local ISD is available on the SCION Daemon. A TRC is required to establish trust in the SCION network. The TRC is used to verify the CPPKI certificates which are used to sign the SCION control plane messages. If the TRC is not present, applications on this appliance will not be able to connect to the SCION network.   # noqa: E501
+    """
+    id: Optional[StrictStr] = Field(None, description="The TRC identifier composed of the ISD identfier, base and serial number.")
+    isd: StrictInt = Field(..., description="The ISD of the TRC.")
+    base: Optional[StrictInt] = Field(None, description="The base number of the TRC. Usually 1, unless a trust reset has been performed.")
+    serial: Optional[StrictInt] = Field(None, description="The serial number of the TRC. Incremented with each new TRC.")
+    not_before: Optional[datetime] = Field(None, description="The time at which the validity period starts.")
+    not_after: Optional[datetime] = Field(None, description="The time at which the validity period stops.")
+    __properties = ["id", "isd", "base", "serial", "not_before", "not_after"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> TRCForLocalISDAvailableInDaemonData:
         """Create an instance of TRCForLocalISDAvailableInDaemonData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> TRCForLocalISDAvailableInDaemonData:
         """Create an instance of TRCForLocalISDAvailableInDaemonData from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return TRCForLocalISDAvailableInDaemonData.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = TRCForLocalISDAvailableInDaemonData.parse_obj({
             "id": obj.get("id"),
             "isd": obj.get("isd"),
             "base": obj.get("base"),

@@ -3,7 +3,6 @@
 Open authorization (OAuth) configuration that can authorize users who want to access the Anapaya appliance management API.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **enabled** | **bool** | Whether the feature is enabled. | [optional] [default to False]

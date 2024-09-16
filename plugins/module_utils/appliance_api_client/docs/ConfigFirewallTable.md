@@ -3,7 +3,6 @@
 List of nftables tables that should be configured on the local system, uniquely identified by their name.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chains** | [**List[ConfigFirewallTableChain]**](ConfigFirewallTableChain.md) | Chains defined within the nftables table. | [optional] 

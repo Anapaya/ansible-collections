@@ -3,7 +3,6 @@
 BGP configuration the host.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **asn** | **int** | The local AS number used for the BGP sessions. | 

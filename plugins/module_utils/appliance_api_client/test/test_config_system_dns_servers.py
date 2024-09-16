@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_system_dns_servers import ConfigSystemDnsServers
+from ansible.module_utils.appliance_api_client.models.config_system_dns_servers import ConfigSystemDnsServers  # noqa: E501
 
 class TestConfigSystemDnsServers(unittest.TestCase):
     """ConfigSystemDnsServers unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSystemDnsServers(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSystemDnsServers`
         """
-        model = ConfigSystemDnsServers()
+        model = ConfigSystemDnsServers()  # noqa: E501
         if include_optional:
             return ConfigSystemDnsServers(
                 address = ''

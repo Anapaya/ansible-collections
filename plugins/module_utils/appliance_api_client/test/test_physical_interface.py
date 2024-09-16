@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.physical_interface import PhysicalInterface
+from ansible.module_utils.appliance_api_client.models.physical_interface import PhysicalInterface  # noqa: E501
 
 class TestPhysicalInterface(unittest.TestCase):
     """PhysicalInterface unit test stubs"""
@@ -34,7 +34,7 @@ class TestPhysicalInterface(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PhysicalInterface`
         """
-        model = PhysicalInterface()
+        model = PhysicalInterface()  # noqa: E501
         if include_optional:
             return PhysicalInterface(
                 name = 'eth0',

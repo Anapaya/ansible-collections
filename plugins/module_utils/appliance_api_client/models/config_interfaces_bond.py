@@ -19,74 +19,55 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
-from pydantic import Field
-from typing_extensions import Annotated
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
 from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_gateway import ConfigInterfacesBondGateway
 from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_neighbor import ConfigInterfacesBondNeighbor
 from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_route import ConfigInterfacesBondRoute
 from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_vrrp import ConfigInterfacesBondVrrp
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class ConfigInterfacesBond(BaseModel):
     """
-    List of bond interfaces.
-    """ # noqa: E501
-    accept_ra: Optional[StrictBool] = Field(default=False, description="Whether to accept the route advertisements for the corresponding interface. (This is currently supported only for the interfaces that are using the Linux driver.)")
-    addresses: Optional[List[StrictStr]] = Field(default=None, description="The addresses configured on this interface. Each address must be a valid IP prefix in CIDR notation.")
+    List of bond interfaces.  # noqa: E501
+    """
+    accept_ra: Optional[StrictBool] = Field(False, description="Whether to accept the route advertisements for the corresponding interface. (This is currently supported only for the interfaces that are using the Linux driver.)")
+    addresses: Optional[conlist(StrictStr)] = Field(None, description="The addresses configured on this interface. Each address must be a valid IP prefix in CIDR notation.")
     gateway: Optional[ConfigInterfacesBondGateway] = None
-    interfaces: Annotated[List[StrictStr], Field(min_length=1)] = Field(description="The list of interfaces that are part of this bond.")
-    mac: Optional[StrictStr] = Field(default=None, description="The MAC address to use on this interface. It is of the form `XX:XX:XX:XX:XX:XX`.")
-    mtu: Optional[StrictInt] = Field(default=1500, description="The MTU (Maximum Transmission Unit) to be used on this interface.")
-    name: StrictStr = Field(description="The name of the network interface.")
-    neighbors: Optional[List[ConfigInterfacesBondNeighbor]] = Field(default=None, description="The static neighbors configured on this network interface.")
-    routes: Optional[List[ConfigInterfacesBondRoute]] = Field(default=None, description="The routes which are configured on this network interface.")
-    rx_queue_size: Optional[StrictInt] = Field(default=1024, description="The number of descriptors in the receive queue. (This option is currently supported only for VPP interfaces.)")
-    tx_queue_size: Optional[StrictInt] = Field(default=1024, description="The number of descriptors in the transmit queue. (This is currently supported only for VPP interfaces.)")
-    vrrp: Optional[List[ConfigInterfacesBondVrrp]] = Field(default=None, description="The VRRP (Virtual Router Redundancy Protocol) configurations for this interface.")
-    __properties: ClassVar[List[str]] = ["accept_ra", "addresses", "gateway", "interfaces", "mac", "mtu", "name", "neighbors", "routes", "rx_queue_size", "tx_queue_size", "vrrp"]
+    interfaces: conlist(StrictStr, min_items=1) = Field(..., description="The list of interfaces that are part of this bond.")
+    mac: Optional[StrictStr] = Field(None, description="The MAC address to use on this interface. It is of the form `XX:XX:XX:XX:XX:XX`.")
+    mtu: Optional[StrictInt] = Field(1500, description="The MTU (Maximum Transmission Unit) to be used on this interface.")
+    name: StrictStr = Field(..., description="The name of the network interface.")
+    neighbors: Optional[conlist(ConfigInterfacesBondNeighbor)] = Field(None, description="The static neighbors configured on this network interface.")
+    routes: Optional[conlist(ConfigInterfacesBondRoute)] = Field(None, description="The routes which are configured on this network interface.")
+    rx_queue_size: Optional[StrictInt] = Field(1024, description="The number of descriptors in the receive queue. (This option is currently supported only for VPP interfaces.)")
+    tx_queue_size: Optional[StrictInt] = Field(1024, description="The number of descriptors in the transmit queue. (This is currently supported only for VPP interfaces.)")
+    vrrp: Optional[conlist(ConfigInterfacesBondVrrp)] = Field(None, description="The VRRP (Virtual Router Redundancy Protocol) configurations for this interface.")
+    __properties = ["accept_ra", "addresses", "gateway", "interfaces", "mac", "mtu", "name", "neighbors", "routes", "rx_queue_size", "tx_queue_size", "vrrp"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigInterfacesBond:
         """Create an instance of ConfigInterfacesBond from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of gateway
         if self.gateway:
             _dict['gateway'] = self.gateway.to_dict()
@@ -114,15 +95,15 @@ class ConfigInterfacesBond(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigInterfacesBond:
         """Create an instance of ConfigInterfacesBond from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigInterfacesBond.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigInterfacesBond.parse_obj({
             "accept_ra": obj.get("accept_ra") if obj.get("accept_ra") is not None else False,
             "addresses": obj.get("addresses"),
             "gateway": ConfigInterfacesBondGateway.from_dict(obj.get("gateway")) if obj.get("gateway") is not None else None,

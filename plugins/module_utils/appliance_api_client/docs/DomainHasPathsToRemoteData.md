@@ -3,7 +3,6 @@
 Indicates the number of paths a domain has to a remote ISD-AS. If the domain has multiple ISD-AS, it could be that a path is not available for a certain ISD-AS pair, nonetheless, this is a condition to be aware of. 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **domain** | **str** | The name of the routing domain.  | 

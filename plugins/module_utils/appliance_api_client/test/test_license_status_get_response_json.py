@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.license_status_get_response_json import LicenseStatusGetResponseJson
+from ansible.module_utils.appliance_api_client.models.license_status_get_response_json import LicenseStatusGetResponseJson  # noqa: E501
 
 class TestLicenseStatusGetResponseJson(unittest.TestCase):
     """LicenseStatusGetResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestLicenseStatusGetResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LicenseStatusGetResponseJson`
         """
-        model = LicenseStatusGetResponseJson()
+        model = LicenseStatusGetResponseJson()  # noqa: E501
         if include_optional:
             return LicenseStatusGetResponseJson(
                 status = 'trial-period',

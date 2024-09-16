@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_virtual_function_neighbor import ConfigInterfacesVirtualFunctionNeighbor
+from ansible.module_utils.appliance_api_client.models.config_interfaces_virtual_function_neighbor import ConfigInterfacesVirtualFunctionNeighbor  # noqa: E501
 
 class TestConfigInterfacesVirtualFunctionNeighbor(unittest.TestCase):
     """ConfigInterfacesVirtualFunctionNeighbor unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesVirtualFunctionNeighbor(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesVirtualFunctionNeighbor`
         """
-        model = ConfigInterfacesVirtualFunctionNeighbor()
+        model = ConfigInterfacesVirtualFunctionNeighbor()  # noqa: E501
         if include_optional:
             return ConfigInterfacesVirtualFunctionNeighbor(
                 address = '',

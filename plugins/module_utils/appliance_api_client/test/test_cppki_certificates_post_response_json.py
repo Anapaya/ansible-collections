@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.cppki_certificates_post_response_json import CppkiCertificatesPostResponseJson
+from ansible.module_utils.appliance_api_client.models.cppki_certificates_post_response_json import CppkiCertificatesPostResponseJson  # noqa: E501
 
 class TestCppkiCertificatesPostResponseJson(unittest.TestCase):
     """CppkiCertificatesPostResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestCppkiCertificatesPostResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CppkiCertificatesPostResponseJson`
         """
-        model = CppkiCertificatesPostResponseJson()
+        model = CppkiCertificatesPostResponseJson()  # noqa: E501
         if include_optional:
             return CppkiCertificatesPostResponseJson(
                 certificate_chain = ansible.module_utils.appliance_api_client.models.certificate_chain_information.Certificate chain information(

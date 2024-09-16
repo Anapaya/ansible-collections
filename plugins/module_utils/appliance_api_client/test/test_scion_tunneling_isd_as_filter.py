@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_isd_as_filter import ScionTunnelingIsdAsFilter
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_isd_as_filter import ScionTunnelingIsdAsFilter  # noqa: E501
 
 class TestScionTunnelingIsdAsFilter(unittest.TestCase):
     """ScionTunnelingIsdAsFilter unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingIsdAsFilter(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingIsdAsFilter`
         """
-        model = ScionTunnelingIsdAsFilter()
+        model = ScionTunnelingIsdAsFilter()  # noqa: E501
         if include_optional:
             return ScionTunnelingIsdAsFilter(
                 action = 'ACCEPT',

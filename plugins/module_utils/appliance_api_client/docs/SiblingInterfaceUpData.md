@@ -3,7 +3,6 @@
 The connectivity to a SCION interface that is configured on a sibling appliance is up.  If the interface is configured with BFD enabled, the health check reports up if the BFD session is up. If BFD is not enabled, the health check always reports up. 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **local_isd_as** | **str** |  | 

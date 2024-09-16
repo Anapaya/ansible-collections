@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.signature import Signature
+from ansible.module_utils.appliance_api_client.models.signature import Signature  # noqa: E501
 
 class TestSignature(unittest.TestCase):
     """Signature unit test stubs"""
@@ -34,7 +34,7 @@ class TestSignature(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Signature`
         """
-        model = Signature()
+        model = Signature()  # noqa: E501
         if include_optional:
             return Signature(
                 public_key = '',

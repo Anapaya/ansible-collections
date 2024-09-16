@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.cppki_csrs_post_response_json import CppkiCsrsPostResponseJson
+from ansible.module_utils.appliance_api_client.models.cppki_csrs_post_response_json import CppkiCsrsPostResponseJson  # noqa: E501
 
 class TestCppkiCsrsPostResponseJson(unittest.TestCase):
     """CppkiCsrsPostResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestCppkiCsrsPostResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CppkiCsrsPostResponseJson`
         """
-        model = CppkiCsrsPostResponseJson()
+        model = CppkiCsrsPostResponseJson()  # noqa: E501
         if include_optional:
             return CppkiCsrsPostResponseJson(
                 certificate_signing_request = ansible.module_utils.appliance_api_client.models.certificate_signing_request_information.Certificate signing request information(

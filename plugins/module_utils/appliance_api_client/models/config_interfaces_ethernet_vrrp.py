@@ -19,75 +19,56 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
-from pydantic import Field
-from typing_extensions import Annotated
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
 
 class ConfigInterfacesEthernetVrrp(BaseModel):
     """
-    List of VRRP configurations.
-    """ # noqa: E501
-    addresses: Annotated[List[StrictStr], Field(min_length=1)] = Field(description="The list of virtual IP addresses. It must contain at least one IP address. Each sequence entry is in CIDR notation.")
-    no_preempt: Optional[StrictBool] = Field(default=False, description="If set to true, the preempt mode is disabled. This means that the router will not preempt the master even if it has a higher priority than the current master. If set to false, the router will preempt the master if it has a higher priority than the current master.")
-    peers: Annotated[List[StrictStr], Field(min_length=1)] = Field(description="Optional list of IP addresses of the VRRP peers. If the list is empty, the router will send VRRP packets to the multicast address. If the list is not empty, the router will send VRRP packets to the unicast addresses specified in the list.")
-    priority: Optional[StrictInt] = Field(default=1, description="The priority value to be used by this VRRP router. Higher means higher priority and it ranges between 1 and 255 (decimal).")
-    vrid: StrictInt = Field(description="The virtual router identifier, which ranges between 1 and 255 (decimal).")
-    __properties: ClassVar[List[str]] = ["addresses", "no_preempt", "peers", "priority", "vrid"]
+    List of VRRP configurations.  # noqa: E501
+    """
+    addresses: conlist(StrictStr, min_items=1) = Field(..., description="The list of virtual IP addresses. It must contain at least one IP address. Each sequence entry is in CIDR notation.")
+    no_preempt: Optional[StrictBool] = Field(False, description="If set to true, the preempt mode is disabled. This means that the router will not preempt the master even if it has a higher priority than the current master. If set to false, the router will preempt the master if it has a higher priority than the current master.")
+    peers: conlist(StrictStr, min_items=1) = Field(..., description="Optional list of IP addresses of the VRRP peers. If the list is empty, the router will send VRRP packets to the multicast address. If the list is not empty, the router will send VRRP packets to the unicast addresses specified in the list.")
+    priority: Optional[StrictInt] = Field(1, description="The priority value to be used by this VRRP router. Higher means higher priority and it ranges between 1 and 255 (decimal).")
+    vrid: StrictInt = Field(..., description="The virtual router identifier, which ranges between 1 and 255 (decimal).")
+    __properties = ["addresses", "no_preempt", "peers", "priority", "vrid"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigInterfacesEthernetVrrp:
         """Create an instance of ConfigInterfacesEthernetVrrp from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigInterfacesEthernetVrrp:
         """Create an instance of ConfigInterfacesEthernetVrrp from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigInterfacesEthernetVrrp.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigInterfacesEthernetVrrp.parse_obj({
             "addresses": obj.get("addresses"),
             "no_preempt": obj.get("no_preempt") if obj.get("no_preempt") is not None else False,
             "peers": obj.get("peers"),

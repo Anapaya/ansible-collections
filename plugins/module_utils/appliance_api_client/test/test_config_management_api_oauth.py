@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_api_oauth import ConfigManagementApiOauth
+from ansible.module_utils.appliance_api_client.models.config_management_api_oauth import ConfigManagementApiOauth  # noqa: E501
 
 class TestConfigManagementApiOauth(unittest.TestCase):
     """ConfigManagementApiOauth unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementApiOauth(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementApiOauth`
         """
-        model = ConfigManagementApiOauth()
+        model = ConfigManagementApiOauth()  # noqa: E501
         if include_optional:
             return ConfigManagementApiOauth(
                 enabled = True,

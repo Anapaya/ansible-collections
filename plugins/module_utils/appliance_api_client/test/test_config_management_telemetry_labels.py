@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_telemetry_labels import ConfigManagementTelemetryLabels
+from ansible.module_utils.appliance_api_client.models.config_management_telemetry_labels import ConfigManagementTelemetryLabels  # noqa: E501
 
 class TestConfigManagementTelemetryLabels(unittest.TestCase):
     """ConfigManagementTelemetryLabels unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementTelemetryLabels(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementTelemetryLabels`
         """
-        model = ConfigManagementTelemetryLabels()
+        model = ConfigManagementTelemetryLabels()  # noqa: E501
         if include_optional:
             return ConfigManagementTelemetryLabels(
                 label = '',

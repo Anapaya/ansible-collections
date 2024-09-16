@@ -3,7 +3,6 @@
 The synchronization configuration contains the configuration for SCION path and beacon synchronization.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **beacon_synchronization_interval** | **str** | The interval between two consecutive beacon synchronizations attempts to the cluster peers. It requires a unit suffix out of [&#39;d&#39;, &#39;h&#39;, &#39;m&#39;, &#39;s&#39;]. The encoding consists of a decimal number concatenated with a suffix; for example, &#39;5s&#39;, &#39;10m&#39;, &#39;12h&#39;, and &#39;1d&#39;. | [optional] [default to '4s']

@@ -3,7 +3,6 @@
 List of neighbors configured on this interface.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | The IP address. | 

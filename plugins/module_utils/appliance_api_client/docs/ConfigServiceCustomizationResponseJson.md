@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **service_customization** | [**ConfigAdvancedServiceCustomization**](ConfigAdvancedServiceCustomization.md) |  | 

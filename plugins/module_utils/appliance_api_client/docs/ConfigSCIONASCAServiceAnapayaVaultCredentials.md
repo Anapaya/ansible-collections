@@ -3,7 +3,6 @@
 The necessary credentials to be logged into the Anapaya Vault backend.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **role_id** | **str** | The role ID used to authenticate with the Vault backend via the AppRole Authentication Method. See https://www.vaultproject.io/docs/auth/approle for more details. | [optional] 

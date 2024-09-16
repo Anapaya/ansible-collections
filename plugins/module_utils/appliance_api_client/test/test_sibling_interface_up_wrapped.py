@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.sibling_interface_up_wrapped import SiblingInterfaceUpWrapped
+from ansible.module_utils.appliance_api_client.models.sibling_interface_up_wrapped import SiblingInterfaceUpWrapped  # noqa: E501
 
 class TestSiblingInterfaceUpWrapped(unittest.TestCase):
     """SiblingInterfaceUpWrapped unit test stubs"""
@@ -34,7 +34,7 @@ class TestSiblingInterfaceUpWrapped(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SiblingInterfaceUpWrapped`
         """
-        model = SiblingInterfaceUpWrapped()
+        model = SiblingInterfaceUpWrapped()  # noqa: E501
         if include_optional:
             return SiblingInterfaceUpWrapped(
                 component = 'appliance',

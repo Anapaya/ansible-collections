@@ -3,7 +3,6 @@
 Per service resource limits.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cpu** | **float** | The CPU limit in number of fractional CPU cores that can be used by the service. If not specified, a sensible default is chosen by the system. If set to 0, the service is not limited in terms of CPU usage. | [optional] 

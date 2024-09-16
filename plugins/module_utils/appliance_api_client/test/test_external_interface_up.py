@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.external_interface_up import ExternalInterfaceUp
+from ansible.module_utils.appliance_api_client.models.external_interface_up import ExternalInterfaceUp  # noqa: E501
 
 class TestExternalInterfaceUp(unittest.TestCase):
     """ExternalInterfaceUp unit test stubs"""
@@ -34,7 +34,7 @@ class TestExternalInterfaceUp(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ExternalInterfaceUp`
         """
-        model = ExternalInterfaceUp()
+        model = ExternalInterfaceUp()  # noqa: E501
         if include_optional:
             return ExternalInterfaceUp(
                 data = ansible.module_utils.appliance_api_client.models.external_interface_up_data.ExternalInterfaceUpData(

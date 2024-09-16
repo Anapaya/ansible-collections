@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.software_install_post_request_json import SoftwareInstallPostRequestJson
+from ansible.module_utils.appliance_api_client.models.software_install_post_request_json import SoftwareInstallPostRequestJson  # noqa: E501
 
 class TestSoftwareInstallPostRequestJson(unittest.TestCase):
     """SoftwareInstallPostRequestJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestSoftwareInstallPostRequestJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SoftwareInstallPostRequestJson`
         """
-        model = SoftwareInstallPostRequestJson()
+        model = SoftwareInstallPostRequestJson()  # noqa: E501
         if include_optional:
             return SoftwareInstallPostRequestJson(
                 version = 'v0.25.12',

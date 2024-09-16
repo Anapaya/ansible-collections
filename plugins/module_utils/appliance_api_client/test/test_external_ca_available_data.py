@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.external_ca_available_data import ExternalCAAvailableData
+from ansible.module_utils.appliance_api_client.models.external_ca_available_data import ExternalCAAvailableData  # noqa: E501
 
 class TestExternalCAAvailableData(unittest.TestCase):
     """ExternalCAAvailableData unit test stubs"""
@@ -34,7 +34,7 @@ class TestExternalCAAvailableData(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ExternalCAAvailableData`
         """
-        model = ExternalCAAvailableData()
+        model = ExternalCAAvailableData()  # noqa: E501
         if include_optional:
             return ExternalCAAvailableData(
                 status = 'available'

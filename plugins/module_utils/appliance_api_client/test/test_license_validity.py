@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.license_validity import LicenseValidity
+from ansible.module_utils.appliance_api_client.models.license_validity import LicenseValidity  # noqa: E501
 
 class TestLicenseValidity(unittest.TestCase):
     """LicenseValidity unit test stubs"""
@@ -34,7 +34,7 @@ class TestLicenseValidity(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LicenseValidity`
         """
-        model = LicenseValidity()
+        model = LicenseValidity()  # noqa: E501
         if include_optional:
             return LicenseValidity(
                 effective_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),

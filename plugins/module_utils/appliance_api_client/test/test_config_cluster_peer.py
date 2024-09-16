@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_cluster_peer import ConfigClusterPeer
+from ansible.module_utils.appliance_api_client.models.config_cluster_peer import ConfigClusterPeer  # noqa: E501
 
 class TestConfigClusterPeer(unittest.TestCase):
     """ConfigClusterPeer unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigClusterPeer(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigClusterPeer`
         """
-        model = ConfigClusterPeer()
+        model = ConfigClusterPeer()  # noqa: E501
         if include_optional:
             return ConfigClusterPeer(
                 description = '',

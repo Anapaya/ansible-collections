@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **interfaces** | [**List[NetworkInterface]**](NetworkInterface.md) |  | 

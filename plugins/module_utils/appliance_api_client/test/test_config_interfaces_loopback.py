@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_loopback import ConfigInterfacesLoopback
+from ansible.module_utils.appliance_api_client.models.config_interfaces_loopback import ConfigInterfacesLoopback  # noqa: E501
 
 class TestConfigInterfacesLoopback(unittest.TestCase):
     """ConfigInterfacesLoopback unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesLoopback(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesLoopback`
         """
-        model = ConfigInterfacesLoopback()
+        model = ConfigInterfacesLoopback()  # noqa: E501
         if include_optional:
             return ConfigInterfacesLoopback(
                 addresses = [

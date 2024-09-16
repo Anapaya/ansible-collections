@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **traffic_matcher** | **str** | The name of the corresponding traffic matcher. | 

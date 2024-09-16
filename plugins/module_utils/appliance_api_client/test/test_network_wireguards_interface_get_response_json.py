@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.network_wireguards_interface_get_response_json import NetworkWireguardsInterfaceGetResponseJson
+from ansible.module_utils.appliance_api_client.models.network_wireguards_interface_get_response_json import NetworkWireguardsInterfaceGetResponseJson  # noqa: E501
 
 class TestNetworkWireguardsInterfaceGetResponseJson(unittest.TestCase):
     """NetworkWireguardsInterfaceGetResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestNetworkWireguardsInterfaceGetResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `NetworkWireguardsInterfaceGetResponseJson`
         """
-        model = NetworkWireguardsInterfaceGetResponseJson()
+        model = NetworkWireguardsInterfaceGetResponseJson()  # noqa: E501
         if include_optional:
             return NetworkWireguardsInterfaceGetResponseJson(
                 name = 'wg0',

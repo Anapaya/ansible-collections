@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management import ConfigManagement
+from ansible.module_utils.appliance_api_client.models.config_management import ConfigManagement  # noqa: E501
 
 class TestConfigManagement(unittest.TestCase):
     """ConfigManagement unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagement(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagement`
         """
-        model = ConfigManagement()
+        model = ConfigManagement()  # noqa: E501
         if include_optional:
             return ConfigManagement(
                 api = ansible.module_utils.appliance_api_client.models.config_management_api.Config_Management_Api(

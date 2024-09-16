@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Get software version
+      scion_package_info:
+        address: "{{ appliance_address | default('https://localhost') }}"
+      register: result
+
+    - name: Print software version
+      debug:
+        var: result.version
+
+    - name: Print software checksum
+      debug:
+        var: result.checksum

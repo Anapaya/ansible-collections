@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_discovery_peer import ScionTunnelingDiscoveryPeer
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_discovery_peer import ScionTunnelingDiscoveryPeer  # noqa: E501
 
 class TestScionTunnelingDiscoveryPeer(unittest.TestCase):
     """ScionTunnelingDiscoveryPeer unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingDiscoveryPeer(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingDiscoveryPeer`
         """
-        model = ScionTunnelingDiscoveryPeer()
+        model = ScionTunnelingDiscoveryPeer()  # noqa: E501
         if include_optional:
             return ScionTunnelingDiscoveryPeer(
                 control = '',

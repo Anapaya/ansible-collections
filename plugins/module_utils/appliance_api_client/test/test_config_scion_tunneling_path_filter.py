@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_path_filter import ConfigScionTunnelingPathFilter
+from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_path_filter import ConfigScionTunnelingPathFilter  # noqa: E501
 
 class TestConfigScionTunnelingPathFilter(unittest.TestCase):
     """ConfigScionTunnelingPathFilter unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigScionTunnelingPathFilter(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigScionTunnelingPathFilter`
         """
-        model = ConfigScionTunnelingPathFilter()
+        model = ConfigScionTunnelingPathFilter()  # noqa: E501
         if include_optional:
             return ConfigScionTunnelingPathFilter(
                 acl = ["+ 64-0"],

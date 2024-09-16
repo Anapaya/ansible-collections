@@ -3,7 +3,6 @@
 Timers associated with the BGP peer.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **keepalive_interval** | **int** | Time interval in milliseconds between transmission of keepalive messages to the neighbor.  | 

@@ -3,7 +3,6 @@
 The payload encryption mode.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

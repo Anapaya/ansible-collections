@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_remote_repository import ConfigManagementRemoteRepository
+from ansible.module_utils.appliance_api_client.models.config_management_remote_repository import ConfigManagementRemoteRepository  # noqa: E501
 
 class TestConfigManagementRemoteRepository(unittest.TestCase):
     """ConfigManagementRemoteRepository unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementRemoteRepository(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementRemoteRepository`
         """
-        model = ConfigManagementRemoteRepository()
+        model = ConfigManagementRemoteRepository()  # noqa: E501
         if include_optional:
             return ConfigManagementRemoteRepository(
                 cloudsmith = ansible.module_utils.appliance_api_client.models.config_management_remote_repository_cloudsmith.Config_Management_RemoteRepository_Cloudsmith(

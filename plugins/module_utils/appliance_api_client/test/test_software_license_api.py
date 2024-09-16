@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.software_license_api import SoftwareLicenseApi
+from ansible.module_utils.appliance_api_client.api.software_license_api import SoftwareLicenseApi  # noqa: E501
 
 
 class TestSoftwareLicenseApi(unittest.TestCase):
     """SoftwareLicenseApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = SoftwareLicenseApi()
+        self.api = SoftwareLicenseApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,56 +30,56 @@ class TestSoftwareLicenseApi(unittest.TestCase):
     def test_software_license_features_get(self) -> None:
         """Test case for software_license_features_get
 
-        Get the feature set mapping.
+        Get the feature set mapping.  # noqa: E501
         """
         pass
 
     def test_software_license_features_put(self) -> None:
         """Test case for software_license_features_put
 
-        Update the feature set mapping.
+        Update the feature set mapping.  # noqa: E501
         """
         pass
 
     def test_software_license_request_get(self) -> None:
         """Test case for software_license_request_get
 
-        Get the license request data.
+        Get the license request data.  # noqa: E501
         """
         pass
 
     def test_software_license_status_get(self) -> None:
         """Test case for software_license_status_get
 
-        Get the status of the software license.
+        Get the status of the software license.  # noqa: E501
         """
         pass
 
     def test_software_licenses_get(self) -> None:
         """Test case for software_licenses_get
 
-        Get the list of licenses present on the appliance.
+        Get the list of licenses present on the appliance.  # noqa: E501
         """
         pass
 
     def test_software_licenses_id_delete(self) -> None:
         """Test case for software_licenses_id_delete
 
-        Delete a specific license.
+        Delete a specific license.  # noqa: E501
         """
         pass
 
     def test_software_licenses_id_get(self) -> None:
         """Test case for software_licenses_id_get
 
-        Get a specific license.
+        Get a specific license.  # noqa: E501
         """
         pass
 
     def test_software_licenses_post(self) -> None:
         """Test case for software_licenses_post
 
-        Add a new license.
+        Add a new license.  # noqa: E501
         """
         pass
 

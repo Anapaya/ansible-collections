@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.service_type import ServiceType
+from ansible.module_utils.appliance_api_client.models.service_type import ServiceType  # noqa: E501
 
 class TestServiceType(unittest.TestCase):
     """ServiceType unit test stubs"""

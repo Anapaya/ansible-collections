@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **peers** | [**List[ScionTunnelingSGRPPeer]**](ScionTunnelingSGRPPeer.md) |  | 

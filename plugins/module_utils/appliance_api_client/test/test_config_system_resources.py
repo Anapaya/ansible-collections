@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_system_resources import ConfigSystemResources
+from ansible.module_utils.appliance_api_client.models.config_system_resources import ConfigSystemResources  # noqa: E501
 
 class TestConfigSystemResources(unittest.TestCase):
     """ConfigSystemResources unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSystemResources(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSystemResources`
         """
-        model = ConfigSystemResources()
+        model = ConfigSystemResources()  # noqa: E501
         if include_optional:
             return ConfigSystemResources(
                 service_limits = [

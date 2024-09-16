@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.software_api import SoftwareApi
+from ansible.module_utils.appliance_api_client.api.software_api import SoftwareApi  # noqa: E501
 
 
 class TestSoftwareApi(unittest.TestCase):
     """SoftwareApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = SoftwareApi()
+        self.api = SoftwareApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,154 +30,154 @@ class TestSoftwareApi(unittest.TestCase):
     def test_software_scion_install_get(self) -> None:
         """Test case for software_scion_install_get
 
-        Get the status of the scion package installation process for the given id.
+        Get the status of the scion package installation process for the given id.  # noqa: E501
         """
         pass
 
     def test_software_scion_install_post(self) -> None:
         """Test case for software_scion_install_post
 
-        Trigger installation of the specified scion package.
+        Trigger installation of the specified scion package.  # noqa: E501
         """
         pass
 
     def test_software_scion_installed_get(self) -> None:
         """Test case for software_scion_installed_get
 
-        Get the installed scion version.
+        Get the installed scion version.  # noqa: E501
         """
         pass
 
     def test_software_scion_package_fetch_get(self) -> None:
         """Test case for software_scion_package_fetch_get
 
-        Get the download status of a software scion package.
+        Get the download status of a software scion package.  # noqa: E501
         """
         pass
 
     def test_software_scion_package_fetch_post(self) -> None:
         """Test case for software_scion_package_fetch_post
 
-        Fetch the software scion package of a given version.
+        Fetch the software scion package of a given version.  # noqa: E501
         """
         pass
 
     def test_software_scion_package_local_delete(self) -> None:
         """Test case for software_scion_package_local_delete
 
-        Delete the given scion package.
+        Delete the given scion package.  # noqa: E501
         """
         pass
 
     def test_software_scion_package_local_get(self) -> None:
         """Test case for software_scion_package_local_get
 
-        Get the scion package information.
+        Get the scion package information.  # noqa: E501
         """
         pass
 
     def test_software_scion_package_remote_get(self) -> None:
         """Test case for software_scion_package_remote_get
 
-        Get the scion package information.
+        Get the scion package information.  # noqa: E501
         """
         pass
 
     def test_software_scion_packages_local_get(self) -> None:
         """Test case for software_scion_packages_local_get
 
-        List the package information for scion packages available locally.
+        List the package information for scion packages available locally.  # noqa: E501
         """
         pass
 
     def test_software_scion_packages_local_post(self) -> None:
         """Test case for software_scion_packages_local_post
 
-        Upload the scion package.
+        Upload the scion package.  # noqa: E501
         """
         pass
 
     def test_software_scion_packages_remote_get(self) -> None:
         """Test case for software_scion_packages_remote_get
 
-        List the package information for scion packages in the remote repository.
+        List the package information for scion packages in the remote repository.  # noqa: E501
         """
         pass
 
     def test_software_system_install_get(self) -> None:
         """Test case for software_system_install_get
 
-        Get the status of the system package installation process for the given id.
+        Get the status of the system package installation process for the given id.  # noqa: E501
         """
         pass
 
     def test_software_system_install_post(self) -> None:
         """Test case for software_system_install_post
 
-        Trigger installation of the specified system package.
+        Trigger installation of the specified system package.  # noqa: E501
         """
         pass
 
     def test_software_system_installed_get(self) -> None:
         """Test case for software_system_installed_get
 
-        Get the installed system version.
+        Get the installed system version.  # noqa: E501
         """
         pass
 
     def test_software_system_package_fetch_get(self) -> None:
         """Test case for software_system_package_fetch_get
 
-        Get the download status of a software system package.
+        Get the download status of a software system package.  # noqa: E501
         """
         pass
 
     def test_software_system_package_fetch_post(self) -> None:
         """Test case for software_system_package_fetch_post
 
-        Fetch the software system package for a given version.
+        Fetch the software system package for a given version.  # noqa: E501
         """
         pass
 
     def test_software_system_package_local_delete(self) -> None:
         """Test case for software_system_package_local_delete
 
-        Delete the given system package.
+        Delete the given system package.  # noqa: E501
         """
         pass
 
     def test_software_system_package_local_get(self) -> None:
         """Test case for software_system_package_local_get
 
-        Get the system package information.
+        Get the system package information.  # noqa: E501
         """
         pass
 
     def test_software_system_package_remote_get(self) -> None:
         """Test case for software_system_package_remote_get
 
-        Get the system package information.
+        Get the system package information.  # noqa: E501
         """
         pass
 
     def test_software_system_packages_local_get(self) -> None:
         """Test case for software_system_packages_local_get
 
-        List the package information for system packages available locally.
+        List the package information for system packages available locally.  # noqa: E501
         """
         pass
 
     def test_software_system_packages_local_post(self) -> None:
         """Test case for software_system_packages_local_post
 
-        Upload the system package.
+        Upload the system package.  # noqa: E501
         """
         pass
 
     def test_software_system_packages_remote_get(self) -> None:
         """Test case for software_system_packages_remote_get
 
-        List the package information for system packages in the remote repository.
+        List the package information for system packages in the remote repository.  # noqa: E501
         """
         pass
 

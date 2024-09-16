@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.traceroute_run import TracerouteRun
+from ansible.module_utils.appliance_api_client.models.traceroute_run import TracerouteRun  # noqa: E501
 
 class TestTracerouteRun(unittest.TestCase):
     """TracerouteRun unit test stubs"""
@@ -34,7 +34,7 @@ class TestTracerouteRun(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TracerouteRun`
         """
-        model = TracerouteRun()
+        model = TracerouteRun()  # noqa: E501
         if include_optional:
             return TracerouteRun(
                 destination_host = '',

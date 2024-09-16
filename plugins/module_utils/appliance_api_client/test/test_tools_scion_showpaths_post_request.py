@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.tools_scion_showpaths_post_request import ToolsScionShowpathsPostRequest
+from ansible.module_utils.appliance_api_client.models.tools_scion_showpaths_post_request import ToolsScionShowpathsPostRequest  # noqa: E501
 
 class TestToolsScionShowpathsPostRequest(unittest.TestCase):
     """ToolsScionShowpathsPostRequest unit test stubs"""
@@ -34,7 +34,7 @@ class TestToolsScionShowpathsPostRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ToolsScionShowpathsPostRequest`
         """
-        model = ToolsScionShowpathsPostRequest()
+        model = ToolsScionShowpathsPostRequest()  # noqa: E501
         if include_optional:
             return ToolsScionShowpathsPostRequest(
                 run = ansible.module_utils.appliance_api_client.models.showpaths_run.ShowpathsRun(

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.ping_update import PingUpdate
+from ansible.module_utils.appliance_api_client.models.ping_update import PingUpdate  # noqa: E501
 
 class TestPingUpdate(unittest.TestCase):
     """PingUpdate unit test stubs"""
@@ -34,7 +34,7 @@ class TestPingUpdate(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PingUpdate`
         """
-        model = PingUpdate()
+        model = PingUpdate()  # noqa: E501
         if include_optional:
             return PingUpdate(
                 scion_packet_size = 56,

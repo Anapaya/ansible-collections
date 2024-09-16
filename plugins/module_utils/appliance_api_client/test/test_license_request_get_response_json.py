@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.license_request_get_response_json import LicenseRequestGetResponseJson
+from ansible.module_utils.appliance_api_client.models.license_request_get_response_json import LicenseRequestGetResponseJson  # noqa: E501
 
 class TestLicenseRequestGetResponseJson(unittest.TestCase):
     """LicenseRequestGetResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestLicenseRequestGetResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LicenseRequestGetResponseJson`
         """
-        model = LicenseRequestGetResponseJson()
+        model = LicenseRequestGetResponseJson()  # noqa: E501
         if include_optional:
             return LicenseRequestGetResponseJson(
                 version = '',

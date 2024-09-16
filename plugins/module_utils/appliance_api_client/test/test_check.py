@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.check import Check
+from ansible.module_utils.appliance_api_client.models.check import Check  # noqa: E501
 
 class TestCheck(unittest.TestCase):
     """Check unit test stubs"""
@@ -34,7 +34,7 @@ class TestCheck(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Check`
         """
-        model = Check()
+        model = Check()  # noqa: E501
         if include_optional:
             return Check(
                 name = 'valid signer available',

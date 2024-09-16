@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **neighbors** | [**List[BGPNeighborStatus]**](BGPNeighborStatus.md) |  | 

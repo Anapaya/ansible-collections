@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_wireguard_route import ConfigInterfacesWireguardRoute
+from ansible.module_utils.appliance_api_client.models.config_interfaces_wireguard_route import ConfigInterfacesWireguardRoute  # noqa: E501
 
 class TestConfigInterfacesWireguardRoute(unittest.TestCase):
     """ConfigInterfacesWireguardRoute unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesWireguardRoute(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesWireguardRoute`
         """
-        model = ConfigInterfacesWireguardRoute()
+        model = ConfigInterfacesWireguardRoute()  # noqa: E501
         if include_optional:
             return ConfigInterfacesWireguardRoute(
                 comment = '',

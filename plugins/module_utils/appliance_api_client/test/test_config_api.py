@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.config_api import ConfigApi
+from ansible.module_utils.appliance_api_client.api.config_api import ConfigApi  # noqa: E501
 
 
 class TestConfigApi(unittest.TestCase):
     """ConfigApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = ConfigApi()
+        self.api = ConfigApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,42 +30,42 @@ class TestConfigApi(unittest.TestCase):
     def test_config_advanced_service_customization_get(self) -> None:
         """Test case for config_advanced_service_customization_get
 
-        Get the customization for a service.
+        Get the customization for a service.  # noqa: E501
         """
         pass
 
     def test_config_advanced_service_customization_template_get(self) -> None:
         """Test case for config_advanced_service_customization_template_get
 
-        Get the custom template for a service.
+        Get the custom template for a service.  # noqa: E501
         """
         pass
 
     def test_config_advanced_service_customization_template_put(self) -> None:
         """Test case for config_advanced_service_customization_template_put
 
-        Put a custom template for a service.
+        Put a custom template for a service.  # noqa: E501
         """
         pass
 
     def test_config_get(self) -> None:
         """Test case for config_get
 
-        Get the current configuration
+        Get the current configuration  # noqa: E501
         """
         pass
 
     def test_config_put(self) -> None:
         """Test case for config_put
 
-        Put a new configuration
+        Put a new configuration  # noqa: E501
         """
         pass
 
     def test_config_validate_post(self) -> None:
         """Test case for config_validate_post
 
-        Validates a configuration
+        Validates a configuration  # noqa: E501
         """
         pass
 

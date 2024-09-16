@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_paths_search_response_json import ScionTunnelingPathsSearchResponseJson
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_paths_search_response_json import ScionTunnelingPathsSearchResponseJson  # noqa: E501
 
 class TestScionTunnelingPathsSearchResponseJson(unittest.TestCase):
     """ScionTunnelingPathsSearchResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingPathsSearchResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingPathsSearchResponseJson`
         """
-        model = ScionTunnelingPathsSearchResponseJson()
+        model = ScionTunnelingPathsSearchResponseJson()  # noqa: E501
         if include_optional:
             return ScionTunnelingPathsSearchResponseJson(
                 paths = [

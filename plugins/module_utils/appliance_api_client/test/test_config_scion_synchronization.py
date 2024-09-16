@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scion_synchronization import ConfigSCIONSynchronization
+from ansible.module_utils.appliance_api_client.models.config_scion_synchronization import ConfigSCIONSynchronization  # noqa: E501
 
 class TestConfigSCIONSynchronization(unittest.TestCase):
     """ConfigSCIONSynchronization unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONSynchronization(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONSynchronization`
         """
-        model = ConfigSCIONSynchronization()
+        model = ConfigSCIONSynchronization()  # noqa: E501
         if include_optional:
             return ConfigSCIONSynchronization(
                 beacon_synchronization_interval = '4s',

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_cluster_features import ConfigClusterFeatures
+from ansible.module_utils.appliance_api_client.models.config_cluster_features import ConfigClusterFeatures  # noqa: E501
 
 class TestConfigClusterFeatures(unittest.TestCase):
     """ConfigClusterFeatures unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigClusterFeatures(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigClusterFeatures`
         """
-        model = ConfigClusterFeatures()
+        model = ConfigClusterFeatures()  # noqa: E501
         if include_optional:
             return ConfigClusterFeatures(
                 scion_rss = True

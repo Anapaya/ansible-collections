@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fetch** | [**SoftwarePackageFetch**](SoftwarePackageFetch.md) |  | 

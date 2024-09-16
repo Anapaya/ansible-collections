@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_domain_traffic_policy_failover_sequence_entry import ConfigScionTunnelingDomainTrafficPolicyFailoverSequenceEntry
+from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_domain_traffic_policy_failover_sequence_entry import ConfigScionTunnelingDomainTrafficPolicyFailoverSequenceEntry  # noqa: E501
 
 class TestConfigScionTunnelingDomainTrafficPolicyFailoverSequenceEntry(unittest.TestCase):
     """ConfigScionTunnelingDomainTrafficPolicyFailoverSequenceEntry unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigScionTunnelingDomainTrafficPolicyFailoverSequenceEntry(unittest.
             optional params are included """
         # uncomment below to create an instance of `ConfigScionTunnelingDomainTrafficPolicyFailoverSequenceEntry`
         """
-        model = ConfigScionTunnelingDomainTrafficPolicyFailoverSequenceEntry()
+        model = ConfigScionTunnelingDomainTrafficPolicyFailoverSequenceEntry()  # noqa: E501
         if include_optional:
             return ConfigScionTunnelingDomainTrafficPolicyFailoverSequenceEntry(
                 path_filter = '',

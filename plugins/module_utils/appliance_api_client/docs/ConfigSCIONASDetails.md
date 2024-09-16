@@ -3,7 +3,6 @@
 User-defined details about the SCION AS for informational purpose.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** | User-defined description, or comment, that describes this SCION AS. | [optional] 

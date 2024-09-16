@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scionasca_service_anapaya_vault_validation import ConfigSCIONASCAServiceAnapayaVaultValidation
+from ansible.module_utils.appliance_api_client.models.config_scionasca_service_anapaya_vault_validation import ConfigSCIONASCAServiceAnapayaVaultValidation  # noqa: E501
 
 class TestConfigSCIONASCAServiceAnapayaVaultValidation(unittest.TestCase):
     """ConfigSCIONASCAServiceAnapayaVaultValidation unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONASCAServiceAnapayaVaultValidation(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONASCAServiceAnapayaVaultValidation`
         """
-        model = ConfigSCIONASCAServiceAnapayaVaultValidation()
+        model = ConfigSCIONASCAServiceAnapayaVaultValidation()  # noqa: E501
         if include_optional:
             return ConfigSCIONASCAServiceAnapayaVaultValidation(
                 subject = 'MATCHING_ISD_AS'

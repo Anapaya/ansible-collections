@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.tunneling_features import TunnelingFeatures
+from ansible.module_utils.appliance_api_client.models.tunneling_features import TunnelingFeatures  # noqa: E501
 
 class TestTunnelingFeatures(unittest.TestCase):
     """TunnelingFeatures unit test stubs"""
@@ -34,7 +34,7 @@ class TestTunnelingFeatures(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TunnelingFeatures`
         """
-        model = TunnelingFeatures()
+        model = TunnelingFeatures()  # noqa: E501
         if include_optional:
             return TunnelingFeatures(
                 config_disallowed = True,

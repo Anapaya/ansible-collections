@@ -3,7 +3,6 @@
 Network interface summary.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Name of the interface. | 

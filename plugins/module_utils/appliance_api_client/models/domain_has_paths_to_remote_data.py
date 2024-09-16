@@ -19,73 +19,55 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List
-from pydantic import BaseModel, StrictInt, StrictStr
-from pydantic import Field
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+
+from pydantic import BaseModel, Field, StrictInt, StrictStr
 
 class DomainHasPathsToRemoteData(BaseModel):
     """
-    Indicates the number of paths a domain has to a remote ISD-AS. If the domain has multiple ISD-AS, it could be that a path is not available for a certain ISD-AS pair, nonetheless, this is a condition to be aware of. 
-    """ # noqa: E501
-    domain: StrictStr = Field(description="The name of the routing domain. ")
-    local_isd_as: StrictStr = Field(description="The local ISD-AS in the domain. ")
-    remote_isd_as: StrictStr = Field(description="The remote ISD-AS in the domain. ")
-    paths: StrictInt = Field(description="The number of alive paths between the local and remote ISD-AS. ")
-    __properties: ClassVar[List[str]] = ["domain", "local_isd_as", "remote_isd_as", "paths"]
+    Indicates the number of paths a domain has to a remote ISD-AS. If the domain has multiple ISD-AS, it could be that a path is not available for a certain ISD-AS pair, nonetheless, this is a condition to be aware of.   # noqa: E501
+    """
+    domain: StrictStr = Field(..., description="The name of the routing domain. ")
+    local_isd_as: StrictStr = Field(..., description="The local ISD-AS in the domain. ")
+    remote_isd_as: StrictStr = Field(..., description="The remote ISD-AS in the domain. ")
+    paths: StrictInt = Field(..., description="The number of alive paths between the local and remote ISD-AS. ")
+    __properties = ["domain", "local_isd_as", "remote_isd_as", "paths"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> DomainHasPathsToRemoteData:
         """Create an instance of DomainHasPathsToRemoteData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> DomainHasPathsToRemoteData:
         """Create an instance of DomainHasPathsToRemoteData from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return DomainHasPathsToRemoteData.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = DomainHasPathsToRemoteData.parse_obj({
             "domain": obj.get("domain"),
             "local_isd_as": obj.get("local_isd_as"),
             "remote_isd_as": obj.get("remote_isd_as"),

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.debug_service_groups_restart_response_json import DebugServiceGroupsRestartResponseJson
+from ansible.module_utils.appliance_api_client.models.debug_service_groups_restart_response_json import DebugServiceGroupsRestartResponseJson  # noqa: E501
 
 class TestDebugServiceGroupsRestartResponseJson(unittest.TestCase):
     """DebugServiceGroupsRestartResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestDebugServiceGroupsRestartResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DebugServiceGroupsRestartResponseJson`
         """
-        model = DebugServiceGroupsRestartResponseJson()
+        model = DebugServiceGroupsRestartResponseJson()  # noqa: E501
         if include_optional:
             return DebugServiceGroupsRestartResponseJson(
                 services = [

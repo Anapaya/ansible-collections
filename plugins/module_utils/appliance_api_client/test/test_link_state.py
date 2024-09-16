@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.link_state import LinkState
+from ansible.module_utils.appliance_api_client.models.link_state import LinkState  # noqa: E501
 
 class TestLinkState(unittest.TestCase):
     """LinkState unit test stubs"""

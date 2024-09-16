@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.debug_cluster_status import DebugClusterStatus
+from ansible.module_utils.appliance_api_client.models.debug_cluster_status import DebugClusterStatus  # noqa: E501
 
 class TestDebugClusterStatus(unittest.TestCase):
     """DebugClusterStatus unit test stubs"""
@@ -34,7 +34,7 @@ class TestDebugClusterStatus(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DebugClusterStatus`
         """
-        model = DebugClusterStatus()
+        model = DebugClusterStatus()  # noqa: E501
         if include_optional:
             return DebugClusterStatus(
                 mode = 'static',

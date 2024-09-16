@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_paths_search_post_request_json import ScionTunnelingPathsSearchPostRequestJson
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_paths_search_post_request_json import ScionTunnelingPathsSearchPostRequestJson  # noqa: E501
 
 class TestScionTunnelingPathsSearchPostRequestJson(unittest.TestCase):
     """ScionTunnelingPathsSearchPostRequestJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingPathsSearchPostRequestJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingPathsSearchPostRequestJson`
         """
-        model = ScionTunnelingPathsSearchPostRequestJson()
+        model = ScionTunnelingPathsSearchPostRequestJson()  # noqa: E501
         if include_optional:
             return ScionTunnelingPathsSearchPostRequestJson(
                 fingerprints = [

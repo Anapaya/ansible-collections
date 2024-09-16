@@ -20,14 +20,9 @@ import pprint
 import re  # noqa: F401
 
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, ValidationError, field_validator
-from typing import Union, Any, List, TYPE_CHECKING, Optional, Dict
-from typing_extensions import Literal
+from pydantic import BaseModel, Field, StrictInt, StrictStr, ValidationError, validator
+from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 MAXORUNLIMITED_ONE_OF_SCHEMAS = ["int", "str"]
 
@@ -39,14 +34,14 @@ class MaxOrUnlimited(BaseModel):
     oneof_schema_1_validator: Optional[StrictInt] = None
     # data type: str
     oneof_schema_2_validator: Optional[StrictStr] = None
-    actual_instance: Optional[Union[int, str]] = None
-    one_of_schemas: List[str] = Literal["int", "str"]
+    if TYPE_CHECKING:
+        actual_instance: Union[int, str]
+    else:
+        actual_instance: Any
+    one_of_schemas: List[str] = Field(MAXORUNLIMITED_ONE_OF_SCHEMAS, const=True)
 
-    model_config = {
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        validate_assignment = True
 
     def __init__(self, *args, **kwargs) -> None:
         if args:
@@ -58,9 +53,9 @@ class MaxOrUnlimited(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = MaxOrUnlimited.model_construct()
+        instance = MaxOrUnlimited.construct()
         error_messages = []
         match = 0
         # validate data type: int
@@ -85,13 +80,13 @@ class MaxOrUnlimited(BaseModel):
             return v
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: dict) -> MaxOrUnlimited:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> MaxOrUnlimited:
         """Returns the object represented by the json string"""
-        instance = cls.model_construct()
+        instance = MaxOrUnlimited.construct()
         error_messages = []
         match = 0
 
@@ -134,7 +129,7 @@ class MaxOrUnlimited(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict:
+    def to_dict(self) -> dict:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
@@ -148,6 +143,6 @@ class MaxOrUnlimited(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.model_dump())
+        return pprint.pformat(self.dict())
 
 

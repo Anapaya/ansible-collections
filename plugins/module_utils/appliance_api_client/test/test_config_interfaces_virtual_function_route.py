@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_virtual_function_route import ConfigInterfacesVirtualFunctionRoute
+from ansible.module_utils.appliance_api_client.models.config_interfaces_virtual_function_route import ConfigInterfacesVirtualFunctionRoute  # noqa: E501
 
 class TestConfigInterfacesVirtualFunctionRoute(unittest.TestCase):
     """ConfigInterfacesVirtualFunctionRoute unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesVirtualFunctionRoute(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesVirtualFunctionRoute`
         """
-        model = ConfigInterfacesVirtualFunctionRoute()
+        model = ConfigInterfacesVirtualFunctionRoute()  # noqa: E501
         if include_optional:
             return ConfigInterfacesVirtualFunctionRoute(
                 comment = '',

@@ -3,7 +3,6 @@
 Remote repository configuration.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cloudsmith** | [**ConfigManagementRemoteRepositoryCloudsmith**](ConfigManagementRemoteRepositoryCloudsmith.md) |  | [optional] 

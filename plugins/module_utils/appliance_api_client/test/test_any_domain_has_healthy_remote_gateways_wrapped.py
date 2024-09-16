@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.any_domain_has_healthy_remote_gateways_wrapped import AnyDomainHasHealthyRemoteGatewaysWrapped
+from ansible.module_utils.appliance_api_client.models.any_domain_has_healthy_remote_gateways_wrapped import AnyDomainHasHealthyRemoteGatewaysWrapped  # noqa: E501
 
 class TestAnyDomainHasHealthyRemoteGatewaysWrapped(unittest.TestCase):
     """AnyDomainHasHealthyRemoteGatewaysWrapped unit test stubs"""
@@ -34,7 +34,7 @@ class TestAnyDomainHasHealthyRemoteGatewaysWrapped(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AnyDomainHasHealthyRemoteGatewaysWrapped`
         """
-        model = AnyDomainHasHealthyRemoteGatewaysWrapped()
+        model = AnyDomainHasHealthyRemoteGatewaysWrapped()  # noqa: E501
         if include_optional:
             return AnyDomainHasHealthyRemoteGatewaysWrapped(
                 component = 'appliance',

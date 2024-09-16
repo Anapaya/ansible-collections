@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.init_api import InitApi
+from ansible.module_utils.appliance_api_client.api.init_api import InitApi  # noqa: E501
 
 
 class TestInitApi(unittest.TestCase):
     """InitApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = InitApi()
+        self.api = InitApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,42 +30,42 @@ class TestInitApi(unittest.TestCase):
     def test_config_put(self) -> None:
         """Test case for config_put
 
-        Put a new configuration
+        Put a new configuration  # noqa: E501
         """
         pass
 
     def test_config_validate_post(self) -> None:
         """Test case for config_validate_post
 
-        Validates a configuration
+        Validates a configuration  # noqa: E501
         """
         pass
 
     def test_cppki_certificates_post(self) -> None:
         """Test case for cppki_certificates_post
 
-        Add an AS certificate chain
+        Add an AS certificate chain  # noqa: E501
         """
         pass
 
     def test_cppki_csrs_post(self) -> None:
         """Test case for cppki_csrs_post
 
-        Create an AS certificate signing request
+        Create an AS certificate signing request  # noqa: E501
         """
         pass
 
     def test_cppki_trcs_bundle_post(self) -> None:
         """Test case for cppki_trcs_bundle_post
 
-        Add a bundle of TRC files
+        Add a bundle of TRC files  # noqa: E501
         """
         pass
 
     def test_cppki_trcs_post(self) -> None:
         """Test case for cppki_trcs_post
 
-        Add a TRC file
+        Add a TRC file  # noqa: E501
         """
         pass
 

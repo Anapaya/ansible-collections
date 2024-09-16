@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.announce_filter_matches_prefix import AnnounceFilterMatchesPrefix
+from ansible.module_utils.appliance_api_client.models.announce_filter_matches_prefix import AnnounceFilterMatchesPrefix  # noqa: E501
 
 class TestAnnounceFilterMatchesPrefix(unittest.TestCase):
     """AnnounceFilterMatchesPrefix unit test stubs"""
@@ -34,7 +34,7 @@ class TestAnnounceFilterMatchesPrefix(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AnnounceFilterMatchesPrefix`
         """
-        model = AnnounceFilterMatchesPrefix()
+        model = AnnounceFilterMatchesPrefix()  # noqa: E501
         if include_optional:
             return AnnounceFilterMatchesPrefix(
                 data = ansible.module_utils.appliance_api_client.models.announce_filter_matches_prefix_data.AnnounceFilterMatchesPrefixData(

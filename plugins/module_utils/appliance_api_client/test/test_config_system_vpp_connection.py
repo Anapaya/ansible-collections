@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_system_vpp_connection import ConfigSystemVppConnection
+from ansible.module_utils.appliance_api_client.models.config_system_vpp_connection import ConfigSystemVppConnection  # noqa: E501
 
 class TestConfigSystemVppConnection(unittest.TestCase):
     """ConfigSystemVppConnection unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSystemVppConnection(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSystemVppConnection`
         """
-        model = ConfigSystemVppConnection()
+        model = ConfigSystemVppConnection()  # noqa: E501
         if include_optional:
             return ConfigSystemVppConnection(
                 health_check = ansible.module_utils.appliance_api_client.models.config_system_vpp_connection_health_check.Config_System_Vpp_Connection_HealthCheck(

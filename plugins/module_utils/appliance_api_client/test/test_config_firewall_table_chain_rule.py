@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_firewall_table_chain_rule import ConfigFirewallTableChainRule
+from ansible.module_utils.appliance_api_client.models.config_firewall_table_chain_rule import ConfigFirewallTableChainRule  # noqa: E501
 
 class TestConfigFirewallTableChainRule(unittest.TestCase):
     """ConfigFirewallTableChainRule unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigFirewallTableChainRule(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigFirewallTableChainRule`
         """
-        model = ConfigFirewallTableChainRule()
+        model = ConfigFirewallTableChainRule()  # noqa: E501
         if include_optional:
             return ConfigFirewallTableChainRule(
                 comment = '',

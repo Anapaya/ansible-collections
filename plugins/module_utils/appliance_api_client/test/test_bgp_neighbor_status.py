@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.bgp_neighbor_status import BGPNeighborStatus
+from ansible.module_utils.appliance_api_client.models.bgp_neighbor_status import BGPNeighborStatus  # noqa: E501
 
 class TestBGPNeighborStatus(unittest.TestCase):
     """BGPNeighborStatus unit test stubs"""
@@ -34,7 +34,7 @@ class TestBGPNeighborStatus(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BGPNeighborStatus`
         """
-        model = BGPNeighborStatus()
+        model = BGPNeighborStatus()  # noqa: E501
         if include_optional:
             return BGPNeighborStatus(
                 neighbor = '',

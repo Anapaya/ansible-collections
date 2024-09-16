@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_domains_response_json import ScionTunnelingDomainsResponseJson
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_domains_response_json import ScionTunnelingDomainsResponseJson  # noqa: E501
 
 class TestScionTunnelingDomainsResponseJson(unittest.TestCase):
     """ScionTunnelingDomainsResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingDomainsResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingDomainsResponseJson`
         """
-        model = ScionTunnelingDomainsResponseJson()
+        model = ScionTunnelingDomainsResponseJson()  # noqa: E501
         if include_optional:
             return ScionTunnelingDomainsResponseJson(
                 domains = [

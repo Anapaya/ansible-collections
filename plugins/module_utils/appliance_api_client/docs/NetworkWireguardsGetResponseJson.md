@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **interfaces** | [**List[NetworkWireguardsInterfaceGetResponseJson]**](NetworkWireguardsInterfaceGetResponseJson.md) | List of wireguard interfaces | 

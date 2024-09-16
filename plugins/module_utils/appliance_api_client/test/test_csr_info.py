@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.csr_info import CsrInfo
+from ansible.module_utils.appliance_api_client.models.csr_info import CsrInfo  # noqa: E501
 
 class TestCsrInfo(unittest.TestCase):
     """CsrInfo unit test stubs"""
@@ -34,7 +34,7 @@ class TestCsrInfo(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CsrInfo`
         """
-        model = CsrInfo()
+        model = CsrInfo()  # noqa: E501
         if include_optional:
             return CsrInfo(
                 subject = ansible.module_utils.appliance_api_client.models.subject_of_a_certificate_signing_request/.Subject of a certificate signing request.(

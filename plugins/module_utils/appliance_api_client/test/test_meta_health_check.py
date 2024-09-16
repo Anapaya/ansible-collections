@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.meta_health_check import MetaHealthCheck
+from ansible.module_utils.appliance_api_client.models.meta_health_check import MetaHealthCheck  # noqa: E501
 
 class TestMetaHealthCheck(unittest.TestCase):
     """MetaHealthCheck unit test stubs"""
@@ -34,7 +34,7 @@ class TestMetaHealthCheck(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MetaHealthCheck`
         """
-        model = MetaHealthCheck()
+        model = MetaHealthCheck()  # noqa: E501
         if include_optional:
             return MetaHealthCheck(
                 component = 'appliance',

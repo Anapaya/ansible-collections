@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, field_validator
+from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from ansible.module_utils.appliance_api_client.models.accept_filter_matches_prefix_wrapped import AcceptFilterMatchesPrefixWrapped
 from ansible.module_utils.appliance_api_client.models.announce_filter_matches_prefix_wrapped import AnnounceFilterMatchesPrefixWrapped
 from ansible.module_utils.appliance_api_client.models.any_domain_has_healthy_remote_gateways_wrapped import AnyDomainHasHealthyRemoteGatewaysWrapped
@@ -35,13 +35,8 @@ from ansible.module_utils.appliance_api_client.models.meta_health_check import M
 from ansible.module_utils.appliance_api_client.models.sibling_interface_up_wrapped import SiblingInterfaceUpWrapped
 from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_in_daemon_wrapped import TRCForLocalISDAvailableInDaemonWrapped
 from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_wrapped import TRCForLocalISDAvailableWrapped
-from typing import Union, Any, List, TYPE_CHECKING, Optional, Dict
-from typing_extensions import Literal
+from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 HEALTHCHECK_ONE_OF_SCHEMAS = ["AcceptFilterMatchesPrefixWrapped", "AnnounceFilterMatchesPrefixWrapped", "AnyDomainHasHealthyRemoteGatewaysWrapped", "CertificateChainForASAvailableWrapped", "DomainExchangesIPPrefixesWrapped", "DomainHasPathsToRemoteWrapped", "DomainHasReachableRemoteGatewaysWrapped", "DomainTrafficPolicyHasPathsWrapped", "ExternalCAAvailableWrapped", "ExternalInterfaceUpWrapped", "MetaHealthCheck", "SiblingInterfaceUpWrapped", "TRCForLocalISDAvailableInDaemonWrapped", "TRCForLocalISDAvailableWrapped"]
 
@@ -77,16 +72,16 @@ class HealthCheck(BaseModel):
     oneof_schema_13_validator: Optional[AnyDomainHasHealthyRemoteGatewaysWrapped] = None
     # data type: DomainExchangesIPPrefixesWrapped
     oneof_schema_14_validator: Optional[DomainExchangesIPPrefixesWrapped] = None
-    actual_instance: Optional[Union[AcceptFilterMatchesPrefixWrapped, AnnounceFilterMatchesPrefixWrapped, AnyDomainHasHealthyRemoteGatewaysWrapped, CertificateChainForASAvailableWrapped, DomainExchangesIPPrefixesWrapped, DomainHasPathsToRemoteWrapped, DomainHasReachableRemoteGatewaysWrapped, DomainTrafficPolicyHasPathsWrapped, ExternalCAAvailableWrapped, ExternalInterfaceUpWrapped, MetaHealthCheck, SiblingInterfaceUpWrapped, TRCForLocalISDAvailableInDaemonWrapped, TRCForLocalISDAvailableWrapped]] = None
-    one_of_schemas: List[str] = Literal["AcceptFilterMatchesPrefixWrapped", "AnnounceFilterMatchesPrefixWrapped", "AnyDomainHasHealthyRemoteGatewaysWrapped", "CertificateChainForASAvailableWrapped", "DomainExchangesIPPrefixesWrapped", "DomainHasPathsToRemoteWrapped", "DomainHasReachableRemoteGatewaysWrapped", "DomainTrafficPolicyHasPathsWrapped", "ExternalCAAvailableWrapped", "ExternalInterfaceUpWrapped", "MetaHealthCheck", "SiblingInterfaceUpWrapped", "TRCForLocalISDAvailableInDaemonWrapped", "TRCForLocalISDAvailableWrapped"]
+    if TYPE_CHECKING:
+        actual_instance: Union[AcceptFilterMatchesPrefixWrapped, AnnounceFilterMatchesPrefixWrapped, AnyDomainHasHealthyRemoteGatewaysWrapped, CertificateChainForASAvailableWrapped, DomainExchangesIPPrefixesWrapped, DomainHasPathsToRemoteWrapped, DomainHasReachableRemoteGatewaysWrapped, DomainTrafficPolicyHasPathsWrapped, ExternalCAAvailableWrapped, ExternalInterfaceUpWrapped, MetaHealthCheck, SiblingInterfaceUpWrapped, TRCForLocalISDAvailableInDaemonWrapped, TRCForLocalISDAvailableWrapped]
+    else:
+        actual_instance: Any
+    one_of_schemas: List[str] = Field(HEALTHCHECK_ONE_OF_SCHEMAS, const=True)
 
-    model_config = {
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    class Config:
+        validate_assignment = True
 
-
-    discriminator_value_class_map: Dict[str, str] = {
+    discriminator_value_class_map = {
     }
 
     def __init__(self, *args, **kwargs) -> None:
@@ -99,9 +94,9 @@ class HealthCheck(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = HealthCheck.model_construct()
+        instance = HealthCheck.construct()
         error_messages = []
         match = 0
         # validate data type: MetaHealthCheck
@@ -184,13 +179,13 @@ class HealthCheck(BaseModel):
             return v
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: dict) -> HealthCheck:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> HealthCheck:
         """Returns the object represented by the json string"""
-        instance = cls.model_construct()
+        instance = HealthCheck.construct()
         error_messages = []
         match = 0
 
@@ -299,7 +294,7 @@ class HealthCheck(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict:
+    def to_dict(self) -> dict:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
@@ -313,6 +308,6 @@ class HealthCheck(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.model_dump())
+        return pprint.pformat(self.dict())
 
 

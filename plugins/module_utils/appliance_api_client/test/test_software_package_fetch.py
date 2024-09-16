@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.software_package_fetch import SoftwarePackageFetch
+from ansible.module_utils.appliance_api_client.models.software_package_fetch import SoftwarePackageFetch  # noqa: E501
 
 class TestSoftwarePackageFetch(unittest.TestCase):
     """SoftwarePackageFetch unit test stubs"""
@@ -34,7 +34,7 @@ class TestSoftwarePackageFetch(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SoftwarePackageFetch`
         """
-        model = SoftwarePackageFetch()
+        model = SoftwarePackageFetch()  # noqa: E501
         if include_optional:
             return SoftwarePackageFetch(
                 version = 'v0.25.12',

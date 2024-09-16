@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.network_routes import NetworkRoutes
+from ansible.module_utils.appliance_api_client.models.network_routes import NetworkRoutes  # noqa: E501
 
 class TestNetworkRoutes(unittest.TestCase):
     """NetworkRoutes unit test stubs"""
@@ -34,7 +34,7 @@ class TestNetworkRoutes(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `NetworkRoutes`
         """
-        model = NetworkRoutes()
+        model = NetworkRoutes()  # noqa: E501
         if include_optional:
             return NetworkRoutes(
                 routes = [

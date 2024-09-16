@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scionasca_service import ConfigSCIONASCAService
+from ansible.module_utils.appliance_api_client.models.config_scionasca_service import ConfigSCIONASCAService  # noqa: E501
 
 class TestConfigSCIONASCAService(unittest.TestCase):
     """ConfigSCIONASCAService unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONASCAService(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONASCAService`
         """
-        model = ConfigSCIONASCAService()
+        model = ConfigSCIONASCAService()  # noqa: E501
         if include_optional:
             return ConfigSCIONASCAService(
                 anapaya_vault = ansible.module_utils.appliance_api_client.models.config_scion_as_ca_service_anapaya_vault.Config_SCION_AS_CAService_AnapayaVault(

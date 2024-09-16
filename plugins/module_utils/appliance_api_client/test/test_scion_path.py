@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_path import ScionPath
+from ansible.module_utils.appliance_api_client.models.scion_path import ScionPath  # noqa: E501
 
 class TestScionPath(unittest.TestCase):
     """ScionPath unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionPath(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionPath`
         """
-        model = ScionPath()
+        model = ScionPath()  # noqa: E501
         if include_optional:
             return ScionPath(
                 fingerprint = '',

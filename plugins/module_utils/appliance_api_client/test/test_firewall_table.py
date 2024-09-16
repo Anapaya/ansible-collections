@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.firewall_table import FirewallTable
+from ansible.module_utils.appliance_api_client.models.firewall_table import FirewallTable  # noqa: E501
 
 class TestFirewallTable(unittest.TestCase):
     """FirewallTable unit test stubs"""
@@ -34,7 +34,7 @@ class TestFirewallTable(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FirewallTable`
         """
-        model = FirewallTable()
+        model = FirewallTable()  # noqa: E501
         if include_optional:
             return FirewallTable(
                 name = '',

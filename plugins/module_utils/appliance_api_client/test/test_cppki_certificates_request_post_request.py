@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.cppki_certificates_request_post_request import CppkiCertificatesRequestPostRequest
+from ansible.module_utils.appliance_api_client.models.cppki_certificates_request_post_request import CppkiCertificatesRequestPostRequest  # noqa: E501
 
 class TestCppkiCertificatesRequestPostRequest(unittest.TestCase):
     """CppkiCertificatesRequestPostRequest unit test stubs"""
@@ -34,7 +34,7 @@ class TestCppkiCertificatesRequestPostRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CppkiCertificatesRequestPostRequest`
         """
-        model = CppkiCertificatesRequestPostRequest()
+        model = CppkiCertificatesRequestPostRequest()  # noqa: E501
         if include_optional:
             return CppkiCertificatesRequestPostRequest(
                 csr = '-----BEGIN CERTIFICATE REQUEST-----\nCertificateSigningRequest ...\n-----END CERTIFICATE REQUEST-----'

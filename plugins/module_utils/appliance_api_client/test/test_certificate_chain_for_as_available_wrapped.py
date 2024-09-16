@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.certificate_chain_for_as_available_wrapped import CertificateChainForASAvailableWrapped
+from ansible.module_utils.appliance_api_client.models.certificate_chain_for_as_available_wrapped import CertificateChainForASAvailableWrapped  # noqa: E501
 
 class TestCertificateChainForASAvailableWrapped(unittest.TestCase):
     """CertificateChainForASAvailableWrapped unit test stubs"""
@@ -34,7 +34,7 @@ class TestCertificateChainForASAvailableWrapped(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CertificateChainForASAvailableWrapped`
         """
-        model = CertificateChainForASAvailableWrapped()
+        model = CertificateChainForASAvailableWrapped()  # noqa: E501
         if include_optional:
             return CertificateChainForASAvailableWrapped(
                 component = 'appliance',

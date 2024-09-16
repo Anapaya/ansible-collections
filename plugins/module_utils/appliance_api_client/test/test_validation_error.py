@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.validation_error import ValidationError
+from ansible.module_utils.appliance_api_client.models.validation_error import ValidationError  # noqa: E501
 
 class TestValidationError(unittest.TestCase):
     """ValidationError unit test stubs"""
@@ -34,7 +34,7 @@ class TestValidationError(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ValidationError`
         """
-        model = ValidationError()
+        model = ValidationError()  # noqa: E501
         if include_optional:
             return ValidationError(
                 violations = [

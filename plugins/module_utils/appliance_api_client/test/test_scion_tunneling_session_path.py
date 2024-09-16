@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_session_path import ScionTunnelingSessionPath
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_session_path import ScionTunnelingSessionPath  # noqa: E501
 
 class TestScionTunnelingSessionPath(unittest.TestCase):
     """ScionTunnelingSessionPath unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingSessionPath(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingSessionPath`
         """
-        model = ScionTunnelingSessionPath()
+        model = ScionTunnelingSessionPath()  # noqa: E501
         if include_optional:
             return ScionTunnelingSessionPath(
                 fingerprint = '',

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_domain_remote_matcher import ConfigScionTunnelingDomainRemoteMatcher
+from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_domain_remote_matcher import ConfigScionTunnelingDomainRemoteMatcher  # noqa: E501
 
 class TestConfigScionTunnelingDomainRemoteMatcher(unittest.TestCase):
     """ConfigScionTunnelingDomainRemoteMatcher unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigScionTunnelingDomainRemoteMatcher(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigScionTunnelingDomainRemoteMatcher`
         """
-        model = ConfigScionTunnelingDomainRemoteMatcher()
+        model = ConfigScionTunnelingDomainRemoteMatcher()  # noqa: E501
         if include_optional:
             return ConfigScionTunnelingDomainRemoteMatcher(
                 action = 'ACCEPT',

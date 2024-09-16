@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_nat_snat import ConfigNatSnat
+from ansible.module_utils.appliance_api_client.models.config_nat_snat import ConfigNatSnat  # noqa: E501
 
 class TestConfigNatSnat(unittest.TestCase):
     """ConfigNatSnat unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigNatSnat(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigNatSnat`
         """
-        model = ConfigNatSnat()
+        model = ConfigNatSnat()  # noqa: E501
         if include_optional:
             return ConfigNatSnat(
                 address_pool = [

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_domain_prefixes import ConfigScionTunnelingDomainPrefixes
+from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_domain_prefixes import ConfigScionTunnelingDomainPrefixes  # noqa: E501
 
 class TestConfigScionTunnelingDomainPrefixes(unittest.TestCase):
     """ConfigScionTunnelingDomainPrefixes unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigScionTunnelingDomainPrefixes(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigScionTunnelingDomainPrefixes`
         """
-        model = ConfigScionTunnelingDomainPrefixes()
+        model = ConfigScionTunnelingDomainPrefixes()  # noqa: E501
         if include_optional:
             return ConfigScionTunnelingDomainPrefixes(
                 accept_filter = [

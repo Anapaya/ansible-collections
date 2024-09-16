@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **packages** | [**List[PackageInfo]**](PackageInfo.md) | List of package information. | 

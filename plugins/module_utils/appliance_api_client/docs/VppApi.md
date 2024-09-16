@@ -73,7 +73,6 @@ Status page listing addresses on VPP interfaces.
 
 ### Example
 
-
 ```python
 import time
 import os
@@ -105,7 +104,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -122,7 +120,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -136,7 +133,6 @@ No authorization required
 Status page reporting the bfd session states.
 
 ### Example
-
 
 ```python
 import time
@@ -169,7 +165,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -186,7 +181,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -200,7 +194,6 @@ No authorization required
 Status page reporting bonds created by VPP.
 
 ### Example
-
 
 ```python
 import time
@@ -233,7 +226,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -250,7 +242,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -264,7 +255,6 @@ No authorization required
 Status page reporting VPP buffers.
 
 ### Example
-
 
 ```python
 import time
@@ -297,7 +287,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -314,7 +303,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -328,7 +316,6 @@ No authorization required
 Action path to clear VPP errors.
 
 ### Example
-
 
 ```python
 import time
@@ -361,7 +348,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -378,7 +364,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -392,7 +377,6 @@ No authorization required
 Action path to clear the metrics on VPP interfaces.
 
 ### Example
-
 
 ```python
 import time
@@ -425,7 +409,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -442,7 +425,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -456,7 +438,6 @@ No authorization required
 Action path to clear the VPP runtime.
 
 ### Example
-
 
 ```python
 import time
@@ -489,7 +470,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -506,7 +486,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -520,7 +499,6 @@ No authorization required
 Download the coredump.
 
 ### Example
-
 
 ```python
 import time
@@ -555,7 +533,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filename** | **str**| Filename of the coredump. | 
@@ -574,7 +551,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of available VPP coredumps. |  -  |
@@ -588,7 +564,6 @@ No authorization required
 Get the list of avaiable VPP coredumps.
 
 ### Example
-
 
 ```python
 import time
@@ -621,7 +596,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -638,7 +612,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of available VPP coredumps. |  -  |
@@ -652,7 +625,6 @@ No authorization required
 Dump of the VPP state set up by dataplane-control service.
 
 ### Example
-
 
 ```python
 import time
@@ -685,7 +657,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -702,7 +673,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Dump of the VPP internal state. |  -  |
@@ -716,7 +686,6 @@ No authorization required
 Status page reporting VPP errors.
 
 ### Example
-
 
 ```python
 import time
@@ -749,7 +718,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -766,7 +734,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -780,7 +747,6 @@ No authorization required
 Status page reporting VPP events.
 
 ### Example
-
 
 ```python
 import time
@@ -813,7 +779,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -830,7 +795,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -844,7 +808,6 @@ No authorization required
 Status page reporting VPP IPv4 FIB.
 
 ### Example
-
 
 ```python
 import time
@@ -877,7 +840,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -894,7 +856,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -908,7 +869,6 @@ No authorization required
 Status page reporting VPP IPv6 FIB.
 
 ### Example
-
 
 ```python
 import time
@@ -941,7 +901,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -958,7 +917,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -972,7 +930,6 @@ No authorization required
 Status page reporting VPP IPv6 link-local FIB.
 
 ### Example
-
 
 ```python
 import time
@@ -1005,7 +962,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1022,7 +978,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1036,7 +991,6 @@ No authorization required
 Dump of the VPP state set up by the gateway service.
 
 ### Example
-
 
 ```python
 import time
@@ -1069,7 +1023,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1086,7 +1039,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Dump of the VPP internal state. |  -  |
@@ -1100,7 +1052,6 @@ No authorization required
 Status page listing hardware interfaces managed by VPP.
 
 ### Example
-
 
 ```python
 import time
@@ -1133,7 +1084,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1150,7 +1100,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1164,7 +1113,6 @@ No authorization required
 Status page listing internal VPP interfaces.
 
 ### Example
-
 
 ```python
 import time
@@ -1197,7 +1145,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1214,7 +1161,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1228,7 +1174,6 @@ No authorization required
 Status page reporting VPP LACP info.
 
 ### Example
-
 
 ```python
 import time
@@ -1261,7 +1206,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1278,7 +1222,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1292,7 +1235,6 @@ No authorization required
 Status page listing interfaces mirrored from VPP to Linux.
 
 ### Example
-
 
 ```python
 import time
@@ -1325,7 +1267,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1342,7 +1283,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1356,7 +1296,6 @@ No authorization required
 Status page reporting VPP logs.
 
 ### Example
-
 
 ```python
 import time
@@ -1389,7 +1328,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1406,7 +1344,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1420,7 +1357,6 @@ No authorization required
 Status page reporting VPP memory.
 
 ### Example
-
 
 ```python
 import time
@@ -1453,7 +1389,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1470,7 +1405,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1484,7 +1418,6 @@ No authorization required
 Status page reporting VPP IPv4 neighbors.
 
 ### Example
-
 
 ```python
 import time
@@ -1517,7 +1450,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1534,7 +1466,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1548,7 +1479,6 @@ No authorization required
 Status page reporting VPP IPv6 neighbors.
 
 ### Example
-
 
 ```python
 import time
@@ -1581,7 +1511,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1598,7 +1527,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1612,7 +1540,6 @@ No authorization required
 Status page listing of loaded VPP plugins.
 
 ### Example
-
 
 ```python
 import time
@@ -1645,7 +1572,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1662,7 +1588,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1676,7 +1601,6 @@ No authorization required
 Status page reporting VPP runtime.
 
 ### Example
-
 
 ```python
 import time
@@ -1709,7 +1633,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1726,7 +1649,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1740,7 +1662,6 @@ No authorization required
 Status page reporting the SCION interfaces.
 
 ### Example
-
 
 ```python
 import time
@@ -1773,7 +1694,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1790,7 +1710,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1804,7 +1723,6 @@ No authorization required
 Status page reporting the SCION router IPFIX parameters.
 
 ### Example
-
 
 ```python
 import time
@@ -1837,7 +1755,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1854,7 +1771,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1868,7 +1784,6 @@ No authorization required
 Status page reporting the SCION router IPFIX statistics.
 
 ### Example
-
 
 ```python
 import time
@@ -1901,7 +1816,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1918,7 +1832,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1932,7 +1845,6 @@ No authorization required
 Status page reporting the SCION router IPFIX table.
 
 ### Example
-
 
 ```python
 import time
@@ -1965,7 +1877,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1982,7 +1893,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -1996,7 +1906,6 @@ No authorization required
 Status page reporting the SCION router ASes.
 
 ### Example
-
 
 ```python
 import time
@@ -2029,7 +1938,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2046,7 +1954,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2060,7 +1967,6 @@ No authorization required
 Status page reporting the SCION router bandwidth reservations.
 
 ### Example
-
 
 ```python
 import time
@@ -2093,7 +1999,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2110,7 +2015,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2124,7 +2028,6 @@ No authorization required
 Status page reporting the SCION services.
 
 ### Example
-
 
 ```python
 import time
@@ -2157,7 +2060,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2174,7 +2076,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2188,7 +2089,6 @@ No authorization required
 SCION gateway: trace all ingress IP packets.
 
 ### Example
-
 
 ```python
 import time
@@ -2224,7 +2124,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -2244,7 +2143,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2258,7 +2156,6 @@ No authorization required
 SCION gateway: trace all ingress frames entering via dpdk.
 
 ### Example
-
 
 ```python
 import time
@@ -2294,7 +2191,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -2314,7 +2210,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2328,7 +2223,6 @@ No authorization required
 SCION gateway: trace all egress IPv4 packets entering via dpdk.
 
 ### Example
-
 
 ```python
 import time
@@ -2364,7 +2258,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -2384,7 +2277,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2398,7 +2290,6 @@ No authorization required
 SCION gateway: trace all egress IPv6 packets entering via dpdk.
 
 ### Example
-
 
 ```python
 import time
@@ -2434,7 +2325,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -2454,7 +2344,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2468,7 +2357,6 @@ No authorization required
 SCION gateway: trace all egress frames on top of IPv4 underlay.
 
 ### Example
-
 
 ```python
 import time
@@ -2504,7 +2392,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -2524,7 +2411,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2538,7 +2424,6 @@ No authorization required
 SCION gateway: trace all egress frames on top of IPv6 underlay.
 
 ### Example
-
 
 ```python
 import time
@@ -2574,7 +2459,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -2594,7 +2478,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2608,7 +2491,6 @@ No authorization required
 SCION gateway: global settings.
 
 ### Example
-
 
 ```python
 import time
@@ -2641,7 +2523,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2658,7 +2539,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2672,7 +2552,6 @@ No authorization required
 SCION gateway: remote ASes.
 
 ### Example
-
 
 ```python
 import time
@@ -2705,7 +2584,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2722,7 +2600,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2736,7 +2613,6 @@ No authorization required
 SCION gateway: trace all ingress frames entering via memif.
 
 ### Example
-
 
 ```python
 import time
@@ -2772,7 +2648,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -2792,7 +2667,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2806,7 +2680,6 @@ No authorization required
 SCION gateway: trace all egress IPv4 packets entering via memif.
 
 ### Example
-
 
 ```python
 import time
@@ -2842,7 +2715,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -2862,7 +2734,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2876,7 +2747,6 @@ No authorization required
 SCION gateway: trace all egress IPv6 packets entering via memif.
 
 ### Example
-
 
 ```python
 import time
@@ -2912,7 +2782,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -2932,7 +2801,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -2946,7 +2814,6 @@ No authorization required
 SCION gateway: known paths.
 
 ### Example
-
 
 ```python
 import time
@@ -2979,7 +2846,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2996,7 +2862,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3010,7 +2875,6 @@ No authorization required
 SCION gateway: routing hierarchy.
 
 ### Example
-
 
 ```python
 import time
@@ -3043,7 +2907,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -3060,7 +2923,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3074,7 +2936,6 @@ No authorization required
 SCION gateway: routing chains.
 
 ### Example
-
 
 ```python
 import time
@@ -3107,7 +2968,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -3124,7 +2984,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3138,7 +2997,6 @@ No authorization required
 SCION gateway: sessions.
 
 ### Example
-
 
 ```python
 import time
@@ -3171,7 +3029,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -3188,7 +3045,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3202,7 +3058,6 @@ No authorization required
 SCION gateway: traffic classes.
 
 ### Example
-
 
 ```python
 import time
@@ -3235,7 +3090,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -3252,7 +3106,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3266,7 +3119,6 @@ No authorization required
 SCION gateway: TUN device.
 
 ### Example
-
 
 ```python
 import time
@@ -3299,7 +3151,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -3316,7 +3167,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3330,7 +3180,6 @@ No authorization required
 Action path to execute free form packet trace.
 
 ### Example
-
 
 ```python
 import time
@@ -3369,7 +3218,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **n** | **str**| VPP node to trace. | [optional] [default to &#39;&#39;]
@@ -3392,7 +3240,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3406,7 +3253,6 @@ No authorization required
 Action path to execute a trace for packets entering via DPDK.
 
 ### Example
-
 
 ```python
 import time
@@ -3442,7 +3288,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -3462,7 +3307,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3476,7 +3320,6 @@ No authorization required
 Action path to execute a trace for packets entering via memif.
 
 ### Example
-
 
 ```python
 import time
@@ -3512,7 +3355,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -3532,7 +3374,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3546,7 +3387,6 @@ No authorization required
 Action path that starts a trace without timeout. The trace can be stopped with the `/vpp/trace/stop` endpoint.
 
 ### Example
-
 
 ```python
 import time
@@ -3584,7 +3424,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **n** | **str**| VPP node to trace. | [optional] [default to &#39;&#39;]
@@ -3606,7 +3445,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3620,7 +3458,6 @@ No authorization required
 Action path that stops tracing.
 
 ### Example
-
 
 ```python
 import time
@@ -3655,7 +3492,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **p** | **int**| maximum number of packets to return. | [optional] [default to 50]
@@ -3674,7 +3510,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3688,7 +3523,6 @@ No authorization required
 Action path to execute a trace for IPv4 packets entering via VPP UDP socket.
 
 ### Example
-
 
 ```python
 import time
@@ -3724,7 +3558,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -3744,7 +3577,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3758,7 +3590,6 @@ No authorization required
 Action path to execute a trace for IPv6 packets entering via VPP UDP socket.
 
 ### Example
-
 
 ```python
 import time
@@ -3794,7 +3625,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -3814,7 +3644,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3828,7 +3657,6 @@ No authorization required
 Action path to execute a trace for packets entering via TUN/TAP.
 
 ### Example
-
 
 ```python
 import time
@@ -3864,7 +3692,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -3884,7 +3711,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3898,7 +3724,6 @@ No authorization required
 Status page reporting TUN/TAP devices created by VPP.
 
 ### Example
-
 
 ```python
 import time
@@ -3931,7 +3756,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -3948,7 +3772,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -3962,7 +3785,6 @@ No authorization required
 Status page reporting VPP VRRP.
 
 ### Example
-
 
 ```python
 import time
@@ -3995,7 +3817,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -4012,7 +3833,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |

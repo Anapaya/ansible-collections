@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.health_summary import HealthSummary
+from ansible.module_utils.appliance_api_client.models.health_summary import HealthSummary  # noqa: E501
 
 class TestHealthSummary(unittest.TestCase):
     """HealthSummary unit test stubs"""
@@ -34,7 +34,7 @@ class TestHealthSummary(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `HealthSummary`
         """
-        model = HealthSummary()
+        model = HealthSummary()  # noqa: E501
         if include_optional:
             return HealthSummary(
                 status = 'passing',

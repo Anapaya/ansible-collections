@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.health_check import HealthCheck
+from ansible.module_utils.appliance_api_client.models.health_check import HealthCheck  # noqa: E501
 
 class TestHealthCheck(unittest.TestCase):
     """HealthCheck unit test stubs"""
@@ -34,7 +34,7 @@ class TestHealthCheck(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `HealthCheck`
         """
-        model = HealthCheck()
+        model = HealthCheck()  # noqa: E501
         if include_optional:
             return HealthCheck(
                 check_id = '',

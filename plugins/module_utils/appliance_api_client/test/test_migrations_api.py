@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.migrations_api import MigrationsApi
+from ansible.module_utils.appliance_api_client.api.migrations_api import MigrationsApi  # noqa: E501
 
 
 class TestMigrationsApi(unittest.TestCase):
     """MigrationsApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = MigrationsApi()
+        self.api = MigrationsApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,14 +30,14 @@ class TestMigrationsApi(unittest.TestCase):
     def test_migrations_config_get(self) -> None:
         """Test case for migrations_config_get
 
-        Get the configuration for migration to {version}.
+        Get the configuration for migration to {version}.  # noqa: E501
         """
         pass
 
     def test_migrations_config_put(self) -> None:
         """Test case for migrations_config_put
 
-        Put the configuration for migration to {version}.
+        Put the configuration for migration to {version}.  # noqa: E501
         """
         pass
 

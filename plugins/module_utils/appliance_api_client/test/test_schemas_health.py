@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.schemas_health import SchemasHealth
+from ansible.module_utils.appliance_api_client.models.schemas_health import SchemasHealth  # noqa: E501
 
 class TestSchemasHealth(unittest.TestCase):
     """SchemasHealth unit test stubs"""
@@ -34,7 +34,7 @@ class TestSchemasHealth(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SchemasHealth`
         """
-        model = SchemasHealth()
+        model = SchemasHealth()  # noqa: E501
         if include_optional:
             return SchemasHealth(
                 status = 'passing',

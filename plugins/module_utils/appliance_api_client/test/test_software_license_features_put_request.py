@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.software_license_features_put_request import SoftwareLicenseFeaturesPutRequest
+from ansible.module_utils.appliance_api_client.models.software_license_features_put_request import SoftwareLicenseFeaturesPutRequest  # noqa: E501
 
 class TestSoftwareLicenseFeaturesPutRequest(unittest.TestCase):
     """SoftwareLicenseFeaturesPutRequest unit test stubs"""
@@ -34,7 +34,7 @@ class TestSoftwareLicenseFeaturesPutRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SoftwareLicenseFeaturesPutRequest`
         """
-        model = SoftwareLicenseFeaturesPutRequest()
+        model = SoftwareLicenseFeaturesPutRequest()  # noqa: E501
         if include_optional:
             return SoftwareLicenseFeaturesPutRequest(
                 features = 'eyJ0eXAzI1NiJ9.yJpc3MiOiJqb2U.B92K27uhbUJU1p'

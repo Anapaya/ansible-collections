@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.software_package_install_info import SoftwarePackageInstallInfo
+from ansible.module_utils.appliance_api_client.models.software_package_install_info import SoftwarePackageInstallInfo  # noqa: E501
 
 class TestSoftwarePackageInstallInfo(unittest.TestCase):
     """SoftwarePackageInstallInfo unit test stubs"""
@@ -34,7 +34,7 @@ class TestSoftwarePackageInstallInfo(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SoftwarePackageInstallInfo`
         """
-        model = SoftwarePackageInstallInfo()
+        model = SoftwarePackageInstallInfo()  # noqa: E501
         if include_optional:
             return SoftwarePackageInstallInfo(
                 version = 'v0.25.12',

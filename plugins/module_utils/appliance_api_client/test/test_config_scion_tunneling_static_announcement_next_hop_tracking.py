@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_static_announcement_next_hop_tracking import ConfigScionTunnelingStaticAnnouncementNextHopTracking
+from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_static_announcement_next_hop_tracking import ConfigScionTunnelingStaticAnnouncementNextHopTracking  # noqa: E501
 
 class TestConfigScionTunnelingStaticAnnouncementNextHopTracking(unittest.TestCase):
     """ConfigScionTunnelingStaticAnnouncementNextHopTracking unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigScionTunnelingStaticAnnouncementNextHopTracking(unittest.TestCas
             optional params are included """
         # uncomment below to create an instance of `ConfigScionTunnelingStaticAnnouncementNextHopTracking`
         """
-        model = ConfigScionTunnelingStaticAnnouncementNextHopTracking()
+        model = ConfigScionTunnelingStaticAnnouncementNextHopTracking()  # noqa: E501
         if include_optional:
             return ConfigScionTunnelingStaticAnnouncementNextHopTracking(
                 disabled = True,

@@ -3,7 +3,6 @@
 The peer of this appliance.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** | Textual description for this peer. | [optional] 

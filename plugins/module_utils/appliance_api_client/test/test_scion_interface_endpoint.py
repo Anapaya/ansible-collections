@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_interface_endpoint import ScionInterfaceEndpoint
+from ansible.module_utils.appliance_api_client.models.scion_interface_endpoint import ScionInterfaceEndpoint  # noqa: E501
 
 class TestScionInterfaceEndpoint(unittest.TestCase):
     """ScionInterfaceEndpoint unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionInterfaceEndpoint(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionInterfaceEndpoint`
         """
-        model = ScionInterfaceEndpoint()
+        model = ScionInterfaceEndpoint()  # noqa: E501
         if include_optional:
             return ScionInterfaceEndpoint(
                 isd_as = '1-ff00:0:110',

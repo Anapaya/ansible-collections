@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.cppki_trc_blob_get_response_json import CppkiTrcBlobGetResponseJson
+from ansible.module_utils.appliance_api_client.models.cppki_trc_blob_get_response_json import CppkiTrcBlobGetResponseJson  # noqa: E501
 
 class TestCppkiTrcBlobGetResponseJson(unittest.TestCase):
     """CppkiTrcBlobGetResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestCppkiTrcBlobGetResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CppkiTrcBlobGetResponseJson`
         """
-        model = CppkiTrcBlobGetResponseJson()
+        model = CppkiTrcBlobGetResponseJson()  # noqa: E501
         if include_optional:
             return CppkiTrcBlobGetResponseJson(
                 trc = '-----BEGIN TRC-----\nZjAwOjA6MTEwI ...\n-----END TRC-----'

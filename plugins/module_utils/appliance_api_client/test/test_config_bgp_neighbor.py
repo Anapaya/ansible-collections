@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_bgp_neighbor import ConfigBgpNeighbor
+from ansible.module_utils.appliance_api_client.models.config_bgp_neighbor import ConfigBgpNeighbor  # noqa: E501
 
 class TestConfigBgpNeighbor(unittest.TestCase):
     """ConfigBgpNeighbor unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigBgpNeighbor(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigBgpNeighbor`
         """
-        model = ConfigBgpNeighbor()
+        model = ConfigBgpNeighbor()  # noqa: E501
         if include_optional:
             return ConfigBgpNeighbor(
                 auth_password = '',

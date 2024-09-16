@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.any_domain_has_healthy_remote_gateways import AnyDomainHasHealthyRemoteGateways
+from ansible.module_utils.appliance_api_client.models.any_domain_has_healthy_remote_gateways import AnyDomainHasHealthyRemoteGateways  # noqa: E501
 
 class TestAnyDomainHasHealthyRemoteGateways(unittest.TestCase):
     """AnyDomainHasHealthyRemoteGateways unit test stubs"""
@@ -34,7 +34,7 @@ class TestAnyDomainHasHealthyRemoteGateways(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AnyDomainHasHealthyRemoteGateways`
         """
-        model = AnyDomainHasHealthyRemoteGateways()
+        model = AnyDomainHasHealthyRemoteGateways()  # noqa: E501
         if include_optional:
             return AnyDomainHasHealthyRemoteGateways(
             )

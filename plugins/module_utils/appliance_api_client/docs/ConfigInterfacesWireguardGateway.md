@@ -3,7 +3,6 @@
 The gateway for the network interface.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ipv4_gateway** | **str** | The gateway address for the IPv4 networking stack. Note that there must only be one IPv4 gateway configured across all the interfaces. | [optional] 

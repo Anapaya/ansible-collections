@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.domain_exchanges_ip_prefixes import DomainExchangesIPPrefixes
+from ansible.module_utils.appliance_api_client.models.domain_exchanges_ip_prefixes import DomainExchangesIPPrefixes  # noqa: E501
 
 class TestDomainExchangesIPPrefixes(unittest.TestCase):
     """DomainExchangesIPPrefixes unit test stubs"""
@@ -34,7 +34,7 @@ class TestDomainExchangesIPPrefixes(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DomainExchangesIPPrefixes`
         """
-        model = DomainExchangesIPPrefixes()
+        model = DomainExchangesIPPrefixes()  # noqa: E501
         if include_optional:
             return DomainExchangesIPPrefixes(
                 data = ansible.module_utils.appliance_api_client.models.domain_exchanges_ip_prefixes_data.DomainExchangesIPPrefixesData(

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.chain_brief import ChainBrief
+from ansible.module_utils.appliance_api_client.models.chain_brief import ChainBrief  # noqa: E501
 
 class TestChainBrief(unittest.TestCase):
     """ChainBrief unit test stubs"""
@@ -34,7 +34,7 @@ class TestChainBrief(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ChainBrief`
         """
-        model = ChainBrief()
+        model = ChainBrief()  # noqa: E501
         if include_optional:
             return ChainBrief(
                 id = 'fa53a04a',

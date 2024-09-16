@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.debug_api import DebugApi
+from ansible.module_utils.appliance_api_client.api.debug_api import DebugApi  # noqa: E501
 
 
 class TestDebugApi(unittest.TestCase):
     """DebugApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = DebugApi()
+        self.api = DebugApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,217 +30,217 @@ class TestDebugApi(unittest.TestCase):
     def test_debug_bgp_config_get(self) -> None:
         """Test case for debug_bgp_config_get
 
-        Get the BGP configuration.
+        Get the BGP configuration.  # noqa: E501
         """
         pass
 
     def test_debug_bgp_neighbors_get(self) -> None:
         """Test case for debug_bgp_neighbors_get
 
-        Get the state of the BGP neighbors.
+        Get the state of the BGP neighbors.  # noqa: E501
         """
         pass
 
     def test_debug_cluster_status_get(self) -> None:
         """Test case for debug_cluster_status_get
 
-        Get the cluster status.
+        Get the cluster status.  # noqa: E501
         """
         pass
 
     def test_debug_lan_monitoring_get(self) -> None:
         """Test case for debug_lan_monitoring_get
 
-        Get LAN statistics.
+        Get LAN statistics.  # noqa: E501
         """
         pass
 
     def test_debug_logs_entries_get(self) -> None:
         """Test case for debug_logs_entries_get
 
-        Retrieve logs via systemd-journal-gatewayd compatible interface.
+        Retrieve logs via systemd-journal-gatewayd compatible interface.  # noqa: E501
         """
         pass
 
     def test_debug_network_interfaces_get(self) -> None:
         """Test case for debug_network_interfaces_get
 
-        Network interfaces summary.
+        Network interfaces summary.  # noqa: E501
         """
         pass
 
     def test_debug_network_planner_graph_get(self) -> None:
         """Test case for debug_network_planner_graph_get
 
-        The graph of planner nodes.
+        The graph of planner nodes.  # noqa: E501
         """
         pass
 
     def test_debug_network_routes_get(self) -> None:
         """Test case for debug_network_routes_get
 
-        Network routes summary.
+        Network routes summary.  # noqa: E501
         """
         pass
 
     def test_debug_notifications_get(self) -> None:
         """Test case for debug_notifications_get
 
-        Get if the periodic appliance-controller notifications are enabled.
+        Get if the periodic appliance-controller notifications are enabled.  # noqa: E501
         """
         pass
 
     def test_debug_notifications_post(self) -> None:
         """Test case for debug_notifications_post
 
-        Trigger a notification from the appliance-controller.
+        Trigger a notification from the appliance-controller.  # noqa: E501
         """
         pass
 
     def test_debug_notifications_put(self) -> None:
         """Test case for debug_notifications_put
 
-        Enable or disable periodic notifications from the appliance-controller.
+        Enable or disable periodic notifications from the appliance-controller.  # noqa: E501
         """
         pass
 
     def test_debug_scion_interfaces_get(self) -> None:
         """Test case for debug_scion_interfaces_get
 
-        Get the SCION interfaces.
+        Get the SCION interfaces.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_discovery_get(self) -> None:
         """Test case for debug_scion_tunneling_discovery_get
 
-        Discovery of tunneling peers.
+        Discovery of tunneling peers.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_domains_config_get(self) -> None:
         """Test case for debug_scion_tunneling_domains_config_get
 
-        Get the SCION tunneling domains configuration.
+        Get the SCION tunneling domains configuration.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_paths_get(self) -> None:
         """Test case for debug_scion_tunneling_paths_get
 
-        List of all SCION paths with their stats.
+        List of all SCION paths with their stats.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_paths_search_post(self) -> None:
         """Test case for debug_scion_tunneling_paths_search_post
 
-        List of SCION paths with their stats.
+        List of SCION paths with their stats.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_planner_graph_get(self) -> None:
         """Test case for debug_scion_tunneling_planner_graph_get
 
-        The graph of the planner nodes and dependencies.
+        The graph of the planner nodes and dependencies.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_sa_reset_post(self) -> None:
         """Test case for debug_scion_tunneling_sa_reset_post
 
-        Reset the SAs of the SCION tunnels.
+        Reset the SAs of the SCION tunnels.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_sgrp_domains_get(self) -> None:
         """Test case for debug_scion_tunneling_sgrp_domains_get
 
-        SGRP domains.
+        SGRP domains.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_sgrp_local_prefixes_get(self) -> None:
         """Test case for debug_scion_tunneling_sgrp_local_prefixes_get
 
-        Known local network prefixes.
+        Known local network prefixes.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_sgrp_peers_get(self) -> None:
         """Test case for debug_scion_tunneling_sgrp_peers_get
 
-        SGRP peers.
+        SGRP peers.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_state_current_get(self) -> None:
         """Test case for debug_scion_tunneling_state_current_get
 
-        The full current state of the gateway.
+        The full current state of the gateway.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_state_domains_get(self) -> None:
         """Test case for debug_scion_tunneling_state_domains_get
 
-        The user-provided domain configuration.
+        The user-provided domain configuration.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_state_monitored_get(self) -> None:
         """Test case for debug_scion_tunneling_state_monitored_get
 
-        The state monitored by the gateway.
+        The state monitored by the gateway.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_state_observability_get(self) -> None:
         """Test case for debug_scion_tunneling_state_observability_get
 
-        The full dump of observability data.
+        The full dump of observability data.  # noqa: E501
         """
         pass
 
     def test_debug_scion_tunneling_summary_get(self) -> None:
         """Test case for debug_scion_tunneling_summary_get
 
-        Get summary of the SCION tunneling infrastructure.
+        Get summary of the SCION tunneling infrastructure.  # noqa: E501
         """
         pass
 
     def test_debug_service_groups_restart_post(self) -> None:
         """Test case for debug_service_groups_restart_post
 
-        Restart group of services.
+        Restart group of services.  # noqa: E501
         """
         pass
 
     def test_debug_services_get(self) -> None:
         """Test case for debug_services_get
 
-        Get the list of appliance services and service groups.
+        Get the list of appliance services and service groups.  # noqa: E501
         """
         pass
 
     def test_debug_services_health(self) -> None:
         """Test case for debug_services_health
 
-        Indicate the service health.
+        Indicate the service health.  # noqa: E501
         """
         pass
 
     def test_debug_services_health_summary(self) -> None:
         """Test case for debug_services_health_summary
 
-        Summary of all service health checks.
+        Summary of all service health checks.  # noqa: E501
         """
         pass
 
     def test_debug_services_restart(self) -> None:
         """Test case for debug_services_restart
 
-        Restarts the given service.
+        Restarts the given service.  # noqa: E501
         """
         pass
 

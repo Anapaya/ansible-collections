@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.software_licenses_post_request import SoftwareLicensesPostRequest
+from ansible.module_utils.appliance_api_client.models.software_licenses_post_request import SoftwareLicensesPostRequest  # noqa: E501
 
 class TestSoftwareLicensesPostRequest(unittest.TestCase):
     """SoftwareLicensesPostRequest unit test stubs"""
@@ -34,7 +34,7 @@ class TestSoftwareLicensesPostRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SoftwareLicensesPostRequest`
         """
-        model = SoftwareLicensesPostRequest()
+        model = SoftwareLicensesPostRequest()  # noqa: E501
         if include_optional:
             return SoftwareLicensesPostRequest(
                 license = 'eyJ0eXAzI1NiJ9.yJpc3MiOiJqb2U.B92K27uhbUJU1p'

@@ -3,7 +3,6 @@
 Anapaya appliance VPP configuration.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **buffers** | [**ConfigSystemVppBuffers**](ConfigSystemVppBuffers.md) |  | [optional] 

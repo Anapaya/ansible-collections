@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.debug_notify_status_json import DebugNotifyStatusJson
+from ansible.module_utils.appliance_api_client.models.debug_notify_status_json import DebugNotifyStatusJson  # noqa: E501
 
 class TestDebugNotifyStatusJson(unittest.TestCase):
     """DebugNotifyStatusJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestDebugNotifyStatusJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DebugNotifyStatusJson`
         """
-        model = DebugNotifyStatusJson()
+        model = DebugNotifyStatusJson()  # noqa: E501
         if include_optional:
             return DebugNotifyStatusJson(
                 disabled = True,

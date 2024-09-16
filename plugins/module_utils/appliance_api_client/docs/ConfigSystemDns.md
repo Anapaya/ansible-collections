@@ -3,7 +3,6 @@
 Anapaya appliance DNS configuration.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **servers** | [**List[ConfigSystemDnsServers]**](ConfigSystemDnsServers.md) | List of DNS servers. | [optional] 

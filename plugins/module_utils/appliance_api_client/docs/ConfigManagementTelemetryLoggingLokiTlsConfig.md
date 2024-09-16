@@ -3,7 +3,6 @@
 Configuration for TLS connection.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **insecure_skip_verify** | **bool** | insecure-skip-verify controls whether the client verifies the Loki server&#39;s certificate chain and host name. If insecure-skip-verify is true, the appliance accepts any certificate presented by the server and any host name in that certificate. In this mode, TLS is susceptible to machine-in-the-middle attacks unless custom verification is used. This should be used only for testing. | [optional] [default to False]

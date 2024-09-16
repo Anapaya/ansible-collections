@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scion_tunneling import ConfigScionTunneling
+from ansible.module_utils.appliance_api_client.models.config_scion_tunneling import ConfigScionTunneling  # noqa: E501
 
 class TestConfigScionTunneling(unittest.TestCase):
     """ConfigScionTunneling unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigScionTunneling(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigScionTunneling`
         """
-        model = ConfigScionTunneling()
+        model = ConfigScionTunneling()  # noqa: E501
         if include_optional:
             return ConfigScionTunneling(
                 domains = [

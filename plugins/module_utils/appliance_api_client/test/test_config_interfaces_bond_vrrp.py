@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_vrrp import ConfigInterfacesBondVrrp
+from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_vrrp import ConfigInterfacesBondVrrp  # noqa: E501
 
 class TestConfigInterfacesBondVrrp(unittest.TestCase):
     """ConfigInterfacesBondVrrp unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesBondVrrp(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesBondVrrp`
         """
-        model = ConfigInterfacesBondVrrp()
+        model = ConfigInterfacesBondVrrp()  # noqa: E501
         if include_optional:
             return ConfigInterfacesBondVrrp(
                 addresses = [

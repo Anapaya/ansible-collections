@@ -3,7 +3,6 @@
 Network interface summary.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **destination** | **str** | The destination prefix in CIDR format. | [optional] 

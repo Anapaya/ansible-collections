@@ -3,7 +3,6 @@
 Connection configuration.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **health_check** | [**ConfigSystemVppConnectionHealthCheck**](ConfigSystemVppConnectionHealthCheck.md) |  | [optional] 

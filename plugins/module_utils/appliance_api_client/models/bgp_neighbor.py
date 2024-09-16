@@ -19,76 +19,58 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List
-from pydantic import BaseModel, StrictInt, StrictStr
-from pydantic import Field
+
+from pydantic import BaseModel, Field, StrictInt, StrictStr
 from ansible.module_utils.appliance_api_client.models.bgp_timers import BGPTimers
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class BGPNeighbor(BaseModel):
     """
     BGPNeighbor
-    """ # noqa: E501
-    remote_asn: StrictInt = Field(description="The AS number of the neighbor in the BGP session.")
-    remote_address: StrictStr = Field(description="The IP address of the neighbor in the BGP session.")
-    timers: BGPTimers
-    __properties: ClassVar[List[str]] = ["remote_asn", "remote_address", "timers"]
+    """
+    remote_asn: StrictInt = Field(..., description="The AS number of the neighbor in the BGP session.")
+    remote_address: StrictStr = Field(..., description="The IP address of the neighbor in the BGP session.")
+    timers: BGPTimers = Field(...)
+    __properties = ["remote_asn", "remote_address", "timers"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> BGPNeighbor:
         """Create an instance of BGPNeighbor from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of timers
         if self.timers:
             _dict['timers'] = self.timers.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> BGPNeighbor:
         """Create an instance of BGPNeighbor from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return BGPNeighbor.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = BGPNeighbor.parse_obj({
             "remote_asn": obj.get("remote_asn"),
             "remote_address": obj.get("remote_address"),
             "timers": BGPTimers.from_dict(obj.get("timers")) if obj.get("timers") is not None else None

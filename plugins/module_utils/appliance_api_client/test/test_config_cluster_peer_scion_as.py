@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_cluster_peer_scion_as import ConfigClusterPeerScionAS
+from ansible.module_utils.appliance_api_client.models.config_cluster_peer_scion_as import ConfigClusterPeerScionAS  # noqa: E501
 
 class TestConfigClusterPeerScionAS(unittest.TestCase):
     """ConfigClusterPeerScionAS unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigClusterPeerScionAS(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigClusterPeerScionAS`
         """
-        model = ConfigClusterPeerScionAS()
+        model = ConfigClusterPeerScionAS()  # noqa: E501
         if include_optional:
             return ConfigClusterPeerScionAS(
                 control = ansible.module_utils.appliance_api_client.models.config_cluster_peer_scion_as_control.Config_Cluster_Peer_Scion_AS_Control(

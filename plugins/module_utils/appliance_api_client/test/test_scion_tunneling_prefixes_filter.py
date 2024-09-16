@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_prefixes_filter import ScionTunnelingPrefixesFilter
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_prefixes_filter import ScionTunnelingPrefixesFilter  # noqa: E501
 
 class TestScionTunnelingPrefixesFilter(unittest.TestCase):
     """ScionTunnelingPrefixesFilter unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingPrefixesFilter(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingPrefixesFilter`
         """
-        model = ScionTunnelingPrefixesFilter()
+        model = ScionTunnelingPrefixesFilter()  # noqa: E501
         if include_optional:
             return ScionTunnelingPrefixesFilter(
                 action = 'ACCEPT',

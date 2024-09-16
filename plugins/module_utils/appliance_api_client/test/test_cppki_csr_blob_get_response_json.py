@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.cppki_csr_blob_get_response_json import CppkiCsrBlobGetResponseJson
+from ansible.module_utils.appliance_api_client.models.cppki_csr_blob_get_response_json import CppkiCsrBlobGetResponseJson  # noqa: E501
 
 class TestCppkiCsrBlobGetResponseJson(unittest.TestCase):
     """CppkiCsrBlobGetResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestCppkiCsrBlobGetResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CppkiCsrBlobGetResponseJson`
         """
-        model = CppkiCsrBlobGetResponseJson()
+        model = CppkiCsrBlobGetResponseJson()  # noqa: E501
         if include_optional:
             return CppkiCsrBlobGetResponseJson(
                 csr = '-----BEGIN CERTIFICATE REQUEST-----\nCertificateSigningRequest ...\n-----END CERTIFICATE REQUEST-----'

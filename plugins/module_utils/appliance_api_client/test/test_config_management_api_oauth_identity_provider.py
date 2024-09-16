@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_api_oauth_identity_provider import ConfigManagementApiOauthIdentityProvider
+from ansible.module_utils.appliance_api_client.models.config_management_api_oauth_identity_provider import ConfigManagementApiOauthIdentityProvider  # noqa: E501
 
 class TestConfigManagementApiOauthIdentityProvider(unittest.TestCase):
     """ConfigManagementApiOauthIdentityProvider unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementApiOauthIdentityProvider(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementApiOauthIdentityProvider`
         """
-        model = ConfigManagementApiOauthIdentityProvider()
+        model = ConfigManagementApiOauthIdentityProvider()  # noqa: E501
         if include_optional:
             return ConfigManagementApiOauthIdentityProvider(
                 base_auth_url = 'https://anapaya.eu.auth0.com/',

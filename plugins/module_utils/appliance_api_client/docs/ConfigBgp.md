@@ -3,7 +3,6 @@
 Top-level configuration and state for the BGP router.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_global** | [**ConfigBgpGlobal**](ConfigBgpGlobal.md) |  | [optional] 

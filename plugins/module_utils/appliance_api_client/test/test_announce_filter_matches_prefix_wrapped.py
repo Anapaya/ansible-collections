@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.announce_filter_matches_prefix_wrapped import AnnounceFilterMatchesPrefixWrapped
+from ansible.module_utils.appliance_api_client.models.announce_filter_matches_prefix_wrapped import AnnounceFilterMatchesPrefixWrapped  # noqa: E501
 
 class TestAnnounceFilterMatchesPrefixWrapped(unittest.TestCase):
     """AnnounceFilterMatchesPrefixWrapped unit test stubs"""
@@ -34,7 +34,7 @@ class TestAnnounceFilterMatchesPrefixWrapped(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AnnounceFilterMatchesPrefixWrapped`
         """
-        model = AnnounceFilterMatchesPrefixWrapped()
+        model = AnnounceFilterMatchesPrefixWrapped()  # noqa: E501
         if include_optional:
             return AnnounceFilterMatchesPrefixWrapped(
                 component = 'appliance',

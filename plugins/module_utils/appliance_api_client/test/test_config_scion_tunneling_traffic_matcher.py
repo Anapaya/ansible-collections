@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_traffic_matcher import ConfigScionTunnelingTrafficMatcher
+from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_traffic_matcher import ConfigScionTunnelingTrafficMatcher  # noqa: E501
 
 class TestConfigScionTunnelingTrafficMatcher(unittest.TestCase):
     """ConfigScionTunnelingTrafficMatcher unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigScionTunnelingTrafficMatcher(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigScionTunnelingTrafficMatcher`
         """
-        model = ConfigScionTunnelingTrafficMatcher()
+        model = ConfigScionTunnelingTrafficMatcher()  # noqa: E501
         if include_optional:
             return ConfigScionTunnelingTrafficMatcher(
                 condition = 'BOOL=true',

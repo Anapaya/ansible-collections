@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_path_performance_metrics import ScionPathPerformanceMetrics
+from ansible.module_utils.appliance_api_client.models.scion_path_performance_metrics import ScionPathPerformanceMetrics  # noqa: E501
 
 class TestScionPathPerformanceMetrics(unittest.TestCase):
     """ScionPathPerformanceMetrics unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionPathPerformanceMetrics(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionPathPerformanceMetrics`
         """
-        model = ScionPathPerformanceMetrics()
+        model = ScionPathPerformanceMetrics()  # noqa: E501
         if include_optional:
             return ScionPathPerformanceMetrics(
                 latency = 1.337,

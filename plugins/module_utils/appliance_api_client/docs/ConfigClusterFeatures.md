@@ -3,7 +3,6 @@
 The list of feature that are announced to the peers. Note that the actually announced value can depend on whether what features is locally enabled and configured.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **scion_rss** | **bool** | Option to enable the announcement of support for the SCION RSS feature to the peers. If the local host does not support the SCION RSS feature, this option does not have any effect. | [optional] [default to True]

@@ -3,7 +3,6 @@
 Anapaya appliance Linux kernel configuration.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **hugepage_size** | **str** | Size of hugepages the kernel should allocate at boot time. | [optional] [default to '2M']

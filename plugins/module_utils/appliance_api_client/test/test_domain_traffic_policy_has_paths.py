@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.domain_traffic_policy_has_paths import DomainTrafficPolicyHasPaths
+from ansible.module_utils.appliance_api_client.models.domain_traffic_policy_has_paths import DomainTrafficPolicyHasPaths  # noqa: E501
 
 class TestDomainTrafficPolicyHasPaths(unittest.TestCase):
     """DomainTrafficPolicyHasPaths unit test stubs"""
@@ -34,7 +34,7 @@ class TestDomainTrafficPolicyHasPaths(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DomainTrafficPolicyHasPaths`
         """
-        model = DomainTrafficPolicyHasPaths()
+        model = DomainTrafficPolicyHasPaths()  # noqa: E501
         if include_optional:
             return DomainTrafficPolicyHasPaths(
                 data = ansible.module_utils.appliance_api_client.models.domain_traffic_policy_has_paths_data.DomainTrafficPolicyHasPathsData(

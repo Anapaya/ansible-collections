@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_service_customization_response_json import ConfigServiceCustomizationResponseJson
+from ansible.module_utils.appliance_api_client.models.config_service_customization_response_json import ConfigServiceCustomizationResponseJson  # noqa: E501
 
 class TestConfigServiceCustomizationResponseJson(unittest.TestCase):
     """ConfigServiceCustomizationResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigServiceCustomizationResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigServiceCustomizationResponseJson`
         """
-        model = ConfigServiceCustomizationResponseJson()
+        model = ConfigServiceCustomizationResponseJson()  # noqa: E501
         if include_optional:
             return ConfigServiceCustomizationResponseJson(
                 service_customization = ansible.module_utils.appliance_api_client.models.config_advanced_service_customization.Config_Advanced_ServiceCustomization(

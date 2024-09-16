@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.public_key import PublicKey
+from ansible.module_utils.appliance_api_client.models.public_key import PublicKey  # noqa: E501
 
 class TestPublicKey(unittest.TestCase):
     """PublicKey unit test stubs"""
@@ -34,7 +34,7 @@ class TestPublicKey(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PublicKey`
         """
-        model = PublicKey()
+        model = PublicKey()  # noqa: E501
         if include_optional:
             return PublicKey(
                 key = '',

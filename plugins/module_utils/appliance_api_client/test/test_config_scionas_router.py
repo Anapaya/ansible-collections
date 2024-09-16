@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scionas_router import ConfigSCIONASRouter
+from ansible.module_utils.appliance_api_client.models.config_scionas_router import ConfigSCIONASRouter  # noqa: E501
 
 class TestConfigSCIONASRouter(unittest.TestCase):
     """ConfigSCIONASRouter unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONASRouter(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONASRouter`
         """
-        model = ConfigSCIONASRouter()
+        model = ConfigSCIONASRouter()  # noqa: E501
         if include_optional:
             return ConfigSCIONASRouter(
                 enabled = True,

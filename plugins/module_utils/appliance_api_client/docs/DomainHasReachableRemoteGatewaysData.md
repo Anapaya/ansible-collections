@@ -3,7 +3,6 @@
 The list of remote Gateways in a domain that are reachable. 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **domain** | **str** | The domain the remote gateways are part of.  | 

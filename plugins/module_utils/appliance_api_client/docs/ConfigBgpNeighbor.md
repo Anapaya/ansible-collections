@@ -3,7 +3,6 @@
 List of BGP neighbors configured on the local system, uniquely identified by peer IPv4 or IPv6 address
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **auth_password** | **str** | An MD5 authentication password for use with the neighboring device. | [optional] 

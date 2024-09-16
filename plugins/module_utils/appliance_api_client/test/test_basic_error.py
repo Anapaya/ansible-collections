@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.basic_error import BasicError
+from ansible.module_utils.appliance_api_client.models.basic_error import BasicError  # noqa: E501
 
 class TestBasicError(unittest.TestCase):
     """BasicError unit test stubs"""
@@ -34,7 +34,7 @@ class TestBasicError(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BasicError`
         """
-        model = BasicError()
+        model = BasicError()  # noqa: E501
         if include_optional:
             return BasicError(
                 detail = 'Connection to database timed out'

@@ -3,7 +3,6 @@
 Firewall chain.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the chain. | 

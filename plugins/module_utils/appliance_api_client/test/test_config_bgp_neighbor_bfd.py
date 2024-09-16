@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_bgp_neighbor_bfd import ConfigBgpNeighborBfd
+from ansible.module_utils.appliance_api_client.models.config_bgp_neighbor_bfd import ConfigBgpNeighborBfd  # noqa: E501
 
 class TestConfigBgpNeighborBfd(unittest.TestCase):
     """ConfigBgpNeighborBfd unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigBgpNeighborBfd(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigBgpNeighborBfd`
         """
-        model = ConfigBgpNeighborBfd()
+        model = ConfigBgpNeighborBfd()  # noqa: E501
         if include_optional:
             return ConfigBgpNeighborBfd(
                 desired_minimum_tx_interval = 10,

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.package_info import PackageInfo
+from ansible.module_utils.appliance_api_client.models.package_info import PackageInfo  # noqa: E501
 
 class TestPackageInfo(unittest.TestCase):
     """PackageInfo unit test stubs"""
@@ -34,7 +34,7 @@ class TestPackageInfo(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PackageInfo`
         """
-        model = PackageInfo()
+        model = PackageInfo()  # noqa: E501
         if include_optional:
             return PackageInfo(
                 version = 'v0.25.12',

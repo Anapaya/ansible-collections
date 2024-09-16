@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.keys import Keys
+from ansible.module_utils.appliance_api_client.models.keys import Keys  # noqa: E501
 
 class TestKeys(unittest.TestCase):
     """Keys unit test stubs"""
@@ -34,7 +34,7 @@ class TestKeys(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Keys`
         """
-        model = Keys()
+        model = Keys()  # noqa: E501
         if include_optional:
             return Keys(
                 public_keys = [

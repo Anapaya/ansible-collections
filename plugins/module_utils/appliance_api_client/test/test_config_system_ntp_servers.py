@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_system_ntp_servers import ConfigSystemNtpServers
+from ansible.module_utils.appliance_api_client.models.config_system_ntp_servers import ConfigSystemNtpServers  # noqa: E501
 
 class TestConfigSystemNtpServers(unittest.TestCase):
     """ConfigSystemNtpServers unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSystemNtpServers(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSystemNtpServers`
         """
-        model = ConfigSystemNtpServers()
+        model = ConfigSystemNtpServers()  # noqa: E501
         if include_optional:
             return ConfigSystemNtpServers(
                 address = ''

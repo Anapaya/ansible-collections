@@ -3,7 +3,6 @@
 Firewall rule.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rule** | **str** | The firewall rule definition. | 

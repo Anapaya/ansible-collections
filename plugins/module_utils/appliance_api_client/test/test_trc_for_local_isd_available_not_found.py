@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_not_found import TRCForLocalISDAvailableNotFound
+from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_not_found import TRCForLocalISDAvailableNotFound  # noqa: E501
 
 class TestTRCForLocalISDAvailableNotFound(unittest.TestCase):
     """TRCForLocalISDAvailableNotFound unit test stubs"""
@@ -34,7 +34,7 @@ class TestTRCForLocalISDAvailableNotFound(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TRCForLocalISDAvailableNotFound`
         """
-        model = TRCForLocalISDAvailableNotFound()
+        model = TRCForLocalISDAvailableNotFound()  # noqa: E501
         if include_optional:
             return TRCForLocalISDAvailableNotFound(
                 isd = 64,

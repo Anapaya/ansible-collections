@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scionas_neighbor_interface_bfd import ConfigSCIONASNeighborInterfaceBFD
+from ansible.module_utils.appliance_api_client.models.config_scionas_neighbor_interface_bfd import ConfigSCIONASNeighborInterfaceBFD  # noqa: E501
 
 class TestConfigSCIONASNeighborInterfaceBFD(unittest.TestCase):
     """ConfigSCIONASNeighborInterfaceBFD unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONASNeighborInterfaceBFD(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONASNeighborInterfaceBFD`
         """
-        model = ConfigSCIONASNeighborInterfaceBFD()
+        model = ConfigSCIONASNeighborInterfaceBFD()  # noqa: E501
         if include_optional:
             return ConfigSCIONASNeighborInterfaceBFD(
                 desired_minimum_tx_interval = 56,

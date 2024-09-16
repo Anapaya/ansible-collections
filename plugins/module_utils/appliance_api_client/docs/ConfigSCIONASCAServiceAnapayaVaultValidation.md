@@ -3,7 +3,6 @@
 The validation option configures how the Anapaya Vault backend validate CSRs.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subject** | **str** | The subject option configures how the Anapaya Vault backend validates the subject of the CSRs. | [optional] 

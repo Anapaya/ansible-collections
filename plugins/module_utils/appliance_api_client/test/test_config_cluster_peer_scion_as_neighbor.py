@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_cluster_peer_scion_as_neighbor import ConfigClusterPeerScionASNeighbor
+from ansible.module_utils.appliance_api_client.models.config_cluster_peer_scion_as_neighbor import ConfigClusterPeerScionASNeighbor  # noqa: E501
 
 class TestConfigClusterPeerScionASNeighbor(unittest.TestCase):
     """ConfigClusterPeerScionASNeighbor unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigClusterPeerScionASNeighbor(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigClusterPeerScionASNeighbor`
         """
-        model = ConfigClusterPeerScionASNeighbor()
+        model = ConfigClusterPeerScionASNeighbor()  # noqa: E501
         if include_optional:
             return ConfigClusterPeerScionASNeighbor(
                 interfaces = [

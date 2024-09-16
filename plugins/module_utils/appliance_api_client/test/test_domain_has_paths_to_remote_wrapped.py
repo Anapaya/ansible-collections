@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.domain_has_paths_to_remote_wrapped import DomainHasPathsToRemoteWrapped
+from ansible.module_utils.appliance_api_client.models.domain_has_paths_to_remote_wrapped import DomainHasPathsToRemoteWrapped  # noqa: E501
 
 class TestDomainHasPathsToRemoteWrapped(unittest.TestCase):
     """DomainHasPathsToRemoteWrapped unit test stubs"""
@@ -34,7 +34,7 @@ class TestDomainHasPathsToRemoteWrapped(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DomainHasPathsToRemoteWrapped`
         """
-        model = DomainHasPathsToRemoteWrapped()
+        model = DomainHasPathsToRemoteWrapped()  # noqa: E501
         if include_optional:
             return DomainHasPathsToRemoteWrapped(
                 component = 'appliance',

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.showpaths_run import ShowpathsRun
+from ansible.module_utils.appliance_api_client.models.showpaths_run import ShowpathsRun  # noqa: E501
 
 class TestShowpathsRun(unittest.TestCase):
     """ShowpathsRun unit test stubs"""
@@ -34,7 +34,7 @@ class TestShowpathsRun(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ShowpathsRun`
         """
-        model = ShowpathsRun()
+        model = ShowpathsRun()  # noqa: E501
         if include_optional:
             return ShowpathsRun(
                 destination_isd_as = '1-ff00:0:110',

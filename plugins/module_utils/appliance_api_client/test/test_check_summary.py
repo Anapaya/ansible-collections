@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.check_summary import CheckSummary
+from ansible.module_utils.appliance_api_client.models.check_summary import CheckSummary  # noqa: E501
 
 class TestCheckSummary(unittest.TestCase):
     """CheckSummary unit test stubs"""
@@ -34,7 +34,7 @@ class TestCheckSummary(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CheckSummary`
         """
-        model = CheckSummary()
+        model = CheckSummary()  # noqa: E501
         if include_optional:
             return CheckSummary(
                 service = 'router',

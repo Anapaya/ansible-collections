@@ -19,80 +19,62 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictBool, StrictStr, field_validator
-from pydantic import Field
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional
+from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
 
 class LicenseStatusGetResponseJson(BaseModel):
     """
     LicenseStatusGetResponseJson
-    """ # noqa: E501
-    status: StrictStr = Field(description="The status of the licensing. Indicates whether a valid license is present on the appliance, or whether the appliance is in grace period, or if the appliance functionality is restricted. ")
-    license_id: Optional[StrictStr] = Field(default=None, description="The license ID of the license which is currently active on the appliance. Only set in valid-license status. ")
-    expiry: Optional[datetime] = Field(default=None, description="The time up to which the current status remains unchanged without interaction. For grace and trial periods, it indicates the end of these periods, while for a license it indicates the expiration date. ")
-    enforcer_disabled: Optional[StrictBool] = Field(default=None, description="Whether the license enforcer is disabled via feature flag. ")
-    __properties: ClassVar[List[str]] = ["status", "license_id", "expiry", "enforcer_disabled"]
+    """
+    status: StrictStr = Field(..., description="The status of the licensing. Indicates whether a valid license is present on the appliance, or whether the appliance is in grace period, or if the appliance functionality is restricted. ")
+    license_id: Optional[StrictStr] = Field(None, description="The license ID of the license which is currently active on the appliance. Only set in valid-license status. ")
+    expiry: Optional[datetime] = Field(None, description="The time up to which the current status remains unchanged without interaction. For grace and trial periods, it indicates the end of these periods, while for a license it indicates the expiration date. ")
+    enforcer_disabled: Optional[StrictBool] = Field(None, description="Whether the license enforcer is disabled via feature flag. ")
+    __properties = ["status", "license_id", "expiry", "enforcer_disabled"]
 
-    @field_validator('status')
+    @validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('trial-period', 'grace-period', 'valid-license', 'restricted-functionality'):
             raise ValueError("must be one of enum values ('trial-period', 'grace-period', 'valid-license', 'restricted-functionality')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> LicenseStatusGetResponseJson:
         """Create an instance of LicenseStatusGetResponseJson from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> LicenseStatusGetResponseJson:
         """Create an instance of LicenseStatusGetResponseJson from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return LicenseStatusGetResponseJson.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = LicenseStatusGetResponseJson.parse_obj({
             "status": obj.get("status"),
             "license_id": obj.get("license_id"),
             "expiry": obj.get("expiry"),

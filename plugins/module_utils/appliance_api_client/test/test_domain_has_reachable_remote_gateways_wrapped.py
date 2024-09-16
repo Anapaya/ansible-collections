@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.domain_has_reachable_remote_gateways_wrapped import DomainHasReachableRemoteGatewaysWrapped
+from ansible.module_utils.appliance_api_client.models.domain_has_reachable_remote_gateways_wrapped import DomainHasReachableRemoteGatewaysWrapped  # noqa: E501
 
 class TestDomainHasReachableRemoteGatewaysWrapped(unittest.TestCase):
     """DomainHasReachableRemoteGatewaysWrapped unit test stubs"""
@@ -34,7 +34,7 @@ class TestDomainHasReachableRemoteGatewaysWrapped(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DomainHasReachableRemoteGatewaysWrapped`
         """
-        model = DomainHasReachableRemoteGatewaysWrapped()
+        model = DomainHasReachableRemoteGatewaysWrapped()  # noqa: E501
         if include_optional:
             return DomainHasReachableRemoteGatewaysWrapped(
                 component = 'appliance',

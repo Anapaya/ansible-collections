@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_telemetry_flow_metrics import ConfigManagementTelemetryFlowMetrics
+from ansible.module_utils.appliance_api_client.models.config_management_telemetry_flow_metrics import ConfigManagementTelemetryFlowMetrics  # noqa: E501
 
 class TestConfigManagementTelemetryFlowMetrics(unittest.TestCase):
     """ConfigManagementTelemetryFlowMetrics unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementTelemetryFlowMetrics(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementTelemetryFlowMetrics`
         """
-        model = ConfigManagementTelemetryFlowMetrics()
+        model = ConfigManagementTelemetryFlowMetrics()  # noqa: E501
         if include_optional:
             return ConfigManagementTelemetryFlowMetrics(
                 cleanup_task_interval = '60s',

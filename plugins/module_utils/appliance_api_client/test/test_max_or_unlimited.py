@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.max_or_unlimited import MaxOrUnlimited
+from ansible.module_utils.appliance_api_client.models.max_or_unlimited import MaxOrUnlimited  # noqa: E501
 
 class TestMaxOrUnlimited(unittest.TestCase):
     """MaxOrUnlimited unit test stubs"""
@@ -34,7 +34,7 @@ class TestMaxOrUnlimited(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MaxOrUnlimited`
         """
-        model = MaxOrUnlimited()
+        model = MaxOrUnlimited()  # noqa: E501
         if include_optional:
             return MaxOrUnlimited(
             )

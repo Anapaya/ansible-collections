@@ -3,7 +3,6 @@
 Configures the feature options of the peer. This field can not be set together with the synchronization field.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **scion_rss** | **bool** | Option to statically enable the SCION RSS feature. If set to true, the local router enables UDP source port entropy on the underlay for SCION packets forwarded to the peer, such that the peer can leverage RSS for SCION traffic. This can greatly improve throughput performance. This must only be set to true if the peer supports the SCION RSS feature. | [optional] [default to False]

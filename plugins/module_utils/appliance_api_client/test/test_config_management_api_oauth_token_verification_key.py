@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_api_oauth_token_verification_key import ConfigManagementApiOauthTokenVerificationKey
+from ansible.module_utils.appliance_api_client.models.config_management_api_oauth_token_verification_key import ConfigManagementApiOauthTokenVerificationKey  # noqa: E501
 
 class TestConfigManagementApiOauthTokenVerificationKey(unittest.TestCase):
     """ConfigManagementApiOauthTokenVerificationKey unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementApiOauthTokenVerificationKey(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementApiOauthTokenVerificationKey`
         """
-        model = ConfigManagementApiOauthTokenVerificationKey()
+        model = ConfigManagementApiOauthTokenVerificationKey()  # noqa: E501
         if include_optional:
             return ConfigManagementApiOauthTokenVerificationKey(
                 id = 'anapaya.auth0',

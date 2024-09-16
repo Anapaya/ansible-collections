@@ -19,73 +19,56 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Optional
 from pydantic import BaseModel
 from ansible.module_utils.appliance_api_client.models.config_cluster_peer_scion_tunneling_endpoint import ConfigClusterPeerScionTunnelingEndpoint
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class ConfigClusterPeerScionTunneling(BaseModel):
     """
-    The relevant SCION tunneling configuration of the peer. This is used so that all appliances can announce the full list of SCION tunneling endpoints in the AS to other ASes.
-    """ # noqa: E501
+    The relevant SCION tunneling configuration of the peer. This is used so that all appliances can announce the full list of SCION tunneling endpoints in the AS to other ASes.  # noqa: E501
+    """
     endpoint: Optional[ConfigClusterPeerScionTunnelingEndpoint] = None
-    __properties: ClassVar[List[str]] = ["endpoint"]
+    __properties = ["endpoint"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigClusterPeerScionTunneling:
         """Create an instance of ConfigClusterPeerScionTunneling from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of endpoint
         if self.endpoint:
             _dict['endpoint'] = self.endpoint.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigClusterPeerScionTunneling:
         """Create an instance of ConfigClusterPeerScionTunneling from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigClusterPeerScionTunneling.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigClusterPeerScionTunneling.parse_obj({
             "endpoint": ConfigClusterPeerScionTunnelingEndpoint.from_dict(obj.get("endpoint")) if obj.get("endpoint") is not None else None
         })
         return _obj

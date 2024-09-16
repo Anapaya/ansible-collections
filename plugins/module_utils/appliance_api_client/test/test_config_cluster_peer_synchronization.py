@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_cluster_peer_synchronization import ConfigClusterPeerSynchronization
+from ansible.module_utils.appliance_api_client.models.config_cluster_peer_synchronization import ConfigClusterPeerSynchronization  # noqa: E501
 
 class TestConfigClusterPeerSynchronization(unittest.TestCase):
     """ConfigClusterPeerSynchronization unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigClusterPeerSynchronization(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigClusterPeerSynchronization`
         """
-        model = ConfigClusterPeerSynchronization()
+        model = ConfigClusterPeerSynchronization()  # noqa: E501
         if include_optional:
             return ConfigClusterPeerSynchronization(
                 address = '192.168.1.1:30100'

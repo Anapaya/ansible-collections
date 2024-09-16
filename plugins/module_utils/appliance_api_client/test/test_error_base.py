@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.error_base import ErrorBase
+from ansible.module_utils.appliance_api_client.models.error_base import ErrorBase  # noqa: E501
 
 class TestErrorBase(unittest.TestCase):
     """ErrorBase unit test stubs"""
@@ -34,7 +34,7 @@ class TestErrorBase(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ErrorBase`
         """
-        model = ErrorBase()
+        model = ErrorBase()  # noqa: E501
         if include_optional:
             return ErrorBase(
                 type = 'https://anapaya.net/probs/bad-request',

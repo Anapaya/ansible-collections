@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.health_api import HealthApi
+from ansible.module_utils.appliance_api_client.api.health_api import HealthApi  # noqa: E501
 
 
 class TestHealthApi(unittest.TestCase):
     """HealthApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = HealthApi()
+        self.api = HealthApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,7 +30,7 @@ class TestHealthApi(unittest.TestCase):
     def test_health_get(self) -> None:
         """Test case for health_get
 
-        Appliance Health
+        Appliance Health  # noqa: E501
         """
         pass
 

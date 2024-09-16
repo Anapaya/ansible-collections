@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_static_announcement import ConfigScionTunnelingStaticAnnouncement
+from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_static_announcement import ConfigScionTunnelingStaticAnnouncement  # noqa: E501
 
 class TestConfigScionTunnelingStaticAnnouncement(unittest.TestCase):
     """ConfigScionTunnelingStaticAnnouncement unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigScionTunnelingStaticAnnouncement(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigScionTunnelingStaticAnnouncement`
         """
-        model = ConfigScionTunnelingStaticAnnouncement()
+        model = ConfigScionTunnelingStaticAnnouncement()  # noqa: E501
         if include_optional:
             return ConfigScionTunnelingStaticAnnouncement(
                 description = '',

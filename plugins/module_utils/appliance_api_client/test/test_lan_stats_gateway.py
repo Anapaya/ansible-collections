@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.lan_stats_gateway import LanStatsGateway
+from ansible.module_utils.appliance_api_client.models.lan_stats_gateway import LanStatsGateway  # noqa: E501
 
 class TestLanStatsGateway(unittest.TestCase):
     """LanStatsGateway unit test stubs"""
@@ -34,7 +34,7 @@ class TestLanStatsGateway(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LanStatsGateway`
         """
-        model = LanStatsGateway()
+        model = LanStatsGateway()  # noqa: E501
         if include_optional:
             return LanStatsGateway(
                 probe_address = '',

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_routing_chain import ScionTunnelingRoutingChain
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_routing_chain import ScionTunnelingRoutingChain  # noqa: E501
 
 class TestScionTunnelingRoutingChain(unittest.TestCase):
     """ScionTunnelingRoutingChain unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingRoutingChain(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingRoutingChain`
         """
-        model = ScionTunnelingRoutingChain()
+        model = ScionTunnelingRoutingChain()  # noqa: E501
         if include_optional:
             return ScionTunnelingRoutingChain(
                 routing_chain_id = '',

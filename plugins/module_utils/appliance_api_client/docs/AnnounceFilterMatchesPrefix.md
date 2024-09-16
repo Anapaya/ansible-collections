@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**AnnounceFilterMatchesPrefixData**](AnnounceFilterMatchesPrefixData.md) |  | 

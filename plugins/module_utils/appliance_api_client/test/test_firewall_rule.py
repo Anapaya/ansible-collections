@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.firewall_rule import FirewallRule
+from ansible.module_utils.appliance_api_client.models.firewall_rule import FirewallRule  # noqa: E501
 
 class TestFirewallRule(unittest.TestCase):
     """FirewallRule unit test stubs"""
@@ -34,7 +34,7 @@ class TestFirewallRule(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FirewallRule`
         """
-        model = FirewallRule()
+        model = FirewallRule()  # noqa: E501
         if include_optional:
             return FirewallRule(
                 rule = '',

@@ -3,7 +3,6 @@
 List of loopback interfaces.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **addresses** | **List[str]** | The list of addresses configured on the loopback interface. | [optional] 

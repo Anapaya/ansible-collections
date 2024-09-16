@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_sgrp_local_prefixes import ScionTunnelingSGRPLocalPrefixes
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_sgrp_local_prefixes import ScionTunnelingSGRPLocalPrefixes  # noqa: E501
 
 class TestScionTunnelingSGRPLocalPrefixes(unittest.TestCase):
     """ScionTunnelingSGRPLocalPrefixes unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingSGRPLocalPrefixes(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingSGRPLocalPrefixes`
         """
-        model = ScionTunnelingSGRPLocalPrefixes()
+        model = ScionTunnelingSGRPLocalPrefixes()  # noqa: E501
         if include_optional:
             return ScionTunnelingSGRPLocalPrefixes(
                 static = ansible.module_utils.appliance_api_client.models.scion_tunneling_sgrp_local_prefixes_static.ScionTunnelingSGRPLocalPrefixesStatic(

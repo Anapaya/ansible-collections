@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.ping_run import PingRun
+from ansible.module_utils.appliance_api_client.models.ping_run import PingRun  # noqa: E501
 
 class TestPingRun(unittest.TestCase):
     """PingRun unit test stubs"""
@@ -34,7 +34,7 @@ class TestPingRun(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PingRun`
         """
-        model = PingRun()
+        model = PingRun()  # noqa: E501
         if include_optional:
             return PingRun(
                 destination_host = '',

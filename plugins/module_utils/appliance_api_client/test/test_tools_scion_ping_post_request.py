@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.tools_scion_ping_post_request import ToolsScionPingPostRequest
+from ansible.module_utils.appliance_api_client.models.tools_scion_ping_post_request import ToolsScionPingPostRequest  # noqa: E501
 
 class TestToolsScionPingPostRequest(unittest.TestCase):
     """ToolsScionPingPostRequest unit test stubs"""
@@ -34,7 +34,7 @@ class TestToolsScionPingPostRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ToolsScionPingPostRequest`
         """
-        model = ToolsScionPingPostRequest()
+        model = ToolsScionPingPostRequest()  # noqa: E501
         if include_optional:
             return ToolsScionPingPostRequest(
                 run = ansible.module_utils.appliance_api_client.models.ping_run.PingRun(

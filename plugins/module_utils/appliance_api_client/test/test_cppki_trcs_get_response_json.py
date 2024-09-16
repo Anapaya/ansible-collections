@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.cppki_trcs_get_response_json import CppkiTrcsGetResponseJson
+from ansible.module_utils.appliance_api_client.models.cppki_trcs_get_response_json import CppkiTrcsGetResponseJson  # noqa: E501
 
 class TestCppkiTrcsGetResponseJson(unittest.TestCase):
     """CppkiTrcsGetResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestCppkiTrcsGetResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CppkiTrcsGetResponseJson`
         """
-        model = CppkiTrcsGetResponseJson()
+        model = CppkiTrcsGetResponseJson()  # noqa: E501
         if include_optional:
             return CppkiTrcsGetResponseJson(
                 trcs = [

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.domain_has_paths_to_remote_data import DomainHasPathsToRemoteData
+from ansible.module_utils.appliance_api_client.models.domain_has_paths_to_remote_data import DomainHasPathsToRemoteData  # noqa: E501
 
 class TestDomainHasPathsToRemoteData(unittest.TestCase):
     """DomainHasPathsToRemoteData unit test stubs"""
@@ -34,7 +34,7 @@ class TestDomainHasPathsToRemoteData(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DomainHasPathsToRemoteData`
         """
-        model = DomainHasPathsToRemoteData()
+        model = DomainHasPathsToRemoteData()  # noqa: E501
         if include_optional:
             return DomainHasPathsToRemoteData(
                 domain = '',

@@ -21,7 +21,6 @@ Get the configured customization for a service, along with its state.
 
 ### Example
 
-
 ```python
 import time
 import os
@@ -57,7 +56,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **service_type** | [**ServiceType**](.md)| Service Type | 
@@ -76,7 +74,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -93,7 +90,6 @@ Get the custom template for a service.
 Get the configured custom template for a service, along with its state.
 
 ### Example
-
 
 ```python
 import time
@@ -129,7 +125,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **service_type** | [**ServiceType**](.md)| Service Type | 
@@ -148,7 +143,6 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -165,7 +159,6 @@ Put a custom template for a service.
 Put a new custom template for a service, along with its state.
 
 ### Example
-
 
 ```python
 import time
@@ -203,7 +196,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **service_type** | [**ServiceType**](.md)| Service Type | 
@@ -223,7 +215,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -240,7 +231,6 @@ Get the current configuration
 Get the currently active appliance configuration.
 
 ### Example
-
 
 ```python
 import time
@@ -277,7 +267,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **if_none_match** | **str**|  | [optional] 
@@ -297,7 +286,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -315,7 +303,6 @@ Put a new configuration
 Put a new configuration to the appliance.
 
 ### Example
-
 
 ```python
 import time
@@ -355,7 +342,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **config_put_request** | [**ConfigPutRequest**](ConfigPutRequest.md)| The config to be pushed to the appliance. | 
@@ -377,7 +363,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -395,7 +380,6 @@ Validates a configuration
 Validates a configuration.
 
 ### Example
-
 
 ```python
 import time
@@ -433,7 +417,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **config_put_request** | [**ConfigPutRequest**](ConfigPutRequest.md)| The config to be validated. | 
@@ -453,7 +436,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |

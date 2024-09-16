@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_remote_repository_cloudsmith import ConfigManagementRemoteRepositoryCloudsmith
+from ansible.module_utils.appliance_api_client.models.config_management_remote_repository_cloudsmith import ConfigManagementRemoteRepositoryCloudsmith  # noqa: E501
 
 class TestConfigManagementRemoteRepositoryCloudsmith(unittest.TestCase):
     """ConfigManagementRemoteRepositoryCloudsmith unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementRemoteRepositoryCloudsmith(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementRemoteRepositoryCloudsmith`
         """
-        model = ConfigManagementRemoteRepositoryCloudsmith()
+        model = ConfigManagementRemoteRepositoryCloudsmith()  # noqa: E501
         if include_optional:
             return ConfigManagementRemoteRepositoryCloudsmith(
                 access_token = 'APIKEY#ENTITLEMENTTOKEN',

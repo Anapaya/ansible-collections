@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.traceroute_summary import TracerouteSummary
+from ansible.module_utils.appliance_api_client.models.traceroute_summary import TracerouteSummary  # noqa: E501
 
 class TestTracerouteSummary(unittest.TestCase):
     """TracerouteSummary unit test stubs"""
@@ -34,7 +34,7 @@ class TestTracerouteSummary(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TracerouteSummary`
         """
-        model = TracerouteSummary()
+        model = TracerouteSummary()  # noqa: E501
         if include_optional:
             return TracerouteSummary(
                 path = ansible.module_utils.appliance_api_client.models.path.Path(

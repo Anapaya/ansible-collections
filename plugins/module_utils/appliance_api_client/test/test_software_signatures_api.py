@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.software_signatures_api import SoftwareSignaturesApi
+from ansible.module_utils.appliance_api_client.api.software_signatures_api import SoftwareSignaturesApi  # noqa: E501
 
 
 class TestSoftwareSignaturesApi(unittest.TestCase):
     """SoftwareSignaturesApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = SoftwareSignaturesApi()
+        self.api = SoftwareSignaturesApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,28 +30,28 @@ class TestSoftwareSignaturesApi(unittest.TestCase):
     def test_get_keys(self) -> None:
         """Test case for get_keys
 
-        Get the public signing keys.
+        Get the public signing keys.  # noqa: E501
         """
         pass
 
     def test_get_signatures(self) -> None:
         """Test case for get_signatures
 
-        Get the specified signatures
+        Get the specified signatures  # noqa: E501
         """
         pass
 
     def test_post_keys(self) -> None:
         """Test case for post_keys
 
-        Install new public signing keys.
+        Install new public signing keys.  # noqa: E501
         """
         pass
 
     def test_post_signatures(self) -> None:
         """Test case for post_signatures
 
-        Install signatures.
+        Install signatures.  # noqa: E501
         """
         pass
 

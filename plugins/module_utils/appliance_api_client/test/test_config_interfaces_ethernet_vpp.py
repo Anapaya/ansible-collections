@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_ethernet_vpp import ConfigInterfacesEthernetVpp
+from ansible.module_utils.appliance_api_client.models.config_interfaces_ethernet_vpp import ConfigInterfacesEthernetVpp  # noqa: E501
 
 class TestConfigInterfacesEthernetVpp(unittest.TestCase):
     """ConfigInterfacesEthernetVpp unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesEthernetVpp(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesEthernetVpp`
         """
-        model = ConfigInterfacesEthernetVpp()
+        model = ConfigInterfacesEthernetVpp()  # noqa: E501
         if include_optional:
             return ConfigInterfacesEthernetVpp(
                 vlan_strip_offload = True

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_api_listener import ConfigManagementApiListener
+from ansible.module_utils.appliance_api_client.models.config_management_api_listener import ConfigManagementApiListener  # noqa: E501
 
 class TestConfigManagementApiListener(unittest.TestCase):
     """ConfigManagementApiListener unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementApiListener(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementApiListener`
         """
-        model = ConfigManagementApiListener()
+        model = ConfigManagementApiListener()  # noqa: E501
         if include_optional:
             return ConfigManagementApiListener(
                 address = '127.0.0.1:443',

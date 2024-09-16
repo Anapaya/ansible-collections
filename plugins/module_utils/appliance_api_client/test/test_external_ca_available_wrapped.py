@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.external_ca_available_wrapped import ExternalCAAvailableWrapped
+from ansible.module_utils.appliance_api_client.models.external_ca_available_wrapped import ExternalCAAvailableWrapped  # noqa: E501
 
 class TestExternalCAAvailableWrapped(unittest.TestCase):
     """ExternalCAAvailableWrapped unit test stubs"""
@@ -34,7 +34,7 @@ class TestExternalCAAvailableWrapped(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ExternalCAAvailableWrapped`
         """
-        model = ExternalCAAvailableWrapped()
+        model = ExternalCAAvailableWrapped()  # noqa: E501
         if include_optional:
             return ExternalCAAvailableWrapped(
                 component = 'appliance',

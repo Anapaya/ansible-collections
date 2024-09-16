@@ -19,72 +19,54 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictStr, conlist
 
 class ConfigNatSnat(BaseModel):
     """
-    Top-level configuration and state for the source NAT.
-    """ # noqa: E501
-    address_pool: Optional[List[StrictStr]] = Field(default=None, description="The list of IP prefixes to use as the source NAT pool.")
-    exclude: Optional[List[StrictStr]] = Field(default=None, description="The list of IP prefixes to exclude from the NAT. The number of IP addresses that can be excluded is limited.")
-    interfaces: Optional[List[StrictStr]] = Field(default=None, description="The list of interfaces to do the NAT. These are typically interfaces connected to the local network")
-    __properties: ClassVar[List[str]] = ["address_pool", "exclude", "interfaces"]
+    Top-level configuration and state for the source NAT.  # noqa: E501
+    """
+    address_pool: Optional[conlist(StrictStr)] = Field(None, description="The list of IP prefixes to use as the source NAT pool.")
+    exclude: Optional[conlist(StrictStr)] = Field(None, description="The list of IP prefixes to exclude from the NAT. The number of IP addresses that can be excluded is limited.")
+    interfaces: Optional[conlist(StrictStr)] = Field(None, description="The list of interfaces to do the NAT. These are typically interfaces connected to the local network")
+    __properties = ["address_pool", "exclude", "interfaces"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigNatSnat:
         """Create an instance of ConfigNatSnat from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigNatSnat:
         """Create an instance of ConfigNatSnat from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigNatSnat.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigNatSnat.parse_obj({
             "address_pool": obj.get("address_pool"),
             "exclude": obj.get("exclude"),
             "interfaces": obj.get("interfaces")

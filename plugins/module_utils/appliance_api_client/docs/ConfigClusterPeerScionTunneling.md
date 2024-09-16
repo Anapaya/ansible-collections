@@ -3,7 +3,6 @@
 The relevant SCION tunneling configuration of the peer. This is used so that all appliances can announce the full list of SCION tunneling endpoints in the AS to other ASes.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **endpoint** | [**ConfigClusterPeerScionTunnelingEndpoint**](ConfigClusterPeerScionTunnelingEndpoint.md) |  | [optional] 

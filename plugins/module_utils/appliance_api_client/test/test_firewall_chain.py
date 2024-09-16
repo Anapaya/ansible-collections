@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.firewall_chain import FirewallChain
+from ansible.module_utils.appliance_api_client.models.firewall_chain import FirewallChain  # noqa: E501
 
 class TestFirewallChain(unittest.TestCase):
     """FirewallChain unit test stubs"""
@@ -34,7 +34,7 @@ class TestFirewallChain(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FirewallChain`
         """
-        model = FirewallChain()
+        model = FirewallChain()  # noqa: E501
         if include_optional:
             return FirewallChain(
                 name = '',

@@ -3,7 +3,6 @@
 The management features.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **api_oauth_disallowed** | **bool** | If true, the API OAuth feature is disallowed.  | [optional] 

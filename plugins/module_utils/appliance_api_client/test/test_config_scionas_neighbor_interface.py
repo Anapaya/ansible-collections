@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scionas_neighbor_interface import ConfigSCIONASNeighborInterface
+from ansible.module_utils.appliance_api_client.models.config_scionas_neighbor_interface import ConfigSCIONASNeighborInterface  # noqa: E501
 
 class TestConfigSCIONASNeighborInterface(unittest.TestCase):
     """ConfigSCIONASNeighborInterface unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONASNeighborInterface(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONASNeighborInterface`
         """
-        model = ConfigSCIONASNeighborInterface()
+        model = ConfigSCIONASNeighborInterface()  # noqa: E501
         if include_optional:
             return ConfigSCIONASNeighborInterface(
                 address = '169.254.0.1:30100',

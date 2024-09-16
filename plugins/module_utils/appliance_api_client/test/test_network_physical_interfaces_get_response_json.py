@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.network_physical_interfaces_get_response_json import NetworkPhysicalInterfacesGetResponseJson
+from ansible.module_utils.appliance_api_client.models.network_physical_interfaces_get_response_json import NetworkPhysicalInterfacesGetResponseJson  # noqa: E501
 
 class TestNetworkPhysicalInterfacesGetResponseJson(unittest.TestCase):
     """NetworkPhysicalInterfacesGetResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestNetworkPhysicalInterfacesGetResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `NetworkPhysicalInterfacesGetResponseJson`
         """
-        model = NetworkPhysicalInterfacesGetResponseJson()
+        model = NetworkPhysicalInterfacesGetResponseJson()  # noqa: E501
         if include_optional:
             return NetworkPhysicalInterfacesGetResponseJson(
                 interfaces = [

@@ -3,7 +3,6 @@
 Global configuration for the BGP router
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_as** | **int** | Local BGP autonomous system number of the router. Uses the 32-bit as-number type from the model in RFC 6991. | [optional] 

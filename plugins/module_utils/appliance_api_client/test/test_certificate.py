@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.certificate import Certificate
+from ansible.module_utils.appliance_api_client.models.certificate import Certificate  # noqa: E501
 
 class TestCertificate(unittest.TestCase):
     """Certificate unit test stubs"""
@@ -34,7 +34,7 @@ class TestCertificate(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Certificate`
         """
-        model = Certificate()
+        model = Certificate()  # noqa: E501
         if include_optional:
             return Certificate(
                 distinguished_name = '',

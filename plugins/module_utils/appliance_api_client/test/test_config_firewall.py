@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_firewall import ConfigFirewall
+from ansible.module_utils.appliance_api_client.models.config_firewall import ConfigFirewall  # noqa: E501
 
 class TestConfigFirewall(unittest.TestCase):
     """ConfigFirewall unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigFirewall(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigFirewall`
         """
-        model = ConfigFirewall()
+        model = ConfigFirewall()  # noqa: E501
         if include_optional:
             return ConfigFirewall(
                 mode = 'AUTO',

@@ -19,73 +19,55 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictStr, conlist
 
 class ConfigScionTunnelingPathFilter(BaseModel):
     """
-    List of path filters. A path filter filters the set of paths that can be used for IP-in-SCION tunneling. The filter must include an ACL and/or a hop pattern. A path is included if it is accepted by both the ACL and the hop pattern (if specified).
-    """ # noqa: E501
-    acl: Optional[List[StrictStr]] = Field(default=None, description="The ACL that is applied on the path. An ACL consists of a list of ACL entries. Each ACL entry has the form `action hop-predicate`, where the action can either be accept (+) or deny (-). The hop predicate is optional and has the form `isd-as#interface`, where `isd` is the ISD identifier, `as` is the AS identifier, and `interface` is the interface identifier of a SCION path hop. The hop predicate can be fully or partially qualified, i.e., all entries of the hop predicate are optional or can include wildcards (0). If no hop predicate is specified the action matches every hop, i.e., a single '+' is the default accept action and a single '-' is the default deny action. The ACL is applied by sequentially applying all ACL entries to paths. If the ACL is empty, it defaults to accepting all paths.")
-    description: Optional[StrictStr] = Field(default=None, description="Description, or comment, for the path filter.")
-    hop_pattern: Optional[StrictStr] = Field(default=None, description="The sequence of hop predicates that a path has to match to be accepted. Each hop predicate can optionally be extended with a modifier '*' or '+'. The '*' modifier means 0 or more occurrences. The '+' means one or more occurrences.")
-    name: Optional[StrictStr] = Field(default=None, description="Name of the path filter. This is value is used by the path policy to reference the path filter.")
-    __properties: ClassVar[List[str]] = ["acl", "description", "hop_pattern", "name"]
+    List of path filters. A path filter filters the set of paths that can be used for IP-in-SCION tunneling. The filter must include an ACL and/or a hop pattern. A path is included if it is accepted by both the ACL and the hop pattern (if specified).  # noqa: E501
+    """
+    acl: Optional[conlist(StrictStr)] = Field(None, description="The ACL that is applied on the path. An ACL consists of a list of ACL entries. Each ACL entry has the form `action hop-predicate`, where the action can either be accept (+) or deny (-). The hop predicate is optional and has the form `isd-as#interface`, where `isd` is the ISD identifier, `as` is the AS identifier, and `interface` is the interface identifier of a SCION path hop. The hop predicate can be fully or partially qualified, i.e., all entries of the hop predicate are optional or can include wildcards (0). If no hop predicate is specified the action matches every hop, i.e., a single '+' is the default accept action and a single '-' is the default deny action. The ACL is applied by sequentially applying all ACL entries to paths. If the ACL is empty, it defaults to accepting all paths.")
+    description: Optional[StrictStr] = Field(None, description="Description, or comment, for the path filter.")
+    hop_pattern: Optional[StrictStr] = Field(None, description="The sequence of hop predicates that a path has to match to be accepted. Each hop predicate can optionally be extended with a modifier '*' or '+'. The '*' modifier means 0 or more occurrences. The '+' means one or more occurrences.")
+    name: Optional[StrictStr] = Field(None, description="Name of the path filter. This is value is used by the path policy to reference the path filter.")
+    __properties = ["acl", "description", "hop_pattern", "name"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigScionTunnelingPathFilter:
         """Create an instance of ConfigScionTunnelingPathFilter from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigScionTunnelingPathFilter:
         """Create an instance of ConfigScionTunnelingPathFilter from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigScionTunnelingPathFilter.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigScionTunnelingPathFilter.parse_obj({
             "acl": obj.get("acl"),
             "description": obj.get("description"),
             "hop_pattern": obj.get("hop_pattern"),

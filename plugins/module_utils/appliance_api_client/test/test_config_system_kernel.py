@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_system_kernel import ConfigSystemKernel
+from ansible.module_utils.appliance_api_client.models.config_system_kernel import ConfigSystemKernel  # noqa: E501
 
 class TestConfigSystemKernel(unittest.TestCase):
     """ConfigSystemKernel unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSystemKernel(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSystemKernel`
         """
-        model = ConfigSystemKernel()
+        model = ConfigSystemKernel()  # noqa: E501
         if include_optional:
             return ConfigSystemKernel(
                 hugepage_size = '2M',

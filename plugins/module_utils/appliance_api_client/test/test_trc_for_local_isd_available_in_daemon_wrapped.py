@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_in_daemon_wrapped import TRCForLocalISDAvailableInDaemonWrapped
+from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_in_daemon_wrapped import TRCForLocalISDAvailableInDaemonWrapped  # noqa: E501
 
 class TestTRCForLocalISDAvailableInDaemonWrapped(unittest.TestCase):
     """TRCForLocalISDAvailableInDaemonWrapped unit test stubs"""
@@ -34,7 +34,7 @@ class TestTRCForLocalISDAvailableInDaemonWrapped(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TRCForLocalISDAvailableInDaemonWrapped`
         """
-        model = TRCForLocalISDAvailableInDaemonWrapped()
+        model = TRCForLocalISDAvailableInDaemonWrapped()  # noqa: E501
         if include_optional:
             return TRCForLocalISDAvailableInDaemonWrapped(
                 component = 'appliance',

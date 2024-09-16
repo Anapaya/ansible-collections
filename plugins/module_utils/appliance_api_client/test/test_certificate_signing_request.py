@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.certificate_signing_request import CertificateSigningRequest
+from ansible.module_utils.appliance_api_client.models.certificate_signing_request import CertificateSigningRequest  # noqa: E501
 
 class TestCertificateSigningRequest(unittest.TestCase):
     """CertificateSigningRequest unit test stubs"""
@@ -34,7 +34,7 @@ class TestCertificateSigningRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CertificateSigningRequest`
         """
-        model = CertificateSigningRequest()
+        model = CertificateSigningRequest()  # noqa: E501
         if include_optional:
             return CertificateSigningRequest(
                 subject = ansible.module_utils.appliance_api_client.models.subject_of_a_certificate_signing_request/.Subject of a certificate signing request.(

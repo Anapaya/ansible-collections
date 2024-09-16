@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.ping_statistics import PingStatistics
+from ansible.module_utils.appliance_api_client.models.ping_statistics import PingStatistics  # noqa: E501
 
 class TestPingStatistics(unittest.TestCase):
     """PingStatistics unit test stubs"""
@@ -34,7 +34,7 @@ class TestPingStatistics(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PingStatistics`
         """
-        model = PingStatistics()
+        model = PingStatistics()  # noqa: E501
         if include_optional:
             return PingStatistics(
                 sent = 56,

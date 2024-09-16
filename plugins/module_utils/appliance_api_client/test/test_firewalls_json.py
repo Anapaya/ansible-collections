@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.firewalls_json import FirewallsJson
+from ansible.module_utils.appliance_api_client.models.firewalls_json import FirewallsJson  # noqa: E501
 
 class TestFirewallsJson(unittest.TestCase):
     """FirewallsJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestFirewallsJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FirewallsJson`
         """
-        model = FirewallsJson()
+        model = FirewallsJson()  # noqa: E501
         if include_optional:
             return FirewallsJson(
                 tables = [

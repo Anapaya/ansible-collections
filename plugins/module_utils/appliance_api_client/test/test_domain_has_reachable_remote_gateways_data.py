@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.domain_has_reachable_remote_gateways_data import DomainHasReachableRemoteGatewaysData
+from ansible.module_utils.appliance_api_client.models.domain_has_reachable_remote_gateways_data import DomainHasReachableRemoteGatewaysData  # noqa: E501
 
 class TestDomainHasReachableRemoteGatewaysData(unittest.TestCase):
     """DomainHasReachableRemoteGatewaysData unit test stubs"""
@@ -34,7 +34,7 @@ class TestDomainHasReachableRemoteGatewaysData(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DomainHasReachableRemoteGatewaysData`
         """
-        model = DomainHasReachableRemoteGatewaysData()
+        model = DomainHasReachableRemoteGatewaysData()  # noqa: E501
         if include_optional:
             return DomainHasReachableRemoteGatewaysData(
                 domain = '',

@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **traffic_policy_id** | **int** | Unique ID of this traffic class. | 

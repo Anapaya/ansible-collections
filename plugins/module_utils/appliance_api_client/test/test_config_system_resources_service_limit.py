@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_system_resources_service_limit import ConfigSystemResourcesServiceLimit
+from ansible.module_utils.appliance_api_client.models.config_system_resources_service_limit import ConfigSystemResourcesServiceLimit  # noqa: E501
 
 class TestConfigSystemResourcesServiceLimit(unittest.TestCase):
     """ConfigSystemResourcesServiceLimit unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSystemResourcesServiceLimit(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSystemResourcesServiceLimit`
         """
-        model = ConfigSystemResourcesServiceLimit()
+        model = ConfigSystemResourcesServiceLimit()  # noqa: E501
         if include_optional:
             return ConfigSystemResourcesServiceLimit(
                 cpu = 1.5,

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_api_oauth_role import ConfigManagementApiOauthRole
+from ansible.module_utils.appliance_api_client.models.config_management_api_oauth_role import ConfigManagementApiOauthRole  # noqa: E501
 
 class TestConfigManagementApiOauthRole(unittest.TestCase):
     """ConfigManagementApiOauthRole unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementApiOauthRole(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementApiOauthRole`
         """
-        model = ConfigManagementApiOauthRole()
+        model = ConfigManagementApiOauthRole()  # noqa: E501
         if include_optional:
             return ConfigManagementApiOauthRole(
                 aliases = [

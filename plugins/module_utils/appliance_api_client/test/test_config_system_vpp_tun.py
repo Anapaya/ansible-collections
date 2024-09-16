@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_system_vpp_tun import ConfigSystemVppTun
+from ansible.module_utils.appliance_api_client.models.config_system_vpp_tun import ConfigSystemVppTun  # noqa: E501
 
 class TestConfigSystemVppTun(unittest.TestCase):
     """ConfigSystemVppTun unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSystemVppTun(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSystemVppTun`
         """
-        model = ConfigSystemVppTun()
+        model = ConfigSystemVppTun()  # noqa: E501
         if include_optional:
             return ConfigSystemVppTun(
                 mtu = 1500,

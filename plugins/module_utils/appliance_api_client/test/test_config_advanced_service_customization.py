@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_advanced_service_customization import ConfigAdvancedServiceCustomization
+from ansible.module_utils.appliance_api_client.models.config_advanced_service_customization import ConfigAdvancedServiceCustomization  # noqa: E501
 
 class TestConfigAdvancedServiceCustomization(unittest.TestCase):
     """ConfigAdvancedServiceCustomization unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigAdvancedServiceCustomization(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigAdvancedServiceCustomization`
         """
-        model = ConfigAdvancedServiceCustomization()
+        model = ConfigAdvancedServiceCustomization()  # noqa: E501
         if include_optional:
             return ConfigAdvancedServiceCustomization(
                 disabled = True,

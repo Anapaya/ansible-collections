@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_ethernet_vrrp import ConfigInterfacesEthernetVrrp
+from ansible.module_utils.appliance_api_client.models.config_interfaces_ethernet_vrrp import ConfigInterfacesEthernetVrrp  # noqa: E501
 
 class TestConfigInterfacesEthernetVrrp(unittest.TestCase):
     """ConfigInterfacesEthernetVrrp unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesEthernetVrrp(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesEthernetVrrp`
         """
-        model = ConfigInterfacesEthernetVrrp()
+        model = ConfigInterfacesEthernetVrrp()  # noqa: E501
         if include_optional:
             return ConfigInterfacesEthernetVrrp(
                 addresses = [

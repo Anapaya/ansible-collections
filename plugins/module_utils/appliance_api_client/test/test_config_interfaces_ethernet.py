@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_ethernet import ConfigInterfacesEthernet
+from ansible.module_utils.appliance_api_client.models.config_interfaces_ethernet import ConfigInterfacesEthernet  # noqa: E501
 
 class TestConfigInterfacesEthernet(unittest.TestCase):
     """ConfigInterfacesEthernet unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesEthernet(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesEthernet`
         """
-        model = ConfigInterfacesEthernet()
+        model = ConfigInterfacesEthernet()  # noqa: E501
         if include_optional:
             return ConfigInterfacesEthernet(
                 accept_ra = True,

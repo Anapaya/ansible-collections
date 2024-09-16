@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.traceroute_hop_info import TracerouteHopInfo
+from ansible.module_utils.appliance_api_client.models.traceroute_hop_info import TracerouteHopInfo  # noqa: E501
 
 class TestTracerouteHopInfo(unittest.TestCase):
     """TracerouteHopInfo unit test stubs"""
@@ -34,7 +34,7 @@ class TestTracerouteHopInfo(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TracerouteHopInfo`
         """
-        model = TracerouteHopInfo()
+        model = TracerouteHopInfo()  # noqa: E501
         if include_optional:
             return TracerouteHopInfo(
                 isd_as = '1-ff00:0:110',

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_get_response_json import ConfigGetResponseJson
+from ansible.module_utils.appliance_api_client.models.config_get_response_json import ConfigGetResponseJson  # noqa: E501
 
 class TestConfigGetResponseJson(unittest.TestCase):
     """ConfigGetResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigGetResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigGetResponseJson`
         """
-        model = ConfigGetResponseJson()
+        model = ConfigGetResponseJson()  # noqa: E501
         if include_optional:
             return ConfigGetResponseJson(
                 config = ansible.module_utils.appliance_api_client.models.config.Config(

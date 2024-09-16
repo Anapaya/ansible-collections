@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.vpp_api import VppApi
+from ansible.module_utils.appliance_api_client.api.vpp_api import VppApi  # noqa: E501
 
 
 class TestVppApi(unittest.TestCase):
     """VppApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = VppApi()
+        self.api = VppApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,420 +30,420 @@ class TestVppApi(unittest.TestCase):
     def test_get_debug_vpp_address(self) -> None:
         """Test case for get_debug_vpp_address
 
-        Status page listing addresses on VPP interfaces.
+        Status page listing addresses on VPP interfaces.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_bfd(self) -> None:
         """Test case for get_debug_vpp_bfd
 
-        Status page reporting the bfd session states.
+        Status page reporting the bfd session states.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_bond(self) -> None:
         """Test case for get_debug_vpp_bond
 
-        Status page reporting bonds created by VPP.
+        Status page reporting bonds created by VPP.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_buffers(self) -> None:
         """Test case for get_debug_vpp_buffers
 
-        Status page reporting VPP buffers.
+        Status page reporting VPP buffers.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_clear_errors(self) -> None:
         """Test case for get_debug_vpp_clear_errors
 
-        Action path to clear VPP errors.
+        Action path to clear VPP errors.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_clear_interfaces(self) -> None:
         """Test case for get_debug_vpp_clear_interfaces
 
-        Action path to clear the metrics on VPP interfaces.
+        Action path to clear the metrics on VPP interfaces.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_clear_runtime(self) -> None:
         """Test case for get_debug_vpp_clear_runtime
 
-        Action path to clear the VPP runtime.
+        Action path to clear the VPP runtime.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_coredump(self) -> None:
         """Test case for get_debug_vpp_coredump
 
-        Download the coredump.
+        Download the coredump.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_coredumps(self) -> None:
         """Test case for get_debug_vpp_coredumps
 
-        Get the list of avaiable VPP coredumps.
+        Get the list of avaiable VPP coredumps.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_dataplane_control(self) -> None:
         """Test case for get_debug_vpp_dataplane_control
 
-        Dump of the VPP state set up by dataplane-control service.
+        Dump of the VPP state set up by dataplane-control service.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_error(self) -> None:
         """Test case for get_debug_vpp_error
 
-        Status page reporting VPP errors.
+        Status page reporting VPP errors.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_events(self) -> None:
         """Test case for get_debug_vpp_events
 
-        Status page reporting VPP events.
+        Status page reporting VPP events.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_fib_ip4(self) -> None:
         """Test case for get_debug_vpp_fib_ip4
 
-        Status page reporting VPP IPv4 FIB.
+        Status page reporting VPP IPv4 FIB.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_fib_ip6(self) -> None:
         """Test case for get_debug_vpp_fib_ip6
 
-        Status page reporting VPP IPv6 FIB.
+        Status page reporting VPP IPv6 FIB.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_fib_ll(self) -> None:
         """Test case for get_debug_vpp_fib_ll
 
-        Status page reporting VPP IPv6 link-local FIB.
+        Status page reporting VPP IPv6 link-local FIB.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_gateway(self) -> None:
         """Test case for get_debug_vpp_gateway
 
-        Dump of the VPP state set up by the gateway service.
+        Dump of the VPP state set up by the gateway service.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_hardware(self) -> None:
         """Test case for get_debug_vpp_hardware
 
-        Status page listing hardware interfaces managed by VPP.
+        Status page listing hardware interfaces managed by VPP.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_interface(self) -> None:
         """Test case for get_debug_vpp_interface
 
-        Status page listing internal VPP interfaces.
+        Status page listing internal VPP interfaces.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_lacp(self) -> None:
         """Test case for get_debug_vpp_lacp
 
-        Status page reporting VPP LACP info.
+        Status page reporting VPP LACP info.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_lcp(self) -> None:
         """Test case for get_debug_vpp_lcp
 
-        Status page listing interfaces mirrored from VPP to Linux.
+        Status page listing interfaces mirrored from VPP to Linux.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_logging(self) -> None:
         """Test case for get_debug_vpp_logging
 
-        Status page reporting VPP logs.
+        Status page reporting VPP logs.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_memory(self) -> None:
         """Test case for get_debug_vpp_memory
 
-        Status page reporting VPP memory.
+        Status page reporting VPP memory.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_neighbors_ip4(self) -> None:
         """Test case for get_debug_vpp_neighbors_ip4
 
-        Status page reporting VPP IPv4 neighbors.
+        Status page reporting VPP IPv4 neighbors.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_neighbors_ip6(self) -> None:
         """Test case for get_debug_vpp_neighbors_ip6
 
-        Status page reporting VPP IPv6 neighbors.
+        Status page reporting VPP IPv6 neighbors.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_plugins(self) -> None:
         """Test case for get_debug_vpp_plugins
 
-        Status page listing of loaded VPP plugins.
+        Status page listing of loaded VPP plugins.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_runtime(self) -> None:
         """Test case for get_debug_vpp_runtime
 
-        Status page reporting VPP runtime.
+        Status page reporting VPP runtime.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_interface(self) -> None:
         """Test case for get_debug_vpp_scion_interface
 
-        Status page reporting the SCION interfaces.
+        Status page reporting the SCION interfaces.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_ipfix_params(self) -> None:
         """Test case for get_debug_vpp_scion_ipfix_params
 
-        Status page reporting the SCION router IPFIX parameters.
+        Status page reporting the SCION router IPFIX parameters.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_ipfix_statistics(self) -> None:
         """Test case for get_debug_vpp_scion_ipfix_statistics
 
-        Status page reporting the SCION router IPFIX statistics.
+        Status page reporting the SCION router IPFIX statistics.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_ipfix_table(self) -> None:
         """Test case for get_debug_vpp_scion_ipfix_table
 
-        Status page reporting the SCION router IPFIX table.
+        Status page reporting the SCION router IPFIX table.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_isd_as(self) -> None:
         """Test case for get_debug_vpp_scion_isd_as
 
-        Status page reporting the SCION router ASes.
+        Status page reporting the SCION router ASes.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_reservation(self) -> None:
         """Test case for get_debug_vpp_scion_reservation
 
-        Status page reporting the SCION router bandwidth reservations.
+        Status page reporting the SCION router bandwidth reservations.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_svc(self) -> None:
         """Test case for get_debug_vpp_scion_svc
 
-        Status page reporting the SCION services.
+        Status page reporting the SCION services.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_decap_to_output(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_decap_to_output
 
-        SCION gateway: trace all ingress IP packets.
+        SCION gateway: trace all ingress IP packets.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_dpdk_to_decap(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_dpdk_to_decap
 
-        SCION gateway: trace all ingress frames entering via dpdk.
+        SCION gateway: trace all ingress frames entering via dpdk.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_dpdk_to_encap4(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_dpdk_to_encap4
 
-        SCION gateway: trace all egress IPv4 packets entering via dpdk.
+        SCION gateway: trace all egress IPv4 packets entering via dpdk.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_dpdk_to_encap6(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_dpdk_to_encap6
 
-        SCION gateway: trace all egress IPv6 packets entering via dpdk.
+        SCION gateway: trace all egress IPv6 packets entering via dpdk.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_encap4_to_output(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_encap4_to_output
 
-        SCION gateway: trace all egress frames on top of IPv4 underlay.
+        SCION gateway: trace all egress frames on top of IPv4 underlay.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_encap6_to_output(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_encap6_to_output
 
-        SCION gateway: trace all egress frames on top of IPv6 underlay.
+        SCION gateway: trace all egress frames on top of IPv6 underlay.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_info(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_info
 
-        SCION gateway: global settings.
+        SCION gateway: global settings.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_iremote_ia(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_iremote_ia
 
-        SCION gateway: remote ASes.
+        SCION gateway: remote ASes.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_memif_to_decap(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_memif_to_decap
 
-        SCION gateway: trace all ingress frames entering via memif.
+        SCION gateway: trace all ingress frames entering via memif.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_memif_to_encap4(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_memif_to_encap4
 
-        SCION gateway: trace all egress IPv4 packets entering via memif.
+        SCION gateway: trace all egress IPv4 packets entering via memif.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_memif_to_encap6(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_memif_to_encap6
 
-        SCION gateway: trace all egress IPv6 packets entering via memif.
+        SCION gateway: trace all egress IPv6 packets entering via memif.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_path(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_path
 
-        SCION gateway: known paths.
+        SCION gateway: known paths.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_routing(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_routing
 
-        SCION gateway: routing hierarchy.
+        SCION gateway: routing hierarchy.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_routing_chain(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_routing_chain
 
-        SCION gateway: routing chains.
+        SCION gateway: routing chains.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_session(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_session
 
-        SCION gateway: sessions.
+        SCION gateway: sessions.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_traffic_class(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_traffic_class
 
-        SCION gateway: traffic classes.
+        SCION gateway: traffic classes.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_scion_tunneling_tun(self) -> None:
         """Test case for get_debug_vpp_scion_tunneling_tun
 
-        SCION gateway: TUN device.
+        SCION gateway: TUN device.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace(self) -> None:
         """Test case for get_debug_vpp_trace
 
-        Action path to execute free form packet trace.
+        Action path to execute free form packet trace.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_dpdk(self) -> None:
         """Test case for get_debug_vpp_trace_dpdk
 
-        Action path to execute a trace for packets entering via DPDK.
+        Action path to execute a trace for packets entering via DPDK.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_memif(self) -> None:
         """Test case for get_debug_vpp_trace_memif
 
-        Action path to execute a trace for packets entering via memif.
+        Action path to execute a trace for packets entering via memif.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_start(self) -> None:
         """Test case for get_debug_vpp_trace_start
 
-        Action path that starts a trace without timeout. The trace can be stopped with the `/vpp/trace/stop` endpoint.
+        Action path that starts a trace without timeout. The trace can be stopped with the `/vpp/trace/stop` endpoint.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_stop(self) -> None:
         """Test case for get_debug_vpp_trace_stop
 
-        Action path that stops tracing.
+        Action path that stops tracing.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_udp4_socket(self) -> None:
         """Test case for get_debug_vpp_trace_udp4_socket
 
-        Action path to execute a trace for IPv4 packets entering via VPP UDP socket.
+        Action path to execute a trace for IPv4 packets entering via VPP UDP socket.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_udp6_socket(self) -> None:
         """Test case for get_debug_vpp_trace_udp6_socket
 
-        Action path to execute a trace for IPv6 packets entering via VPP UDP socket.
+        Action path to execute a trace for IPv6 packets entering via VPP UDP socket.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_virtio(self) -> None:
         """Test case for get_debug_vpp_trace_virtio
 
-        Action path to execute a trace for packets entering via TUN/TAP.
+        Action path to execute a trace for packets entering via TUN/TAP.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_tun(self) -> None:
         """Test case for get_debug_vpp_tun
 
-        Status page reporting TUN/TAP devices created by VPP.
+        Status page reporting TUN/TAP devices created by VPP.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_vrrp(self) -> None:
         """Test case for get_debug_vpp_vrrp
 
-        Status page reporting VPP VRRP.
+        Status page reporting VPP VRRP.  # noqa: E501
         """
         pass
 

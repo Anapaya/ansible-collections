@@ -3,7 +3,6 @@
 List of domains.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **default** | **bool** | Whether this domain is the default domain. The default domain is assumed to accept the whole IP space that is not covered by other domains. Because of this it may not specify an accept-filter. | [optional] 

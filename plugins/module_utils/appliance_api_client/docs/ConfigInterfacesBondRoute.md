@@ -3,7 +3,6 @@
 List of routes belonging to this interface.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **comment** | **str** | An optional human-readable string to comment on this route. | [optional] 

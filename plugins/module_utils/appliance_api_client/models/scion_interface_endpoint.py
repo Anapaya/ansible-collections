@@ -19,80 +19,61 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List
-from pydantic import BaseModel, StrictInt, StrictStr, field_validator
-from pydantic import Field
-from typing_extensions import Annotated
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+
+from pydantic import BaseModel, Field, StrictInt, StrictStr, constr, validator
 
 class ScionInterfaceEndpoint(BaseModel):
     """
     ScionInterfaceEndpoint
-    """ # noqa: E501
-    isd_as: Annotated[str, Field(strict=True)]
-    address: StrictStr = Field(description="The IP address of this endpoint of the SCION interface.")
-    interface_id: StrictInt = Field(description="The ID of the Interface.")
-    __properties: ClassVar[List[str]] = ["isd_as", "address", "interface_id"]
+    """
+    isd_as: constr(strict=True) = Field(...)
+    address: StrictStr = Field(..., description="The IP address of this endpoint of the SCION interface.")
+    interface_id: StrictInt = Field(..., description="The ID of the Interface.")
+    __properties = ["isd_as", "address", "interface_id"]
 
-    @field_validator('isd_as')
+    @validator('isd_as')
     def isd_as_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^\d+-([a-f0-9]{1,4}:){2}([a-f0-9]{1,4})|\d+$", value):
             raise ValueError(r"must validate the regular expression /^\d+-([a-f0-9]{1,4}:){2}([a-f0-9]{1,4})|\d+$/")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ScionInterfaceEndpoint:
         """Create an instance of ScionInterfaceEndpoint from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ScionInterfaceEndpoint:
         """Create an instance of ScionInterfaceEndpoint from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ScionInterfaceEndpoint.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ScionInterfaceEndpoint.parse_obj({
             "isd_as": obj.get("isd_as"),
             "address": obj.get("address"),
             "interface_id": obj.get("interface_id")

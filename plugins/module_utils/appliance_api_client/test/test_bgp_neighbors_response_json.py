@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.bgp_neighbors_response_json import BGPNeighborsResponseJson
+from ansible.module_utils.appliance_api_client.models.bgp_neighbors_response_json import BGPNeighborsResponseJson  # noqa: E501
 
 class TestBGPNeighborsResponseJson(unittest.TestCase):
     """BGPNeighborsResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestBGPNeighborsResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BGPNeighborsResponseJson`
         """
-        model = BGPNeighborsResponseJson()
+        model = BGPNeighborsResponseJson()  # noqa: E501
         if include_optional:
             return BGPNeighborsResponseJson(
                 neighbors = [

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_features import SCIONFeatures
+from ansible.module_utils.appliance_api_client.models.scion_features import SCIONFeatures  # noqa: E501
 
 class TestSCIONFeatures(unittest.TestCase):
     """SCIONFeatures unit test stubs"""
@@ -34,7 +34,7 @@ class TestSCIONFeatures(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SCIONFeatures`
         """
-        model = SCIONFeatures()
+        model = SCIONFeatures()  # noqa: E501
         if include_optional:
             return SCIONFeatures(
                 max_ases = None,

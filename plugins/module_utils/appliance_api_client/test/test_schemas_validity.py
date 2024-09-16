@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.schemas_validity import SchemasValidity
+from ansible.module_utils.appliance_api_client.models.schemas_validity import SchemasValidity  # noqa: E501
 
 class TestSchemasValidity(unittest.TestCase):
     """SchemasValidity unit test stubs"""
@@ -34,7 +34,7 @@ class TestSchemasValidity(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SchemasValidity`
         """
-        model = SchemasValidity()
+        model = SchemasValidity()  # noqa: E501
         if include_optional:
             return SchemasValidity(
                 not_before = '2020-01-01T00:00Z',

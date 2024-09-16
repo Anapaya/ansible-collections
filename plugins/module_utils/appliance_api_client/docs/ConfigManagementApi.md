@@ -3,7 +3,6 @@
 Anapaya appliance management API configuration.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **basic_auth** | [**ConfigManagementApiBasicAuth**](ConfigManagementApiBasicAuth.md) |  | [optional] 

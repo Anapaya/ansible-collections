@@ -37,7 +37,6 @@ Get the status of the installation process of the scion package for the given id
 
 ### Example
 
-
 ```python
 import time
 import os
@@ -72,7 +71,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Identifier of the installation process for the specific scion package version.  | 
@@ -91,7 +89,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Installation status. |  -  |
@@ -108,7 +105,6 @@ Trigger installation of the specified scion package.
 Trigger the installation of the scion package with the version specified in the request body. 
 
 ### Example
-
 
 ```python
 import time
@@ -145,7 +141,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **software_install_post_request_json** | [**SoftwareInstallPostRequestJson**](SoftwareInstallPostRequestJson.md)|  | 
@@ -164,7 +159,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Package version and installation ID. |  -  |
@@ -184,7 +178,6 @@ Get the installed scion version.
 Get the version of scion package currently installed. 
 
 ### Example
-
 
 ```python
 import time
@@ -218,7 +211,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -235,7 +227,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Installed scion version. |  -  |
@@ -252,7 +243,6 @@ Get the download status of a software scion package.
 Get the download status of a software scion package from a remote repository. 
 
 ### Example
-
 
 ```python
 import time
@@ -288,7 +278,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Identifier of the fetch process for the specific scion package version. | 
@@ -307,7 +296,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Fetch status. |  -  |
@@ -324,7 +312,6 @@ Fetch the software scion package of a given version.
 Fetch the software scion package of a given version from a remote repository. 
 
 ### Example
-
 
 ```python
 import time
@@ -361,7 +348,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **software_package_fetch_post_request_json** | [**SoftwarePackageFetchPostRequestJson**](SoftwarePackageFetchPostRequestJson.md)|  | 
@@ -380,7 +366,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Package version and fetch ID. |  -  |
@@ -400,7 +385,6 @@ Delete the given scion package.
 Delete the scion package for the given version if it is available locally on the appliance. 
 
 ### Example
-
 
 ```python
 import time
@@ -436,7 +420,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **version** | **str**| Version of the scion package. | 
@@ -455,7 +438,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Package information. |  -  |
@@ -473,7 +455,6 @@ Get the scion package information.
 Get the package information of the scion package for the given version. 
 
 ### Example
-
 
 ```python
 import time
@@ -509,7 +490,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **version** | **str**| Version of the scion package. | 
@@ -528,7 +508,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Package information. |  -  |
@@ -546,7 +525,6 @@ Get the scion package information.
 Get the package information of the scion package for the given version. 
 
 ### Example
-
 
 ```python
 import time
@@ -582,7 +560,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **version** | **str**| Version of the scion package. | 
@@ -601,7 +578,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Package information. |  -  |
@@ -620,7 +596,6 @@ List the package information for scion packages available locally.
 List the package information (e.g., version) for all the scion packages which are available locally on the appliance. 
 
 ### Example
-
 
 ```python
 import time
@@ -654,7 +629,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -671,7 +645,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -687,7 +660,6 @@ Upload the scion package.
 Upload the scion package to the local repository of the appliance.
 
 ### Example
-
 
 ```python
 import time
@@ -724,7 +696,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **bytearray**|  | 
@@ -744,7 +715,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Package information. |  -  |
@@ -762,7 +732,6 @@ List the package information for scion packages in the remote repository.
 List the package information (e.g., version) for all the scion packages which are available in the remote repository. 
 
 ### Example
-
 
 ```python
 import time
@@ -796,7 +765,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -813,7 +781,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -830,7 +797,6 @@ Get the status of the system package installation process for the given id.
 Get the status of the installation process of the system package for the given id. 
 
 ### Example
-
 
 ```python
 import time
@@ -866,7 +832,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Identifier of the installation process for the specific system package version.  | 
@@ -885,7 +850,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Installation status. |  -  |
@@ -902,7 +866,6 @@ Trigger installation of the specified system package.
 Trigger the installation of the system package with the version specified in the request body. 
 
 ### Example
-
 
 ```python
 import time
@@ -939,7 +902,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **software_install_post_request_json** | [**SoftwareInstallPostRequestJson**](SoftwareInstallPostRequestJson.md)|  | 
@@ -958,7 +920,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Package version and installation ID. |  -  |
@@ -978,7 +939,6 @@ Get the installed system version.
 Get the version of system package currently installed. 
 
 ### Example
-
 
 ```python
 import time
@@ -1012,7 +972,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1029,7 +988,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Installed system version. |  -  |
@@ -1046,7 +1004,6 @@ Get the download status of a software system package.
 Get the download status of a software system package from a remote repository. 
 
 ### Example
-
 
 ```python
 import time
@@ -1082,7 +1039,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Identifier of the fetch process for the specific system package version. | 
@@ -1101,7 +1057,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Fetch status. |  -  |
@@ -1118,7 +1073,6 @@ Fetch the software system package for a given version.
 Fetch the software system package for a given version from a remote repository. 
 
 ### Example
-
 
 ```python
 import time
@@ -1155,7 +1109,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **software_package_fetch_post_request_json** | [**SoftwarePackageFetchPostRequestJson**](SoftwarePackageFetchPostRequestJson.md)|  | 
@@ -1174,7 +1127,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Package version and fetch ID. |  -  |
@@ -1194,7 +1146,6 @@ Delete the given system package.
 Delete the system package for the given version if it is available locally on the appliance. 
 
 ### Example
-
 
 ```python
 import time
@@ -1230,7 +1181,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **version** | **str**| Version of the system package. | 
@@ -1249,7 +1199,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Package information. |  -  |
@@ -1267,7 +1216,6 @@ Get the system package information.
 Get the package information of the system package for the given version. 
 
 ### Example
-
 
 ```python
 import time
@@ -1303,7 +1251,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **version** | **str**| Version of the system package. | 
@@ -1322,7 +1269,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Package information. |  -  |
@@ -1340,7 +1286,6 @@ Get the system package information.
 Get the package information of the system package for the given version. 
 
 ### Example
-
 
 ```python
 import time
@@ -1376,7 +1321,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **version** | **str**| Version of the system package. | 
@@ -1395,7 +1339,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Package information. |  -  |
@@ -1414,7 +1357,6 @@ List the package information for system packages available locally.
 List the package information (e.g., version) for all the system packages which are available locally on the appliance. 
 
 ### Example
-
 
 ```python
 import time
@@ -1448,7 +1390,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1465,7 +1406,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -1481,7 +1421,6 @@ Upload the system package.
 Upload the system package to the local repository of the appliance.
 
 ### Example
-
 
 ```python
 import time
@@ -1518,7 +1457,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **bytearray**|  | 
@@ -1538,7 +1476,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Package information. |  -  |
@@ -1556,7 +1493,6 @@ List the package information for system packages in the remote repository.
 List the package information (e.g., version) for all the system packages which are available in the remote repository. 
 
 ### Example
-
 
 ```python
 import time
@@ -1590,7 +1526,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1607,7 +1542,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |

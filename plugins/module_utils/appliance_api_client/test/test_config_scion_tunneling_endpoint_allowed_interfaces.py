@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_endpoint_allowed_interfaces import ConfigScionTunnelingEndpointAllowedInterfaces
+from ansible.module_utils.appliance_api_client.models.config_scion_tunneling_endpoint_allowed_interfaces import ConfigScionTunnelingEndpointAllowedInterfaces  # noqa: E501
 
 class TestConfigScionTunnelingEndpointAllowedInterfaces(unittest.TestCase):
     """ConfigScionTunnelingEndpointAllowedInterfaces unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigScionTunnelingEndpointAllowedInterfaces(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigScionTunnelingEndpointAllowedInterfaces`
         """
-        model = ConfigScionTunnelingEndpointAllowedInterfaces()
+        model = ConfigScionTunnelingEndpointAllowedInterfaces()  # noqa: E501
         if include_optional:
             return ConfigScionTunnelingEndpointAllowedInterfaces(
                 interfaces = [2,3],

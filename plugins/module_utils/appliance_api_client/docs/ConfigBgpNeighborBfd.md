@@ -3,7 +3,6 @@
 BFD configuration parameters relating to the BGP neighbor
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **desired_minimum_tx_interval** | **int** | Minimum desired control packet transmission interval in milliseconds | [optional] [default to 300]

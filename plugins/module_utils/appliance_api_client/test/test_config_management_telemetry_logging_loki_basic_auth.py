@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_telemetry_logging_loki_basic_auth import ConfigManagementTelemetryLoggingLokiBasicAuth
+from ansible.module_utils.appliance_api_client.models.config_management_telemetry_logging_loki_basic_auth import ConfigManagementTelemetryLoggingLokiBasicAuth  # noqa: E501
 
 class TestConfigManagementTelemetryLoggingLokiBasicAuth(unittest.TestCase):
     """ConfigManagementTelemetryLoggingLokiBasicAuth unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementTelemetryLoggingLokiBasicAuth(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementTelemetryLoggingLokiBasicAuth`
         """
-        model = ConfigManagementTelemetryLoggingLokiBasicAuth()
+        model = ConfigManagementTelemetryLoggingLokiBasicAuth()  # noqa: E501
         if include_optional:
             return ConfigManagementTelemetryLoggingLokiBasicAuth(
                 password = '',

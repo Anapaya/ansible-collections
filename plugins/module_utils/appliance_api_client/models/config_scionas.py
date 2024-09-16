@@ -19,75 +19,57 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
-from pydantic import Field
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
 from ansible.module_utils.appliance_api_client.models.config_scionas_control import ConfigSCIONASControl
 from ansible.module_utils.appliance_api_client.models.config_scionas_details import ConfigSCIONASDetails
 from ansible.module_utils.appliance_api_client.models.config_scionas_neighbor import ConfigSCIONASNeighbor
 from ansible.module_utils.appliance_api_client.models.config_scionas_router import ConfigSCIONASRouter
 from ansible.module_utils.appliance_api_client.models.config_scionasca_service import ConfigSCIONASCAService
 from ansible.module_utils.appliance_api_client.models.config_scionascppki import ConfigSCIONASCPPKI
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class ConfigSCIONAS(BaseModel):
     """
-    SCION AS
-    """ # noqa: E501
+    SCION AS  # noqa: E501
+    """
     ca_service: Optional[ConfigSCIONASCAService] = None
     control: Optional[ConfigSCIONASControl] = None
-    core: Optional[StrictBool] = Field(default=None, description="Indicate whether the AS is core in its ISD. A SCION core AS must only have other core ASes or child ASes as neighbors. A SCION non-core AS must only have parent. child, or peer ASes as neighbors.")
+    core: Optional[StrictBool] = Field(None, description="Indicate whether the AS is core in its ISD. A SCION core AS must only have other core ASes or child ASes as neighbors. A SCION non-core AS must only have parent. child, or peer ASes as neighbors.")
     cppki: Optional[ConfigSCIONASCPPKI] = None
-    default: Optional[StrictBool] = Field(default=False, description="Default indicates whether the respective SCION AS should be used by default as the source AS by SCION applications, e.g., scion ping or scion showpaths. The configurations with more than one default ASes will be rejected because there can only be one default AS. If there is only a single AS configured, it will be the default. Therefore, this setting is only necessary if multiple ASes are configured on the appliance.")
+    default: Optional[StrictBool] = Field(False, description="Default indicates whether the respective SCION AS should be used by default as the source AS by SCION applications, e.g., scion ping or scion showpaths. The configurations with more than one default ASes will be rejected because there can only be one default AS. If there is only a single AS configured, it will be the default. Therefore, this setting is only necessary if multiple ASes are configured on the appliance.")
     details: Optional[ConfigSCIONASDetails] = None
-    forwarding_key: Optional[StrictStr] = Field(default=None, description="The forwarding key for this AS. Note that changing this key might result in a network disruption and it is therefore not recommended.")
-    isd_as: StrictStr = Field(description="ISD-AS identifier of the SCION AS.")
-    neighbors: Optional[List[ConfigSCIONASNeighbor]] = Field(default=None, description="List of neighbor SCION ASes that this device is connected to via one or multiple SCION interfaces. Each entry is identified by the remote ISD-AS.")
+    forwarding_key: Optional[StrictStr] = Field(None, description="The forwarding key for this AS. Note that changing this key might result in a network disruption and it is therefore not recommended.")
+    isd_as: StrictStr = Field(..., description="ISD-AS identifier of the SCION AS.")
+    neighbors: Optional[conlist(ConfigSCIONASNeighbor)] = Field(None, description="List of neighbor SCION ASes that this device is connected to via one or multiple SCION interfaces. Each entry is identified by the remote ISD-AS.")
     router: Optional[ConfigSCIONASRouter] = None
-    scion_mtu: Optional[StrictInt] = Field(default=1472, description="The maximum transmission unit in bytes for SCION packets. This represents the protocol data unit (PDU) of the SCION layer on this interface and is usually calculated as maximum Ethernet payload - IP Header - UDP Header. ")
-    shard_id: Optional[StrictInt] = Field(default=None, description="The control and the data plane of a SCION AS is split into multiple shards. Each shard is responsible for processing and disseminating pathing information only for a subset of links. This field is the ID of the shard to which the control service and the router on this appliance belong. It is recommended to have the router and the control service from the same shard on the same host and if they are not then the routers and the control service in the same shard need mutual IP connectivity. Each shard must contain only a single control service.")
-    __properties: ClassVar[List[str]] = ["ca_service", "control", "core", "cppki", "default", "details", "forwarding_key", "isd_as", "neighbors", "router", "scion_mtu", "shard_id"]
+    scion_mtu: Optional[StrictInt] = Field(1472, description="The maximum transmission unit in bytes for SCION packets. This represents the protocol data unit (PDU) of the SCION layer on this interface and is usually calculated as maximum Ethernet payload - IP Header - UDP Header. ")
+    shard_id: Optional[StrictInt] = Field(None, description="The control and the data plane of a SCION AS is split into multiple shards. Each shard is responsible for processing and disseminating pathing information only for a subset of links. This field is the ID of the shard to which the control service and the router on this appliance belong. It is recommended to have the router and the control service from the same shard on the same host and if they are not then the routers and the control service in the same shard need mutual IP connectivity. Each shard must contain only a single control service.")
+    __properties = ["ca_service", "control", "core", "cppki", "default", "details", "forwarding_key", "isd_as", "neighbors", "router", "scion_mtu", "shard_id"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigSCIONAS:
         """Create an instance of ConfigSCIONAS from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of ca_service
         if self.ca_service:
             _dict['ca_service'] = self.ca_service.to_dict()
@@ -113,15 +95,15 @@ class ConfigSCIONAS(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigSCIONAS:
         """Create an instance of ConfigSCIONAS from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigSCIONAS.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigSCIONAS.parse_obj({
             "ca_service": ConfigSCIONASCAService.from_dict(obj.get("ca_service")) if obj.get("ca_service") is not None else None,
             "control": ConfigSCIONASControl.from_dict(obj.get("control")) if obj.get("control") is not None else None,
             "core": obj.get("core"),

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_system import ConfigSystem
+from ansible.module_utils.appliance_api_client.models.config_system import ConfigSystem  # noqa: E501
 
 class TestConfigSystem(unittest.TestCase):
     """ConfigSystem unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSystem(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSystem`
         """
-        model = ConfigSystem()
+        model = ConfigSystem()  # noqa: E501
         if include_optional:
             return ConfigSystem(
                 dns = ansible.module_utils.appliance_api_client.models.config_system_dns.Config_System_Dns(

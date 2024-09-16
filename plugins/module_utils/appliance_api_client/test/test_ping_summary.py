@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.ping_summary import PingSummary
+from ansible.module_utils.appliance_api_client.models.ping_summary import PingSummary  # noqa: E501
 
 class TestPingSummary(unittest.TestCase):
     """PingSummary unit test stubs"""
@@ -34,7 +34,7 @@ class TestPingSummary(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PingSummary`
         """
-        model = PingSummary()
+        model = PingSummary()  # noqa: E501
         if include_optional:
             return PingSummary(
                 path = ansible.module_utils.appliance_api_client.models.path.Path(

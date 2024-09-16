@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_sgrp_peers import ScionTunnelingSGRPPeers
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_sgrp_peers import ScionTunnelingSGRPPeers  # noqa: E501
 
 class TestScionTunnelingSGRPPeers(unittest.TestCase):
     """ScionTunnelingSGRPPeers unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingSGRPPeers(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingSGRPPeers`
         """
-        model = ScionTunnelingSGRPPeers()
+        model = ScionTunnelingSGRPPeers()  # noqa: E501
         if include_optional:
             return ScionTunnelingSGRPPeers(
                 peers = [

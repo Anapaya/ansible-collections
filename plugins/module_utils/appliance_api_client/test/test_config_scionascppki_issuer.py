@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scionascppki_issuer import ConfigSCIONASCPPKIIssuer
+from ansible.module_utils.appliance_api_client.models.config_scionascppki_issuer import ConfigSCIONASCPPKIIssuer  # noqa: E501
 
 class TestConfigSCIONASCPPKIIssuer(unittest.TestCase):
     """ConfigSCIONASCPPKIIssuer unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONASCPPKIIssuer(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONASCPPKIIssuer`
         """
-        model = ConfigSCIONASCPPKIIssuer()
+        model = ConfigSCIONASCPPKIIssuer()  # noqa: E501
         if include_optional:
             return ConfigSCIONASCPPKIIssuer(
                 isd_as = '1-ff00:0:120',

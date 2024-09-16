@@ -3,7 +3,6 @@
 The service type for which the customized template is provided.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

@@ -19,27 +19,22 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr, field_validator
-from pydantic import Field
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictStr, conlist, validator
 from ansible.module_utils.appliance_api_client.models.config_firewall_table_chain import ConfigFirewallTableChain
 from ansible.module_utils.appliance_api_client.models.config_firewall_table_counter import ConfigFirewallTableCounter
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class ConfigFirewallTable(BaseModel):
     """
-    List of nftables tables that should be configured on the local system, uniquely identified by their name.
-    """ # noqa: E501
-    chains: Optional[List[ConfigFirewallTableChain]] = Field(default=None, description="Chains defined within the nftables table.")
-    counters: Optional[List[ConfigFirewallTableCounter]] = Field(default=None, description="Optional named counters defined within the nftables table.")
-    family: Optional[StrictStr] = Field(default=None, description="The family type of the nftables. For more information on table families, please refer to https://wiki.nftables.org/wiki-nftables/index.php/Nftables_families.")
-    name: StrictStr = Field(description="Name of the nftables table.")
-    __properties: ClassVar[List[str]] = ["chains", "counters", "family", "name"]
+    List of nftables tables that should be configured on the local system, uniquely identified by their name.  # noqa: E501
+    """
+    chains: Optional[conlist(ConfigFirewallTableChain)] = Field(None, description="Chains defined within the nftables table.")
+    counters: Optional[conlist(ConfigFirewallTableCounter)] = Field(None, description="Optional named counters defined within the nftables table.")
+    family: Optional[StrictStr] = Field(None, description="The family type of the nftables. For more information on table families, please refer to https://wiki.nftables.org/wiki-nftables/index.php/Nftables_families.")
+    name: StrictStr = Field(..., description="Name of the nftables table.")
+    __properties = ["chains", "counters", "family", "name"]
 
-    @field_validator('family')
+    @validator('family')
     def family_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -49,43 +44,30 @@ class ConfigFirewallTable(BaseModel):
             raise ValueError("must be one of enum values ('IP', 'IP6', 'INET')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigFirewallTable:
         """Create an instance of ConfigFirewallTable from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in chains (list)
         _items = []
         if self.chains:
@@ -103,15 +85,15 @@ class ConfigFirewallTable(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigFirewallTable:
         """Create an instance of ConfigFirewallTable from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigFirewallTable.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigFirewallTable.parse_obj({
             "chains": [ConfigFirewallTableChain.from_dict(_item) for _item in obj.get("chains")] if obj.get("chains") is not None else None,
             "counters": [ConfigFirewallTableCounter.from_dict(_item) for _item in obj.get("counters")] if obj.get("counters") is not None else None,
             "family": obj.get("family"),

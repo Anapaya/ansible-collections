@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_in_daemon_data import TRCForLocalISDAvailableInDaemonData
+from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_in_daemon_data import TRCForLocalISDAvailableInDaemonData  # noqa: E501
 
 class TestTRCForLocalISDAvailableInDaemonData(unittest.TestCase):
     """TRCForLocalISDAvailableInDaemonData unit test stubs"""
@@ -34,7 +34,7 @@ class TestTRCForLocalISDAvailableInDaemonData(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TRCForLocalISDAvailableInDaemonData`
         """
-        model = TRCForLocalISDAvailableInDaemonData()
+        model = TRCForLocalISDAvailableInDaemonData()  # noqa: E501
         if include_optional:
             return TRCForLocalISDAvailableInDaemonData(
                 id = 'ISD64-B1-S3',

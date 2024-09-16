@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scionasca_service_external import ConfigSCIONASCAServiceExternal
+from ansible.module_utils.appliance_api_client.models.config_scionasca_service_external import ConfigSCIONASCAServiceExternal  # noqa: E501
 
 class TestConfigSCIONASCAServiceExternal(unittest.TestCase):
     """ConfigSCIONASCAServiceExternal unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONASCAServiceExternal(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONASCAServiceExternal`
         """
-        model = ConfigSCIONASCAServiceExternal()
+        model = ConfigSCIONASCAServiceExternal()  # noqa: E501
         if include_optional:
             return ConfigSCIONASCAServiceExternal(
                 address = '192.0.2.3:5000',

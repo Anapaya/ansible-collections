@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.firewall_api import FirewallApi
+from ansible.module_utils.appliance_api_client.api.firewall_api import FirewallApi  # noqa: E501
 
 
 class TestFirewallApi(unittest.TestCase):
     """FirewallApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = FirewallApi()
+        self.api = FirewallApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,28 +30,28 @@ class TestFirewallApi(unittest.TestCase):
     def test_firewall_chain_get(self) -> None:
         """Test case for firewall_chain_get
 
-        Get the rules of a chain of a firewall table.
+        Get the rules of a chain of a firewall table.  # noqa: E501
         """
         pass
 
     def test_firewall_default_post(self) -> None:
         """Test case for firewall_default_post
 
-        Generate the default firewall configuration for the given appliance configuration.
+        Generate the default firewall configuration for the given appliance configuration.  # noqa: E501
         """
         pass
 
     def test_firewall_get(self) -> None:
         """Test case for firewall_get
 
-        Get the firewall configuration of the appliance.
+        Get the firewall configuration of the appliance.  # noqa: E501
         """
         pass
 
     def test_firewall_table_get(self) -> None:
         """Test case for firewall_table_get
 
-        Get a specific firewall table.
+        Get a specific firewall table.  # noqa: E501
         """
         pass
 

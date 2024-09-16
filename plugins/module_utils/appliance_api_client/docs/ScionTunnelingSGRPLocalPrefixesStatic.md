@@ -3,7 +3,6 @@
 Statically defined prefixes.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **prefixes** | **List[str]** | IP prefixes in CIDR format. | 

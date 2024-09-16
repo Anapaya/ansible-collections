@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.sibling_interface_up_data import SiblingInterfaceUpData
+from ansible.module_utils.appliance_api_client.models.sibling_interface_up_data import SiblingInterfaceUpData  # noqa: E501
 
 class TestSiblingInterfaceUpData(unittest.TestCase):
     """SiblingInterfaceUpData unit test stubs"""
@@ -34,7 +34,7 @@ class TestSiblingInterfaceUpData(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SiblingInterfaceUpData`
         """
-        model = SiblingInterfaceUpData()
+        model = SiblingInterfaceUpData()  # noqa: E501
         if include_optional:
             return SiblingInterfaceUpData(
                 local_isd_as = '1-ff00:0:110',

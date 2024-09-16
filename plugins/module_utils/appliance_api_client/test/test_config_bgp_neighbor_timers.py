@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_bgp_neighbor_timers import ConfigBgpNeighborTimers
+from ansible.module_utils.appliance_api_client.models.config_bgp_neighbor_timers import ConfigBgpNeighborTimers  # noqa: E501
 
 class TestConfigBgpNeighborTimers(unittest.TestCase):
     """ConfigBgpNeighborTimers unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigBgpNeighborTimers(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigBgpNeighborTimers`
         """
-        model = ConfigBgpNeighborTimers()
+        model = ConfigBgpNeighborTimers()  # noqa: E501
         if include_optional:
             return ConfigBgpNeighborTimers(
                 connect_retry = 56,

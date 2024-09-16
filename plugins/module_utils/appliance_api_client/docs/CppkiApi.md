@@ -30,7 +30,6 @@ Get the SCION CPPKI AS certificate chain encoded as PEM bytes blob for a given C
 
 ### Example
 
-
 ```python
 import time
 import os
@@ -65,7 +64,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **chain_id** | **str**| Certificate chain identifier. | 
@@ -84,7 +82,6 @@ No authorization required
  - **Accept**: application/json, application/x-pem-file, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Certificate chain blob |  -  |
@@ -102,7 +99,6 @@ Get the certificate chain
 Get the SCION CPPKI AS certificate chain for a given ChainID. 
 
 ### Example
-
 
 ```python
 import time
@@ -138,7 +134,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **chain_id** | **str**| Certificate chain identifier. | 
@@ -157,7 +152,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Certificate chain |  -  |
@@ -175,7 +169,6 @@ List the certificate chains
 List the certificate chains that are available on the device. 
 
 ### Example
-
 
 ```python
 import time
@@ -212,7 +205,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **isd_as** | **str**|  | [optional] 
@@ -232,7 +224,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -249,7 +240,6 @@ Add an AS certificate chain
 Add a SCION CPPKI AS certificate chain to the device by promoting an existing certificate signing request. The certificate chain is first verified against the active TRC of the local ISD before it is added. Only verifiable certificate chains are added.  Use the 'force' query parameter to force the addition of the certificate chain regardless of validity or verifiability. 
 
 ### Example
-
 
 ```python
 import time
@@ -286,7 +276,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **bytearray**|  | 
@@ -306,7 +295,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -323,7 +311,6 @@ Manually renew an AS certificate chain
 Manually renew a SCION CPPKI AS certificate chain with the regular renewal mechanism. By default, the distinguished name of the subject in the predecessor certificate chain is used. A different distinguished name can be requested by setting the subject in the request body. By default the issuers are taken from the appliance configuration, specific issuers can be configured in the request body. If they are set, certificate renewal is attempted with each issuer in order until success.  Note that certificate renewal requires at least one valid certificate chain to be present on the appliance. 
 
 ### Example
-
 
 ```python
 import time
@@ -358,7 +345,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cppki_certificates_renew_post_request** | [**CppkiCertificatesRenewPostRequest**](CppkiCertificatesRenewPostRequest.md)|  | 
@@ -378,7 +364,6 @@ No authorization required
  - **Accept**: application/x-pem-file, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -395,7 +380,6 @@ Manually request an AS certificate chain for a given CSR
 Manually request a SCION CPPKI AS certificate chain for a given CSR using the regular certificate renewal mechanism. The endpoint expects a CSR and uses that to request a certificate renewal. The certificate renewal request is signed by an active key/certificate of the appliance such that the CA will be able to authenticate the renewal request and issue the certificate. This is useful if one appliance has been disconnected from the SCION network for several days and thus has no valid AS certificate anymore that could be used for certificate renewal. In such a case, one can generate a new CSR on the appliance that was offline and use this endpoint on an appliance that still has a valid AS certificate to request a new certificate on behalf of the sibling.The returned certificate can then be deployed to the offline appliance using the regular `POST /cppki/certificates` endpoint. 
 
 ### Example
-
 
 ```python
 import time
@@ -429,7 +413,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cppki_certificates_request_post_request** | [**CppkiCertificatesRequestPostRequest**](CppkiCertificatesRequestPostRequest.md)|  | 
@@ -448,7 +431,6 @@ No authorization required
  - **Accept**: application/x-pem-file, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -465,7 +447,6 @@ Get the certificate signing request blob
 Get the SCION CPPKI Certificate Signing Request encoded as PEM bytes blob for a given CSR ID. 
 
 ### Example
-
 
 ```python
 import time
@@ -501,7 +482,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **csr_id** | **str**| Certificate signing request identifier. | 
@@ -520,7 +500,6 @@ No authorization required
  - **Accept**: application/json, application/x-pem-file, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Certificate signing request blob |  -  |
@@ -538,7 +517,6 @@ Get the certificate signing request
 Get the SCION Certificate Signing Request for a given CSR ID 
 
 ### Example
-
 
 ```python
 import time
@@ -574,7 +552,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **csr_id** | **str**| Certificate signing request identifier. | 
@@ -593,7 +570,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Certificate signing request |  -  |
@@ -611,7 +587,6 @@ List the certificate signing requests
 List the certificate signing requests that are available on the device. 
 
 ### Example
-
 
 ```python
 import time
@@ -647,7 +622,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **isd_as** | **str**|  | [optional] 
@@ -666,7 +640,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -683,7 +656,6 @@ Create an AS certificate signing request
 Create a SCION CPPKI AS Certificate Signing Request (CSR). The CSR needs to be signed by a SCION CPPKI Certificate Authority in the local ISD. The fully signed certificate chain then needs to be installed via the /cppki/certificates endpoint. 
 
 ### Example
-
 
 ```python
 import time
@@ -720,7 +692,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **certificate_signing_request** | [**CertificateSigningRequest**](CertificateSigningRequest.md)| The parameters for the CSR.  | 
@@ -739,7 +710,6 @@ No authorization required
  - **Accept**: application/json, application/x-pem-file, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -756,7 +726,6 @@ Get the TRC blob
 Get the SCION CPPKI Trust Root Configuration (TRC) as PEM encoded byte blob. 
 
 ### Example
-
 
 ```python
 import time
@@ -794,7 +763,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **isd** | **int**|  | 
@@ -815,7 +783,6 @@ No authorization required
  - **Accept**: application/json, application/x-pem-file, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -833,7 +800,6 @@ Get the TRC
 Get the SCION CPPKI Trust Root Configuration (TRC). 
 
 ### Example
-
 
 ```python
 import time
@@ -871,7 +837,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **isd** | **int**|  | 
@@ -892,7 +857,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -910,7 +874,6 @@ Add a bundle of TRC files
 Add a bundle SCION CPPKI Trust Root Configuration (TRC) files to the device. The TRCs are first validated before they are added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRCs regardless of validity. 
 
 ### Example
-
 
 ```python
 import time
@@ -931,7 +894,7 @@ configuration = ansible.module_utils.appliance_api_client.Configuration(
 with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ansible.module_utils.appliance_api_client.CppkiApi(api_client)
-    body = [B@293dd4b3 # bytearray | 
+    body = [B@4a0dd851 # bytearray | 
     force = False # bool | If force is true, the TRC is added regardless of validity. (optional) (default to False)
 
     try:
@@ -946,7 +909,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -967,7 +929,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -984,7 +945,6 @@ List the TRC files
 List the latest SCION CPPKI Trust Root Configuration (TRC) files for each ISD that are known to the appliance. The result can be filtered by ISD. Optionally, all TRCs can be requested instead of only the latest ones by setting the 'all' query parameter. 
 
 ### Example
-
 
 ```python
 import time
@@ -1021,7 +981,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **isd** | [**List[int]**](int.md)| Comma-separated list of ISDs to include. | [optional] 
@@ -1041,7 +1000,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -1058,7 +1016,6 @@ Add a TRC file
 Add a SCION CPPKI Trust Root Configuration (TRC) file to the device. The TRC is first validated before it is added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRC regardless of validity. 
 
 ### Example
-
 
 ```python
 import time
@@ -1079,7 +1036,7 @@ configuration = ansible.module_utils.appliance_api_client.Configuration(
 with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ansible.module_utils.appliance_api_client.CppkiApi(api_client)
-    body = [B@2f95ce11 # bytearray | 
+    body = [B@3152d449 # bytearray | 
     force = False # bool | If force is true, the TRC is added regardless of validity. (optional) (default to False)
 
     try:
@@ -1094,7 +1051,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1115,7 +1071,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |

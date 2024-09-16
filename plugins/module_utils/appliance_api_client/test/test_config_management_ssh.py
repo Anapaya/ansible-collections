@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_ssh import ConfigManagementSsh
+from ansible.module_utils.appliance_api_client.models.config_management_ssh import ConfigManagementSsh  # noqa: E501
 
 class TestConfigManagementSsh(unittest.TestCase):
     """ConfigManagementSsh unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementSsh(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementSsh`
         """
-        model = ConfigManagementSsh()
+        model = ConfigManagementSsh()  # noqa: E501
         if include_optional:
             return ConfigManagementSsh(
                 enable_password_login = True,

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.health_status import HealthStatus
+from ansible.module_utils.appliance_api_client.models.health_status import HealthStatus  # noqa: E501
 
 class TestHealthStatus(unittest.TestCase):
     """HealthStatus unit test stubs"""

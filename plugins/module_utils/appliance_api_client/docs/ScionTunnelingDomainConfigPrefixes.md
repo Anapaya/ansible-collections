@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **announce_filter** | [**List[ScionTunnelingPrefixesFilter]**](ScionTunnelingPrefixesFilter.md) | A list of announced prefixes. | 

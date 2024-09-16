@@ -3,7 +3,6 @@
 Anapaya appliance telemetry configuration.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | The address where the telemetry data is exposed. This is a combination of an IP address and a fixed port. The address must be specified as host:port, where host can be empty. An empty address indicates a wildcard address. If the address is not specified or the IP is empty and the port is zero, only the management API address exposes the telemetry data. | [optional] 

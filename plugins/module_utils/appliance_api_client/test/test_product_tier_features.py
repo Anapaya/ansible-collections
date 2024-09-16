@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.product_tier_features import ProductTierFeatures
+from ansible.module_utils.appliance_api_client.models.product_tier_features import ProductTierFeatures  # noqa: E501
 
 class TestProductTierFeatures(unittest.TestCase):
     """ProductTierFeatures unit test stubs"""
@@ -34,7 +34,7 @@ class TestProductTierFeatures(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ProductTierFeatures`
         """
-        model = ProductTierFeatures()
+        model = ProductTierFeatures()  # noqa: E501
         if include_optional:
             return ProductTierFeatures(
                 management = ansible.module_utils.appliance_api_client.models.management_features.ManagementFeatures(

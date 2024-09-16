@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_neighbor import ConfigInterfacesBondNeighbor
+from ansible.module_utils.appliance_api_client.models.config_interfaces_bond_neighbor import ConfigInterfacesBondNeighbor  # noqa: E501
 
 class TestConfigInterfacesBondNeighbor(unittest.TestCase):
     """ConfigInterfacesBondNeighbor unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesBondNeighbor(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesBondNeighbor`
         """
-        model = ConfigInterfacesBondNeighbor()
+        model = ConfigInterfacesBondNeighbor()  # noqa: E501
         if include_optional:
             return ConfigInterfacesBondNeighbor(
                 address = '',

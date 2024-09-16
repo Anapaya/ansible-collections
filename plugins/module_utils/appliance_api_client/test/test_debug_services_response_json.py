@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.debug_services_response_json import DebugServicesResponseJson
+from ansible.module_utils.appliance_api_client.models.debug_services_response_json import DebugServicesResponseJson  # noqa: E501
 
 class TestDebugServicesResponseJson(unittest.TestCase):
     """DebugServicesResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestDebugServicesResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DebugServicesResponseJson`
         """
-        model = DebugServicesResponseJson()
+        model = DebugServicesResponseJson()  # noqa: E501
         if include_optional:
             return DebugServicesResponseJson(
                 services = [

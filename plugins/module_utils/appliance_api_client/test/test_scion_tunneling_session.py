@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_session import ScionTunnelingSession
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_session import ScionTunnelingSession  # noqa: E501
 
 class TestScionTunnelingSession(unittest.TestCase):
     """ScionTunnelingSession unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingSession(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingSession`
         """
-        model = ScionTunnelingSession()
+        model = ScionTunnelingSession()  # noqa: E501
         if include_optional:
             return ScionTunnelingSession(
                 session_id = '',

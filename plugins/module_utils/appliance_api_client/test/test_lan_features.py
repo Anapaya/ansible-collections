@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.lan_features import LANFeatures
+from ansible.module_utils.appliance_api_client.models.lan_features import LANFeatures  # noqa: E501
 
 class TestLANFeatures(unittest.TestCase):
     """LANFeatures unit test stubs"""
@@ -34,7 +34,7 @@ class TestLANFeatures(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LANFeatures`
         """
-        model = LANFeatures()
+        model = LANFeatures()  # noqa: E501
         if include_optional:
             return LANFeatures(
                 redundancy_disallowed = True

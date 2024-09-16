@@ -3,7 +3,6 @@
 The TRC for the local ISD is available on the SCION Daemon. A TRC is required to establish trust in the SCION network. The TRC is used to verify the CPPKI certificates which are used to sign the SCION control plane messages. If the TRC is not present, applications on this appliance will not be able to connect to the SCION network. 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The TRC identifier composed of the ISD identfier, base and serial number. | [optional] 

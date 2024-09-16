@@ -3,7 +3,6 @@
 The configuration data necessary for the anapaya cluster synchronization. This determines how frequently this appliance synchronizes its local data with its peers, if synchronization is enabled.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | The address where peers can fetch topology information. If this is not set, topology information is not exposed to peers and should be statically configured on the peers. | [optional] 

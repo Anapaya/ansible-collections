@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.tools_scion_traceroute_post_request import ToolsScionTraceroutePostRequest
+from ansible.module_utils.appliance_api_client.models.tools_scion_traceroute_post_request import ToolsScionTraceroutePostRequest  # noqa: E501
 
 class TestToolsScionTraceroutePostRequest(unittest.TestCase):
     """ToolsScionTraceroutePostRequest unit test stubs"""
@@ -34,7 +34,7 @@ class TestToolsScionTraceroutePostRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ToolsScionTraceroutePostRequest`
         """
-        model = ToolsScionTraceroutePostRequest()
+        model = ToolsScionTraceroutePostRequest()  # noqa: E501
         if include_optional:
             return ToolsScionTraceroutePostRequest(
                 run = ansible.module_utils.appliance_api_client.models.traceroute_run.TracerouteRun(

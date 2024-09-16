@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_system_vpp_cpu import ConfigSystemVppCpu
+from ansible.module_utils.appliance_api_client.models.config_system_vpp_cpu import ConfigSystemVppCpu  # noqa: E501
 
 class TestConfigSystemVppCpu(unittest.TestCase):
     """ConfigSystemVppCpu unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSystemVppCpu(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSystemVppCpu`
         """
-        model = ConfigSystemVppCpu()
+        model = ConfigSystemVppCpu()  # noqa: E501
         if include_optional:
             return ConfigSystemVppCpu(
                 corelist_workers = '2-3,5',

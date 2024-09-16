@@ -19,72 +19,54 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Any, ClassVar, Dict, List
-from pydantic import BaseModel, StrictInt, StrictStr, field_validator
-from pydantic import Field
+from typing import List
+from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
 from ansible.module_utils.appliance_api_client.models.scion_path_hop import ScionPathHop
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class ScionPath(BaseModel):
     """
     ScionPath
-    """ # noqa: E501
-    fingerprint: StrictStr = Field(description="The fingerprint of the path.")
-    human: StrictStr = Field(description="Human readable representation of the SCION path.")
-    hops: List[ScionPathHop] = Field(description="List of individual hops on the SCION path.")
-    status: StrictStr = Field(description="Human readable description of the state of the path.")
-    next_hop: StrictStr = Field(description="Next hop is the address of the local SCION router to use.")
-    expiration: datetime = Field(description="Expiry specifies until when is the path valid.")
-    mtu: StrictInt = Field(description="MTU of the path.")
-    __properties: ClassVar[List[str]] = ["fingerprint", "human", "hops", "status", "next_hop", "expiration", "mtu"]
+    """
+    fingerprint: StrictStr = Field(..., description="The fingerprint of the path.")
+    human: StrictStr = Field(..., description="Human readable representation of the SCION path.")
+    hops: conlist(ScionPathHop) = Field(..., description="List of individual hops on the SCION path.")
+    status: StrictStr = Field(..., description="Human readable description of the state of the path.")
+    next_hop: StrictStr = Field(..., description="Next hop is the address of the local SCION router to use.")
+    expiration: datetime = Field(..., description="Expiry specifies until when is the path valid.")
+    mtu: StrictInt = Field(..., description="MTU of the path.")
+    __properties = ["fingerprint", "human", "hops", "status", "next_hop", "expiration", "mtu"]
 
-    @field_validator('status')
+    @validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('alive', 'dead', 'revoked', 'expired', 'unknown'):
             raise ValueError("must be one of enum values ('alive', 'dead', 'revoked', 'expired', 'unknown')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ScionPath:
         """Create an instance of ScionPath from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in hops (list)
         _items = []
         if self.hops:
@@ -95,7 +77,7 @@ class ScionPath(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ScionPath:
         """Create an instance of ScionPath from a dict"""
 
 

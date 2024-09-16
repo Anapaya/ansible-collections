@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.vpp_trace_api import VppTraceApi
+from ansible.module_utils.appliance_api_client.api.vpp_trace_api import VppTraceApi  # noqa: E501
 
 
 class TestVppTraceApi(unittest.TestCase):
     """VppTraceApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = VppTraceApi()
+        self.api = VppTraceApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,56 +30,56 @@ class TestVppTraceApi(unittest.TestCase):
     def test_get_debug_vpp_trace(self) -> None:
         """Test case for get_debug_vpp_trace
 
-        Action path to execute free form packet trace.
+        Action path to execute free form packet trace.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_dpdk(self) -> None:
         """Test case for get_debug_vpp_trace_dpdk
 
-        Action path to execute a trace for packets entering via DPDK.
+        Action path to execute a trace for packets entering via DPDK.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_memif(self) -> None:
         """Test case for get_debug_vpp_trace_memif
 
-        Action path to execute a trace for packets entering via memif.
+        Action path to execute a trace for packets entering via memif.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_start(self) -> None:
         """Test case for get_debug_vpp_trace_start
 
-        Action path that starts a trace without timeout. The trace can be stopped with the `/vpp/trace/stop` endpoint.
+        Action path that starts a trace without timeout. The trace can be stopped with the `/vpp/trace/stop` endpoint.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_stop(self) -> None:
         """Test case for get_debug_vpp_trace_stop
 
-        Action path that stops tracing.
+        Action path that stops tracing.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_udp4_socket(self) -> None:
         """Test case for get_debug_vpp_trace_udp4_socket
 
-        Action path to execute a trace for IPv4 packets entering via VPP UDP socket.
+        Action path to execute a trace for IPv4 packets entering via VPP UDP socket.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_udp6_socket(self) -> None:
         """Test case for get_debug_vpp_trace_udp6_socket
 
-        Action path to execute a trace for IPv6 packets entering via VPP UDP socket.
+        Action path to execute a trace for IPv6 packets entering via VPP UDP socket.  # noqa: E501
         """
         pass
 
     def test_get_debug_vpp_trace_virtio(self) -> None:
         """Test case for get_debug_vpp_trace_virtio
 
-        Action path to execute a trace for packets entering via TUN/TAP.
+        Action path to execute a trace for packets entering via TUN/TAP.  # noqa: E501
         """
         pass
 

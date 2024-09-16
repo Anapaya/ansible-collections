@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scionas import ConfigSCIONAS
+from ansible.module_utils.appliance_api_client.models.config_scionas import ConfigSCIONAS  # noqa: E501
 
 class TestConfigSCIONAS(unittest.TestCase):
     """ConfigSCIONAS unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONAS(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONAS`
         """
-        model = ConfigSCIONAS()
+        model = ConfigSCIONAS()  # noqa: E501
         if include_optional:
             return ConfigSCIONAS(
                 ca_service = ansible.module_utils.appliance_api_client.models.config_scion_as_ca_service.Config_SCION_AS_CAService(

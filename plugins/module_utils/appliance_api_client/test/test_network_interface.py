@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.network_interface import NetworkInterface
+from ansible.module_utils.appliance_api_client.models.network_interface import NetworkInterface  # noqa: E501
 
 class TestNetworkInterface(unittest.TestCase):
     """NetworkInterface unit test stubs"""
@@ -34,7 +34,7 @@ class TestNetworkInterface(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `NetworkInterface`
         """
-        model = NetworkInterface()
+        model = NetworkInterface()  # noqa: E501
         if include_optional:
             return NetworkInterface(
                 name = '',

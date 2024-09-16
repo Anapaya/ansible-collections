@@ -19,60 +19,42 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictStr, conlist
 from ansible.module_utils.appliance_api_client.models.config_system_ntp_servers import ConfigSystemNtpServers
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class ConfigSystemNtp(BaseModel):
     """
-    Anapaya appliance NTP configuration.
-    """ # noqa: E501
-    root_distance_max: Optional[StrictStr] = Field(default='5s', description="Maximum acceptable root distance, i.e. the maximum estimated time required for a packet to travel to the server we are connected to from the server with the reference clock. If the current server does not satisfy this limit, the appliance will switch to a different server.")
-    servers: Optional[List[ConfigSystemNtpServers]] = Field(default=None, description="List of NTP servers.")
-    __properties: ClassVar[List[str]] = ["root_distance_max", "servers"]
+    Anapaya appliance NTP configuration.  # noqa: E501
+    """
+    root_distance_max: Optional[StrictStr] = Field('5s', description="Maximum acceptable root distance, i.e. the maximum estimated time required for a packet to travel to the server we are connected to from the server with the reference clock. If the current server does not satisfy this limit, the appliance will switch to a different server.")
+    servers: Optional[conlist(ConfigSystemNtpServers)] = Field(None, description="List of NTP servers.")
+    __properties = ["root_distance_max", "servers"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ConfigSystemNtp:
         """Create an instance of ConfigSystemNtp from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in servers (list)
         _items = []
         if self.servers:
@@ -83,15 +65,15 @@ class ConfigSystemNtp(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ConfigSystemNtp:
         """Create an instance of ConfigSystemNtp from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ConfigSystemNtp.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ConfigSystemNtp.parse_obj({
             "root_distance_max": obj.get("root_distance_max") if obj.get("root_distance_max") is not None else '5s',
             "servers": [ConfigSystemNtpServers.from_dict(_item) for _item in obj.get("servers")] if obj.get("servers") is not None else None
         })

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.link_relationship import LinkRelationship
+from ansible.module_utils.appliance_api_client.models.link_relationship import LinkRelationship  # noqa: E501
 
 class TestLinkRelationship(unittest.TestCase):
     """LinkRelationship unit test stubs"""

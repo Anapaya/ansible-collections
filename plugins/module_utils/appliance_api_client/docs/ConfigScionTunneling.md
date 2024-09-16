@@ -3,7 +3,6 @@
 Top-level configuration and state for IP-in-SCION tunneling.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **domains** | [**List[ConfigScionTunnelingDomain]**](ConfigScionTunnelingDomain.md) | List of domains that define the rules by which IP packets are routed. A domain is a subset of the IP space that shares the same policies. | [optional] 

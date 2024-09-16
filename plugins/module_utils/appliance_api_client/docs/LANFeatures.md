@@ -3,7 +3,6 @@
 The LAN features
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **redundancy_disallowed** | **bool** | If true, any LAN redundancy is disallowed.  | [optional] 

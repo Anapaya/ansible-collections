@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_interfaces_virtual_function_gateway import ConfigInterfacesVirtualFunctionGateway
+from ansible.module_utils.appliance_api_client.models.config_interfaces_virtual_function_gateway import ConfigInterfacesVirtualFunctionGateway  # noqa: E501
 
 class TestConfigInterfacesVirtualFunctionGateway(unittest.TestCase):
     """ConfigInterfacesVirtualFunctionGateway unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigInterfacesVirtualFunctionGateway(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigInterfacesVirtualFunctionGateway`
         """
-        model = ConfigInterfacesVirtualFunctionGateway()
+        model = ConfigInterfacesVirtualFunctionGateway()  # noqa: E501
         if include_optional:
             return ConfigInterfacesVirtualFunctionGateway(
                 ipv4_gateway = '',

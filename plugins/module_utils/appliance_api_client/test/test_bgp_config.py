@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.bgp_config import BGPConfig
+from ansible.module_utils.appliance_api_client.models.bgp_config import BGPConfig  # noqa: E501
 
 class TestBGPConfig(unittest.TestCase):
     """BGPConfig unit test stubs"""
@@ -34,7 +34,7 @@ class TestBGPConfig(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BGPConfig`
         """
-        model = BGPConfig()
+        model = BGPConfig()  # noqa: E501
         if include_optional:
             return BGPConfig(
                 asn = 56,

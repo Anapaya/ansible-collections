@@ -16,7 +16,6 @@ Report the appliance health along with the executed health checks. The health st
 
 ### Example
 
-
 ```python
 import time
 import os
@@ -54,7 +53,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **check_id** | [**List[str]**](str.md)| List of check_id (or check_id prefixes) that should be included in the response. If unset, health checks are not filtered by check_id.  | [optional] 
@@ -75,7 +73,6 @@ No authorization required
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Health status |  -  |

@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **str** | The status of the licensing. Indicates whether a valid license is present on the appliance, or whether the appliance is in grace period, or if the appliance functionality is restricted.  | 

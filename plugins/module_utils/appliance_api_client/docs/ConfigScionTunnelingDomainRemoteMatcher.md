@@ -3,7 +3,6 @@
 List of remote matchers.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **action** | **str** | Specify the matchers action. | 

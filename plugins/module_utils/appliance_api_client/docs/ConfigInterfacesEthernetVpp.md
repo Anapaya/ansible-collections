@@ -3,7 +3,6 @@
 The VPP driver specific configuration.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **vlan_strip_offload** | **bool** | Whether &#x60;vlan-strip-offload on&#x60; should be added to the interface configuration of the VPP dataplane. | [optional] [default to False]

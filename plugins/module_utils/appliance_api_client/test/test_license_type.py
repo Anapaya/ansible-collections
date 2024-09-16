@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.license_type import LicenseType
+from ansible.module_utils.appliance_api_client.models.license_type import LicenseType  # noqa: E501
 
 class TestLicenseType(unittest.TestCase):
     """LicenseType unit test stubs"""
@@ -34,7 +34,7 @@ class TestLicenseType(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LicenseType`
         """
-        model = LicenseType()
+        model = LicenseType()  # noqa: E501
         if include_optional:
             return LicenseType(
                 product = 'edge',

@@ -3,7 +3,6 @@
 Health check configuration.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **probe_interval** | **str** | The interval in which a health check probe is sent to the VPP dataplane.  It requires a unit suffix out of [&#39;d&#39;, &#39;h&#39;, &#39;m&#39;, &#39;s&#39;, &#39;ms&#39;, &#39;us&#39;, &#39;ns&#39;].  The encoding consists of a decimal number concatenated with a  suffix; for example, &#39;5us&#39;, &#39;10m&#39;, &#39;12h&#39;, and &#39;1d&#39;. | [optional] [default to '1s']

@@ -17,7 +17,6 @@ Get the configuration that is applied on the migration to version {version}.
 
 ### Example
 
-
 ```python
 import time
 import os
@@ -49,7 +48,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **version** | **str**| Version of the appliance for which the configuration is. | 
@@ -68,7 +66,6 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Configuration for the given version that was previously set. |  -  |
@@ -84,7 +81,6 @@ Put the configuration for migration to {version}.
 This endpoint allows the preparation of the installation of a new appliance release. It accepts any json and stores this so that the new appliance version will find it. The new appliance version will validate the configuration and if validation succeeds use that as configuration. This helps to do upgrades where new configuration features can't be automatically migrated or are newly added. For example to migrate to v0.33.1 put the new configuration to /migrations/v0.33/config. Note that if there was a previous configuration it is overwritten. 
 
 ### Example
-
 
 ```python
 import time
@@ -117,7 +113,6 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **version** | **str**| Version of the appliance for which the configuration is. | 
@@ -136,7 +131,6 @@ No authorization required
  - **Accept**: application/json+problem
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successfully put the configuration. |  -  |

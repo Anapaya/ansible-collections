@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_bgp_neighbor_transport import ConfigBgpNeighborTransport
+from ansible.module_utils.appliance_api_client.models.config_bgp_neighbor_transport import ConfigBgpNeighborTransport  # noqa: E501
 
 class TestConfigBgpNeighborTransport(unittest.TestCase):
     """ConfigBgpNeighborTransport unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigBgpNeighborTransport(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigBgpNeighborTransport`
         """
-        model = ConfigBgpNeighborTransport()
+        model = ConfigBgpNeighborTransport()  # noqa: E501
         if include_optional:
             return ConfigBgpNeighborTransport(
                 local_address = ''

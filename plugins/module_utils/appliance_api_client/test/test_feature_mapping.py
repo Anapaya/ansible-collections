@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.feature_mapping import FeatureMapping
+from ansible.module_utils.appliance_api_client.models.feature_mapping import FeatureMapping  # noqa: E501
 
 class TestFeatureMapping(unittest.TestCase):
     """FeatureMapping unit test stubs"""
@@ -34,7 +34,7 @@ class TestFeatureMapping(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FeatureMapping`
         """
-        model = FeatureMapping()
+        model = FeatureMapping()  # noqa: E501
         if include_optional:
             return FeatureMapping(
                 edge = ansible.module_utils.appliance_api_client.models.tier_mapping.TierMapping(

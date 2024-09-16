@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.firewall_counter import FirewallCounter
+from ansible.module_utils.appliance_api_client.models.firewall_counter import FirewallCounter  # noqa: E501
 
 class TestFirewallCounter(unittest.TestCase):
     """FirewallCounter unit test stubs"""
@@ -34,7 +34,7 @@ class TestFirewallCounter(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FirewallCounter`
         """
-        model = FirewallCounter()
+        model = FirewallCounter()  # noqa: E501
         if include_optional:
             return FirewallCounter(
                 name = '',

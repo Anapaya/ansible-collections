@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.scion_tunneling_sgrp_domains import ScionTunnelingSGRPDomains
+from ansible.module_utils.appliance_api_client.models.scion_tunneling_sgrp_domains import ScionTunnelingSGRPDomains  # noqa: E501
 
 class TestScionTunnelingSGRPDomains(unittest.TestCase):
     """ScionTunnelingSGRPDomains unit test stubs"""
@@ -34,7 +34,7 @@ class TestScionTunnelingSGRPDomains(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ScionTunnelingSGRPDomains`
         """
-        model = ScionTunnelingSGRPDomains()
+        model = ScionTunnelingSGRPDomains()  # noqa: E501
         if include_optional:
             return ScionTunnelingSGRPDomains(
                 domains = {

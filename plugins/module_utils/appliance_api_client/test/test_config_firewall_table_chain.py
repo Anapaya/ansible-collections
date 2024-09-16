@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_firewall_table_chain import ConfigFirewallTableChain
+from ansible.module_utils.appliance_api_client.models.config_firewall_table_chain import ConfigFirewallTableChain  # noqa: E501
 
 class TestConfigFirewallTableChain(unittest.TestCase):
     """ConfigFirewallTableChain unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigFirewallTableChain(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigFirewallTableChain`
         """
-        model = ConfigFirewallTableChain()
+        model = ConfigFirewallTableChain()  # noqa: E501
         if include_optional:
             return ConfigFirewallTableChain(
                 chaintype = 'FILTER',

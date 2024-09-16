@@ -13,20 +13,14 @@
 """  # noqa: E501
 
 
+import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
-from typing import Dict, List, Optional, Tuple, Union, Any
+from pydantic import validate_arguments, ValidationError
 
-try:
-    from typing import Annotated
-except ImportError:
-    from typing_extensions import Annotated
-
-from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import StrictBool, StrictBytes, StrictStr
+from pydantic import Field, StrictBool, StrictBytes, StrictStr
 
 from typing import Optional, Union
 
@@ -41,7 +35,10 @@ from ansible.module_utils.appliance_api_client.models.cppki_trcs_post_response_j
 
 from ansible.module_utils.appliance_api_client.api_client import ApiClient
 from ansible.module_utils.appliance_api_client.api_response import ApiResponse
-from ansible.module_utils.appliance_api_client.rest import RESTResponseType
+from ansible.module_utils.appliance_api_client.exceptions import (  # noqa: F401
+    ApiTypeError,
+    ApiValueError
+)
 
 
 class InitApi:
@@ -56,30 +53,16 @@ class InitApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+    @validate_arguments
+    def config_put(self, config_put_request : Annotated[ConfigPutRequest, Field(..., description="The config to be pushed to the appliance.")], if_match : Optional[StrictStr] = None, force : Annotated[Optional[StrictBool], Field(description="Push the configuration, even if configuration validation fails. This parameter MUST be used with care as it can leave the appliance in a misconfigured state.")] = None, disable_strict_parsing : Annotated[Optional[StrictBool], Field(description="Disable strict parsing of the appliance configuration.")] = None, **kwargs) -> ConfigPutResponseJson:  # noqa: E501
+        """Put a new configuration  # noqa: E501
 
-    @validate_call
-    def config_put(
-        self,
-        config_put_request: Annotated[ConfigPutRequest, Field(description="The config to be pushed to the appliance.")],
-        if_match: Optional[StrictStr] = None,
-        force: Annotated[Optional[StrictBool], Field(description="Push the configuration, even if configuration validation fails. This parameter MUST be used with care as it can leave the appliance in a misconfigured state.")] = None,
-        disable_strict_parsing: Annotated[Optional[StrictBool], Field(description="Disable strict parsing of the appliance configuration.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ConfigPutResponseJson:
-        """Put a new configuration
+        Put a new configuration to the appliance.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-        Put a new configuration to the appliance.
+        >>> thread = api.config_put(config_put_request, if_match, force, disable_strict_parsing, async_req=True)
+        >>> result = thread.get()
 
         :param config_put_request: The config to be pushed to the appliance. (required)
         :type config_put_request: ConfigPutRequest
@@ -89,79 +72,33 @@ class InitApi:
         :type force: bool
         :param disable_strict_parsing: Disable strict parsing of the appliance configuration.
         :type disable_strict_parsing: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: ConfigPutResponseJson
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the config_put_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.config_put_with_http_info(config_put_request, if_match, force, disable_strict_parsing, **kwargs)  # noqa: E501
 
-        _param = self._config_put_serialize(
-            config_put_request=config_put_request,
-            if_match=if_match,
-            force=force,
-            disable_strict_parsing=disable_strict_parsing,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def config_put_with_http_info(self, config_put_request : Annotated[ConfigPutRequest, Field(..., description="The config to be pushed to the appliance.")], if_match : Optional[StrictStr] = None, force : Annotated[Optional[StrictBool], Field(description="Push the configuration, even if configuration validation fails. This parameter MUST be used with care as it can leave the appliance in a misconfigured state.")] = None, disable_strict_parsing : Annotated[Optional[StrictBool], Field(description="Disable strict parsing of the appliance configuration.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Put a new configuration  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConfigPutResponseJson",
-            '400': "ConfigPut400Response",
-            '412': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        Put a new configuration to the appliance.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def config_put_with_http_info(
-        self,
-        config_put_request: Annotated[ConfigPutRequest, Field(description="The config to be pushed to the appliance.")],
-        if_match: Optional[StrictStr] = None,
-        force: Annotated[Optional[StrictBool], Field(description="Push the configuration, even if configuration validation fails. This parameter MUST be used with care as it can leave the appliance in a misconfigured state.")] = None,
-        disable_strict_parsing: Annotated[Optional[StrictBool], Field(description="Disable strict parsing of the appliance configuration.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ConfigPutResponseJson]:
-        """Put a new configuration
-
-        Put a new configuration to the appliance.
+        >>> thread = api.config_put_with_http_info(config_put_request, if_match, force, disable_strict_parsing, async_req=True)
+        >>> result = thread.get()
 
         :param config_put_request: The config to be pushed to the appliance. (required)
         :type config_put_request: ConfigPutRequest
@@ -171,1686 +108,913 @@ class InitApi:
         :type force: bool
         :param disable_strict_parsing: Disable strict parsing of the appliance configuration.
         :type disable_strict_parsing: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(ConfigPutResponseJson, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._config_put_serialize(
-            config_put_request=config_put_request,
-            if_match=if_match,
-            force=force,
-            disable_strict_parsing=disable_strict_parsing,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
+        _params = locals()
+
+        _all_params = [
+            'config_put_request',
+            'if_match',
+            'force',
+            'disable_strict_parsing'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method config_put" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('force') is not None:  # noqa: E501
+            _query_params.append(('force', _params['force']))
+
+        if _params.get('disable_strict_parsing') is not None:  # noqa: E501
+            _query_params.append(('disable_strict_parsing', _params['disable_strict_parsing']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        if _params['if_match'] is not None:
+            _header_params['If-Match'] = _params['if_match']
+
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['config_put_request'] is not None:
+            _body_params = _params['config_put_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/json+problem'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
             '200': "ConfigPutResponseJson",
             '400': "ConfigPut400Response",
             '412': "BasicError",
             '500': "BasicError",
         }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
 
-
-    @validate_call
-    def config_put_without_preload_content(
-        self,
-        config_put_request: Annotated[ConfigPutRequest, Field(description="The config to be pushed to the appliance.")],
-        if_match: Optional[StrictStr] = None,
-        force: Annotated[Optional[StrictBool], Field(description="Push the configuration, even if configuration validation fails. This parameter MUST be used with care as it can leave the appliance in a misconfigured state.")] = None,
-        disable_strict_parsing: Annotated[Optional[StrictBool], Field(description="Disable strict parsing of the appliance configuration.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Put a new configuration
-
-        Put a new configuration to the appliance.
-
-        :param config_put_request: The config to be pushed to the appliance. (required)
-        :type config_put_request: ConfigPutRequest
-        :param if_match:
-        :type if_match: str
-        :param force: Push the configuration, even if configuration validation fails. This parameter MUST be used with care as it can leave the appliance in a misconfigured state.
-        :type force: bool
-        :param disable_strict_parsing: Disable strict parsing of the appliance configuration.
-        :type disable_strict_parsing: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._config_put_serialize(
-            config_put_request=config_put_request,
-            if_match=if_match,
-            force=force,
-            disable_strict_parsing=disable_strict_parsing,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConfigPutResponseJson",
-            '400': "ConfigPut400Response",
-            '412': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _config_put_serialize(
-        self,
-        config_put_request,
-        if_match,
-        force,
-        disable_strict_parsing,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        if force is not None:
-            
-            _query_params.append(('force', force))
-            
-        if disable_strict_parsing is not None:
-            
-            _query_params.append(('disable_strict_parsing', disable_strict_parsing))
-            
-        # process the header parameters
-        if if_match is not None:
-            _header_params['If-Match'] = if_match
-        # process the form parameters
-        # process the body parameter
-        if config_put_request is not None:
-            _body_params = config_put_request
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'application/json+problem'
-            ]
-        )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='PUT',
-            resource_path='/config',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        return self.api_client.call_api(
+            '/config', 'PUT',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def config_validate_post(self, config_put_request : Annotated[ConfigPutRequest, Field(..., description="The config to be validated.")], disable_strict_parsing : Annotated[Optional[StrictBool], Field(description="Disable strict parsing of the appliance configuration.")] = None, **kwargs) -> ConfigPostResponseJson:  # noqa: E501
+        """Validates a configuration  # noqa: E501
 
+        Validates a configuration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def config_validate_post(
-        self,
-        config_put_request: Annotated[ConfigPutRequest, Field(description="The config to be validated.")],
-        disable_strict_parsing: Annotated[Optional[StrictBool], Field(description="Disable strict parsing of the appliance configuration.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ConfigPostResponseJson:
-        """Validates a configuration
-
-        Validates a configuration.
+        >>> thread = api.config_validate_post(config_put_request, disable_strict_parsing, async_req=True)
+        >>> result = thread.get()
 
         :param config_put_request: The config to be validated. (required)
         :type config_put_request: ConfigPutRequest
         :param disable_strict_parsing: Disable strict parsing of the appliance configuration.
         :type disable_strict_parsing: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: ConfigPostResponseJson
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the config_validate_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.config_validate_post_with_http_info(config_put_request, disable_strict_parsing, **kwargs)  # noqa: E501
 
-        _param = self._config_validate_post_serialize(
-            config_put_request=config_put_request,
-            disable_strict_parsing=disable_strict_parsing,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def config_validate_post_with_http_info(self, config_put_request : Annotated[ConfigPutRequest, Field(..., description="The config to be validated.")], disable_strict_parsing : Annotated[Optional[StrictBool], Field(description="Disable strict parsing of the appliance configuration.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Validates a configuration  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConfigPostResponseJson",
-            '400': "ConfigPut400Response",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        Validates a configuration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def config_validate_post_with_http_info(
-        self,
-        config_put_request: Annotated[ConfigPutRequest, Field(description="The config to be validated.")],
-        disable_strict_parsing: Annotated[Optional[StrictBool], Field(description="Disable strict parsing of the appliance configuration.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ConfigPostResponseJson]:
-        """Validates a configuration
-
-        Validates a configuration.
+        >>> thread = api.config_validate_post_with_http_info(config_put_request, disable_strict_parsing, async_req=True)
+        >>> result = thread.get()
 
         :param config_put_request: The config to be validated. (required)
         :type config_put_request: ConfigPutRequest
         :param disable_strict_parsing: Disable strict parsing of the appliance configuration.
         :type disable_strict_parsing: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(ConfigPostResponseJson, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._config_validate_post_serialize(
-            config_put_request=config_put_request,
-            disable_strict_parsing=disable_strict_parsing,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
+        _params = locals()
+
+        _all_params = [
+            'config_put_request',
+            'disable_strict_parsing'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method config_validate_post" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('disable_strict_parsing') is not None:  # noqa: E501
+            _query_params.append(('disable_strict_parsing', _params['disable_strict_parsing']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['config_put_request'] is not None:
+            _body_params = _params['config_put_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/json+problem'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
             '200': "ConfigPostResponseJson",
             '400': "ConfigPut400Response",
             '500': "BasicError",
         }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
 
-
-    @validate_call
-    def config_validate_post_without_preload_content(
-        self,
-        config_put_request: Annotated[ConfigPutRequest, Field(description="The config to be validated.")],
-        disable_strict_parsing: Annotated[Optional[StrictBool], Field(description="Disable strict parsing of the appliance configuration.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Validates a configuration
-
-        Validates a configuration.
-
-        :param config_put_request: The config to be validated. (required)
-        :type config_put_request: ConfigPutRequest
-        :param disable_strict_parsing: Disable strict parsing of the appliance configuration.
-        :type disable_strict_parsing: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._config_validate_post_serialize(
-            config_put_request=config_put_request,
-            disable_strict_parsing=disable_strict_parsing,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ConfigPostResponseJson",
-            '400': "ConfigPut400Response",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _config_validate_post_serialize(
-        self,
-        config_put_request,
-        disable_strict_parsing,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        if disable_strict_parsing is not None:
-            
-            _query_params.append(('disable_strict_parsing', disable_strict_parsing))
-            
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if config_put_request is not None:
-            _body_params = config_put_request
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'application/json+problem'
-            ]
-        )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/config/validate',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        return self.api_client.call_api(
+            '/config/validate', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def cppki_certificates_post(self, body : Union[StrictBytes, StrictStr], force : Annotated[Optional[StrictBool], Field(description="If force is true the certificate chain is added regardless of validity. ")] = None, **kwargs) -> CppkiCertificatesPostResponseJson:  # noqa: E501
+        """Add an AS certificate chain  # noqa: E501
 
+        Add a SCION CPPKI AS certificate chain to the device by promoting an existing certificate signing request. The certificate chain is first verified against the active TRC of the local ISD before it is added. Only verifiable certificate chains are added.  Use the 'force' query parameter to force the addition of the certificate chain regardless of validity or verifiability.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def cppki_certificates_post(
-        self,
-        body: Union[StrictBytes, StrictStr],
-        force: Annotated[Optional[StrictBool], Field(description="If force is true the certificate chain is added regardless of validity. ")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CppkiCertificatesPostResponseJson:
-        """Add an AS certificate chain
-
-        Add a SCION CPPKI AS certificate chain to the device by promoting an existing certificate signing request. The certificate chain is first verified against the active TRC of the local ISD before it is added. Only verifiable certificate chains are added.  Use the 'force' query parameter to force the addition of the certificate chain regardless of validity or verifiability. 
+        >>> thread = api.cppki_certificates_post(body, force, async_req=True)
+        >>> result = thread.get()
 
         :param body: (required)
         :type body: bytearray
         :param force: If force is true the certificate chain is added regardless of validity. 
         :type force: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CppkiCertificatesPostResponseJson
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the cppki_certificates_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.cppki_certificates_post_with_http_info(body, force, **kwargs)  # noqa: E501
 
-        _param = self._cppki_certificates_post_serialize(
-            body=body,
-            force=force,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def cppki_certificates_post_with_http_info(self, body : Union[StrictBytes, StrictStr], force : Annotated[Optional[StrictBool], Field(description="If force is true the certificate chain is added regardless of validity. ")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Add an AS certificate chain  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CppkiCertificatesPostResponseJson",
-            '400': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        Add a SCION CPPKI AS certificate chain to the device by promoting an existing certificate signing request. The certificate chain is first verified against the active TRC of the local ISD before it is added. Only verifiable certificate chains are added.  Use the 'force' query parameter to force the addition of the certificate chain regardless of validity or verifiability.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def cppki_certificates_post_with_http_info(
-        self,
-        body: Union[StrictBytes, StrictStr],
-        force: Annotated[Optional[StrictBool], Field(description="If force is true the certificate chain is added regardless of validity. ")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CppkiCertificatesPostResponseJson]:
-        """Add an AS certificate chain
-
-        Add a SCION CPPKI AS certificate chain to the device by promoting an existing certificate signing request. The certificate chain is first verified against the active TRC of the local ISD before it is added. Only verifiable certificate chains are added.  Use the 'force' query parameter to force the addition of the certificate chain regardless of validity or verifiability. 
+        >>> thread = api.cppki_certificates_post_with_http_info(body, force, async_req=True)
+        >>> result = thread.get()
 
         :param body: (required)
         :type body: bytearray
         :param force: If force is true the certificate chain is added regardless of validity. 
         :type force: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CppkiCertificatesPostResponseJson, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._cppki_certificates_post_serialize(
-            body=body,
-            force=force,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
+        _params = locals()
+
+        _all_params = [
+            'body',
+            'force'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method cppki_certificates_post" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('force') is not None:  # noqa: E501
+            _query_params.append(('force', _params['force']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['body'] is not None:
+            _body_params = _params['body']
+            # convert to byte array if the input is a file name (str)
+            if isinstance(_body_params, str):
+                with io.open(_body_params, "rb") as _fp:
+                   _body_params_from_file = _fp.read()
+                _body_params = _body_params_from_file
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/json+problem'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/pkcs7-mime', 'application/x-pem-files']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
             '200': "CppkiCertificatesPostResponseJson",
             '400': "BasicError",
             '500': "BasicError",
         }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
 
-
-    @validate_call
-    def cppki_certificates_post_without_preload_content(
-        self,
-        body: Union[StrictBytes, StrictStr],
-        force: Annotated[Optional[StrictBool], Field(description="If force is true the certificate chain is added regardless of validity. ")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Add an AS certificate chain
-
-        Add a SCION CPPKI AS certificate chain to the device by promoting an existing certificate signing request. The certificate chain is first verified against the active TRC of the local ISD before it is added. Only verifiable certificate chains are added.  Use the 'force' query parameter to force the addition of the certificate chain regardless of validity or verifiability. 
-
-        :param body: (required)
-        :type body: bytearray
-        :param force: If force is true the certificate chain is added regardless of validity. 
-        :type force: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._cppki_certificates_post_serialize(
-            body=body,
-            force=force,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CppkiCertificatesPostResponseJson",
-            '400': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _cppki_certificates_post_serialize(
-        self,
-        body,
-        force,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        if force is not None:
-            
-            _query_params.append(('force', force))
-            
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if body is not None:
-            # convert to byte array if the input is a file name (str)
-            if isinstance(body, str):
-                with io.open(body, "rb") as _fp:
-                    _body_params = _fp.read()
-            else:
-                _body_params = body
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'application/json+problem'
-            ]
-        )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/pkcs7-mime', 
-                        'application/x-pem-files'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/cppki/certificates',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        return self.api_client.call_api(
+            '/cppki/certificates', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def cppki_csrs_post(self, certificate_signing_request : Annotated[CertificateSigningRequest, Field(..., description="The parameters for the CSR. ")], **kwargs) -> CppkiCsrsPostResponseJson:  # noqa: E501
+        """Create an AS certificate signing request  # noqa: E501
 
+        Create a SCION CPPKI AS Certificate Signing Request (CSR). The CSR needs to be signed by a SCION CPPKI Certificate Authority in the local ISD. The fully signed certificate chain then needs to be installed via the /cppki/certificates endpoint.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def cppki_csrs_post(
-        self,
-        certificate_signing_request: Annotated[CertificateSigningRequest, Field(description="The parameters for the CSR. ")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CppkiCsrsPostResponseJson:
-        """Create an AS certificate signing request
-
-        Create a SCION CPPKI AS Certificate Signing Request (CSR). The CSR needs to be signed by a SCION CPPKI Certificate Authority in the local ISD. The fully signed certificate chain then needs to be installed via the /cppki/certificates endpoint. 
+        >>> thread = api.cppki_csrs_post(certificate_signing_request, async_req=True)
+        >>> result = thread.get()
 
         :param certificate_signing_request: The parameters for the CSR.  (required)
         :type certificate_signing_request: CertificateSigningRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CppkiCsrsPostResponseJson
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the cppki_csrs_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.cppki_csrs_post_with_http_info(certificate_signing_request, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def cppki_csrs_post_with_http_info(self, certificate_signing_request : Annotated[CertificateSigningRequest, Field(..., description="The parameters for the CSR. ")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Create an AS certificate signing request  # noqa: E501
+
+        Create a SCION CPPKI AS Certificate Signing Request (CSR). The CSR needs to be signed by a SCION CPPKI Certificate Authority in the local ISD. The fully signed certificate chain then needs to be installed via the /cppki/certificates endpoint.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.cppki_csrs_post_with_http_info(certificate_signing_request, async_req=True)
+        >>> result = thread.get()
+
+        :param certificate_signing_request: The parameters for the CSR.  (required)
+        :type certificate_signing_request: CertificateSigningRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CppkiCsrsPostResponseJson, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._cppki_csrs_post_serialize(
-            certificate_signing_request=certificate_signing_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
+        _params = locals()
+
+        _all_params = [
+            'certificate_signing_request'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method cppki_csrs_post" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['certificate_signing_request'] is not None:
+            _body_params = _params['certificate_signing_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/x-pem-file', 'application/json+problem'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
             '200': "CppkiCsrsPostResponseJson",
             '400': "BasicError",
             '500': "BasicError",
         }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
 
-
-    @validate_call
-    def cppki_csrs_post_with_http_info(
-        self,
-        certificate_signing_request: Annotated[CertificateSigningRequest, Field(description="The parameters for the CSR. ")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CppkiCsrsPostResponseJson]:
-        """Create an AS certificate signing request
-
-        Create a SCION CPPKI AS Certificate Signing Request (CSR). The CSR needs to be signed by a SCION CPPKI Certificate Authority in the local ISD. The fully signed certificate chain then needs to be installed via the /cppki/certificates endpoint. 
-
-        :param certificate_signing_request: The parameters for the CSR.  (required)
-        :type certificate_signing_request: CertificateSigningRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._cppki_csrs_post_serialize(
-            certificate_signing_request=certificate_signing_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CppkiCsrsPostResponseJson",
-            '400': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def cppki_csrs_post_without_preload_content(
-        self,
-        certificate_signing_request: Annotated[CertificateSigningRequest, Field(description="The parameters for the CSR. ")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Create an AS certificate signing request
-
-        Create a SCION CPPKI AS Certificate Signing Request (CSR). The CSR needs to be signed by a SCION CPPKI Certificate Authority in the local ISD. The fully signed certificate chain then needs to be installed via the /cppki/certificates endpoint. 
-
-        :param certificate_signing_request: The parameters for the CSR.  (required)
-        :type certificate_signing_request: CertificateSigningRequest
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._cppki_csrs_post_serialize(
-            certificate_signing_request=certificate_signing_request,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CppkiCsrsPostResponseJson",
-            '400': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _cppki_csrs_post_serialize(
-        self,
-        certificate_signing_request,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if certificate_signing_request is not None:
-            _body_params = certificate_signing_request
-
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'application/x-pem-file', 
-                'application/json+problem'
-            ]
-        )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/cppki/csrs',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        return self.api_client.call_api(
+            '/cppki/csrs', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def cppki_trcs_bundle_post(self, body : Union[StrictBytes, StrictStr], force : Annotated[Optional[StrictBool], Field(description="If force is true, the TRC is added regardless of validity.")] = None, **kwargs) -> CppkiTrcsBundlePostResponseJson:  # noqa: E501
+        """Add a bundle of TRC files  # noqa: E501
 
+        Add a bundle SCION CPPKI Trust Root Configuration (TRC) files to the device. The TRCs are first validated before they are added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRCs regardless of validity.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def cppki_trcs_bundle_post(
-        self,
-        body: Union[StrictBytes, StrictStr],
-        force: Annotated[Optional[StrictBool], Field(description="If force is true, the TRC is added regardless of validity.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CppkiTrcsBundlePostResponseJson:
-        """Add a bundle of TRC files
-
-        Add a bundle SCION CPPKI Trust Root Configuration (TRC) files to the device. The TRCs are first validated before they are added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRCs regardless of validity. 
+        >>> thread = api.cppki_trcs_bundle_post(body, force, async_req=True)
+        >>> result = thread.get()
 
         :param body: (required)
         :type body: bytearray
         :param force: If force is true, the TRC is added regardless of validity.
         :type force: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CppkiTrcsBundlePostResponseJson
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the cppki_trcs_bundle_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.cppki_trcs_bundle_post_with_http_info(body, force, **kwargs)  # noqa: E501
 
-        _param = self._cppki_trcs_bundle_post_serialize(
-            body=body,
-            force=force,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def cppki_trcs_bundle_post_with_http_info(self, body : Union[StrictBytes, StrictStr], force : Annotated[Optional[StrictBool], Field(description="If force is true, the TRC is added regardless of validity.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Add a bundle of TRC files  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CppkiTrcsBundlePostResponseJson",
-            '400': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        Add a bundle SCION CPPKI Trust Root Configuration (TRC) files to the device. The TRCs are first validated before they are added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRCs regardless of validity.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def cppki_trcs_bundle_post_with_http_info(
-        self,
-        body: Union[StrictBytes, StrictStr],
-        force: Annotated[Optional[StrictBool], Field(description="If force is true, the TRC is added regardless of validity.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CppkiTrcsBundlePostResponseJson]:
-        """Add a bundle of TRC files
-
-        Add a bundle SCION CPPKI Trust Root Configuration (TRC) files to the device. The TRCs are first validated before they are added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRCs regardless of validity. 
+        >>> thread = api.cppki_trcs_bundle_post_with_http_info(body, force, async_req=True)
+        >>> result = thread.get()
 
         :param body: (required)
         :type body: bytearray
         :param force: If force is true, the TRC is added regardless of validity.
         :type force: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CppkiTrcsBundlePostResponseJson, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._cppki_trcs_bundle_post_serialize(
-            body=body,
-            force=force,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CppkiTrcsBundlePostResponseJson",
-            '400': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def cppki_trcs_bundle_post_without_preload_content(
-        self,
-        body: Union[StrictBytes, StrictStr],
-        force: Annotated[Optional[StrictBool], Field(description="If force is true, the TRC is added regardless of validity.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            'body',
+            'force'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Add a bundle of TRC files
-
-        Add a bundle SCION CPPKI Trust Root Configuration (TRC) files to the device. The TRCs are first validated before they are added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRCs regardless of validity. 
-
-        :param body: (required)
-        :type body: bytearray
-        :param force: If force is true, the TRC is added regardless of validity.
-        :type force: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._cppki_trcs_bundle_post_serialize(
-            body=body,
-            force=force,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CppkiTrcsBundlePostResponseJson",
-            '400': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method cppki_trcs_bundle_post" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _cppki_trcs_bundle_post_serialize(
-        self,
-        body,
-        force,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
+        _path_params = {}
+
         # process the query parameters
-        if force is not None:
-            
-            _query_params.append(('force', force))
-            
+        _query_params = []
+        if _params.get('force') is not None:  # noqa: E501
+            _query_params.append(('force', _params['force']))
+
         # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
+        _form_params = []
+        _files = {}
         # process the body parameter
-        if body is not None:
+        _body_params = None
+        if _params['body'] is not None:
+            _body_params = _params['body']
             # convert to byte array if the input is a file name (str)
-            if isinstance(body, str):
-                with io.open(body, "rb") as _fp:
-                    _body_params = _fp.read()
-            else:
-                _body_params = body
-
+            if isinstance(_body_params, str):
+                with io.open(_body_params, "rb") as _fp:
+                   _body_params_from_file = _fp.read()
+                _body_params = _body_params_from_file
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'application/json+problem'
-            ]
-        )
+            ['application/json', 'application/json+problem'])  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/x-pem-files'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/x-pem-files']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/cppki/trcs/bundle',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "CppkiTrcsBundlePostResponseJson",
+            '400': "BasicError",
+            '500': "BasicError",
+        }
+
+        return self.api_client.call_api(
+            '/cppki/trcs/bundle', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
+            _request_auth=_params.get('_request_auth'))
 
+    @validate_arguments
+    def cppki_trcs_post(self, body : Union[StrictBytes, StrictStr], force : Annotated[Optional[StrictBool], Field(description="If force is true, the TRC is added regardless of validity.")] = None, **kwargs) -> CppkiTrcsPostResponseJson:  # noqa: E501
+        """Add a TRC file  # noqa: E501
 
+        Add a SCION CPPKI Trust Root Configuration (TRC) file to the device. The TRC is first validated before it is added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRC regardless of validity.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def cppki_trcs_post(
-        self,
-        body: Union[StrictBytes, StrictStr],
-        force: Annotated[Optional[StrictBool], Field(description="If force is true, the TRC is added regardless of validity.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CppkiTrcsPostResponseJson:
-        """Add a TRC file
-
-        Add a SCION CPPKI Trust Root Configuration (TRC) file to the device. The TRC is first validated before it is added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRC regardless of validity. 
+        >>> thread = api.cppki_trcs_post(body, force, async_req=True)
+        >>> result = thread.get()
 
         :param body: (required)
         :type body: bytearray
         :param force: If force is true, the TRC is added regardless of validity.
         :type force: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CppkiTrcsPostResponseJson
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the cppki_trcs_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.cppki_trcs_post_with_http_info(body, force, **kwargs)  # noqa: E501
 
-        _param = self._cppki_trcs_post_serialize(
-            body=body,
-            force=force,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+    @validate_arguments
+    def cppki_trcs_post_with_http_info(self, body : Union[StrictBytes, StrictStr], force : Annotated[Optional[StrictBool], Field(description="If force is true, the TRC is added regardless of validity.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Add a TRC file  # noqa: E501
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CppkiTrcsPostResponseJson",
-            '400': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
+        Add a SCION CPPKI Trust Root Configuration (TRC) file to the device. The TRC is first validated before it is added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRC regardless of validity.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
 
-
-    @validate_call
-    def cppki_trcs_post_with_http_info(
-        self,
-        body: Union[StrictBytes, StrictStr],
-        force: Annotated[Optional[StrictBool], Field(description="If force is true, the TRC is added regardless of validity.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CppkiTrcsPostResponseJson]:
-        """Add a TRC file
-
-        Add a SCION CPPKI Trust Root Configuration (TRC) file to the device. The TRC is first validated before it is added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRC regardless of validity. 
+        >>> thread = api.cppki_trcs_post_with_http_info(body, force, async_req=True)
+        >>> result = thread.get()
 
         :param body: (required)
         :type body: bytearray
         :param force: If force is true, the TRC is added regardless of validity.
         :type force: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
         :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        """ # noqa: E501
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CppkiTrcsPostResponseJson, status_code(int), headers(HTTPHeaderDict))
+        """
 
-        _param = self._cppki_trcs_post_serialize(
-            body=body,
-            force=force,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
+        _params = locals()
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CppkiTrcsPostResponseJson",
-            '400': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def cppki_trcs_post_without_preload_content(
-        self,
-        body: Union[StrictBytes, StrictStr],
-        force: Annotated[Optional[StrictBool], Field(description="If force is true, the TRC is added regardless of validity.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
+        _all_params = [
+            'body',
+            'force'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Add a TRC file
-
-        Add a SCION CPPKI Trust Root Configuration (TRC) file to the device. The TRC is first validated before it is added to the trust store. Only valid TRCs are added to the trust store. Use the 'force' query parameter to force the addition of the TRC regardless of validity. 
-
-        :param body: (required)
-        :type body: bytearray
-        :param force: If force is true, the TRC is added regardless of validity.
-        :type force: bool
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._cppki_trcs_post_serialize(
-            body=body,
-            force=force,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CppkiTrcsPostResponseJson",
-            '400': "BasicError",
-            '500': "BasicError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method cppki_trcs_post" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
 
-
-    def _cppki_trcs_post_serialize(
-        self,
-        body,
-        force,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> Tuple:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats = {}
 
         # process the path parameters
-        # process the query parameters
-        if force is not None:
-            
-            _query_params.append(('force', force))
-            
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if body is not None:
-            # convert to byte array if the input is a file name (str)
-            if isinstance(body, str):
-                with io.open(body, "rb") as _fp:
-                    _body_params = _fp.read()
-            else:
-                _body_params = body
+        _path_params = {}
 
+        # process the query parameters
+        _query_params = []
+        if _params.get('force') is not None:  # noqa: E501
+            _query_params.append(('force', _params['force']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['body'] is not None:
+            _body_params = _params['body']
+            # convert to byte array if the input is a file name (str)
+            if isinstance(_body_params, str):
+                with io.open(_body_params, "rb") as _fp:
+                   _body_params_from_file = _fp.read()
+                _body_params = _body_params_from_file
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'application/json+problem'
-            ]
-        )
+            ['application/json', 'application/json+problem'])  # noqa: E501
 
         # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/x-pem-files'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/x-pem-files']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings: List[str] = [
-        ]
+        _auth_settings = []  # noqa: E501
 
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/cppki/trcs',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
+        _response_types_map = {
+            '200': "CppkiTrcsPostResponseJson",
+            '400': "BasicError",
+            '500': "BasicError",
+        }
+
+        return self.api_client.call_api(
+            '/cppki/trcs', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
+            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
+            _request_auth=_params.get('_request_auth'))

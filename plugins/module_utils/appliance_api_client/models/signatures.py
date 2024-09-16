@@ -19,61 +19,43 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
+from typing import List
+from pydantic import BaseModel, Field, StrictStr, conlist
 from ansible.module_utils.appliance_api_client.models.signature import Signature
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class Signatures(BaseModel):
     """
     Signatures
-    """ # noqa: E501
-    name: StrictStr = Field(description="Name of the signed file")
-    sha256sum: StrictStr = Field(description="SHA256 hash of the signed file")
-    signatures: List[Signature] = Field(description="A list of signatures")
-    __properties: ClassVar[List[str]] = ["name", "sha256sum", "signatures"]
+    """
+    name: StrictStr = Field(..., description="Name of the signed file")
+    sha256sum: StrictStr = Field(..., description="SHA256 hash of the signed file")
+    signatures: conlist(Signature) = Field(..., description="A list of signatures")
+    __properties = ["name", "sha256sum", "signatures"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Signatures:
         """Create an instance of Signatures from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in signatures (list)
         _items = []
         if self.signatures:
@@ -84,15 +66,15 @@ class Signatures(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> Signatures:
         """Create an instance of Signatures from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return Signatures.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = Signatures.parse_obj({
             "name": obj.get("name"),
             "sha256sum": obj.get("sha256sum"),
             "signatures": [Signature.from_dict(_item) for _item in obj.get("signatures")] if obj.get("signatures") is not None else None

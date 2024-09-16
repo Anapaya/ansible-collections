@@ -3,7 +3,6 @@
 Section for experimental options.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **features** | [**List[ConfigExperimentsFeature]**](ConfigExperimentsFeature.md) | The list of features. | [optional] 

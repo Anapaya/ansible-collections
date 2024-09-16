@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **gateways** | [**Dict[str, LanStatsGateway]**](LanStatsGateway.md) | A list of local gateways with associated statistics. | 

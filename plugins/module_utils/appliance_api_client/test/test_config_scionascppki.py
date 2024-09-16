@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_scionascppki import ConfigSCIONASCPPKI
+from ansible.module_utils.appliance_api_client.models.config_scionascppki import ConfigSCIONASCPPKI  # noqa: E501
 
 class TestConfigSCIONASCPPKI(unittest.TestCase):
     """ConfigSCIONASCPPKI unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigSCIONASCPPKI(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigSCIONASCPPKI`
         """
-        model = ConfigSCIONASCPPKI()
+        model = ConfigSCIONASCPPKI()  # noqa: E501
         if include_optional:
             return ConfigSCIONASCPPKI(
                 disable_auto_renewal = True,

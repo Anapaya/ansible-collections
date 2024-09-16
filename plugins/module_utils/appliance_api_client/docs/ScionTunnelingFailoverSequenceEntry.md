@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **path_filter_name** | **str** | Name of the path filter used for this failover entry. | 

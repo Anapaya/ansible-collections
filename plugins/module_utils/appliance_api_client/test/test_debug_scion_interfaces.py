@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.debug_scion_interfaces import DebugScionInterfaces
+from ansible.module_utils.appliance_api_client.models.debug_scion_interfaces import DebugScionInterfaces  # noqa: E501
 
 class TestDebugScionInterfaces(unittest.TestCase):
     """DebugScionInterfaces unit test stubs"""
@@ -34,7 +34,7 @@ class TestDebugScionInterfaces(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DebugScionInterfaces`
         """
-        model = DebugScionInterfaces()
+        model = DebugScionInterfaces()  # noqa: E501
         if include_optional:
             return DebugScionInterfaces(
                 interfaces = [

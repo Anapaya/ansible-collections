@@ -15,14 +15,14 @@
 
 import unittest
 
-from ansible.module_utils.appliance_api_client.api.tools_api import ToolsApi
+from ansible.module_utils.appliance_api_client.api.tools_api import ToolsApi  # noqa: E501
 
 
 class TestToolsApi(unittest.TestCase):
     """ToolsApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = ToolsApi()
+        self.api = ToolsApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,21 +30,21 @@ class TestToolsApi(unittest.TestCase):
     def test_tools_scion_ping_post(self) -> None:
         """Test case for tools_scion_ping_post
 
-        Trigger a scion ping run
+        Trigger a scion ping run  # noqa: E501
         """
         pass
 
     def test_tools_scion_showpaths_post(self) -> None:
         """Test case for tools_scion_showpaths_post
 
-        Trigger a SCION showpaths request
+        Trigger a SCION showpaths request  # noqa: E501
         """
         pass
 
     def test_tools_scion_traceroute_post(self) -> None:
         """Test case for tools_scion_traceroute_post
 
-        Trigger a scion traceroute run
+        Trigger a scion traceroute run  # noqa: E501
         """
         pass
 

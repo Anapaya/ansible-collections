@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_info import TRCForLocalISDAvailableInfo
+from ansible.module_utils.appliance_api_client.models.trc_for_local_isd_available_info import TRCForLocalISDAvailableInfo  # noqa: E501
 
 class TestTRCForLocalISDAvailableInfo(unittest.TestCase):
     """TRCForLocalISDAvailableInfo unit test stubs"""
@@ -34,7 +34,7 @@ class TestTRCForLocalISDAvailableInfo(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TRCForLocalISDAvailableInfo`
         """
-        model = TRCForLocalISDAvailableInfo()
+        model = TRCForLocalISDAvailableInfo()  # noqa: E501
         if include_optional:
             return TRCForLocalISDAvailableInfo(
                 validity = ansible.module_utils.appliance_api_client.models.schemas_validity.schemas-Validity(

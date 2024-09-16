@@ -3,7 +3,6 @@
 List of prefix matchers. Prefixes that are to be announced are filtered by the prefix matchers in order by keeping all IPs that are in _accepted_ matchers and removing ones that are in _rejected_ prefix matchers.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **action** | **str** | Specify matchers action. | 

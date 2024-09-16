@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_put400_response import ConfigPut400Response
+from ansible.module_utils.appliance_api_client.models.config_put400_response import ConfigPut400Response  # noqa: E501
 
 class TestConfigPut400Response(unittest.TestCase):
     """ConfigPut400Response unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigPut400Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigPut400Response`
         """
-        model = ConfigPut400Response()
+        model = ConfigPut400Response()  # noqa: E501
         if include_optional:
             return ConfigPut400Response(
                 type = 'https://anapaya.net/probs/bad-request',

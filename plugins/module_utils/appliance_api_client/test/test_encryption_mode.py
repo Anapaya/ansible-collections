@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.encryption_mode import EncryptionMode
+from ansible.module_utils.appliance_api_client.models.encryption_mode import EncryptionMode  # noqa: E501
 
 class TestEncryptionMode(unittest.TestCase):
     """EncryptionMode unit test stubs"""

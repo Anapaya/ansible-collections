@@ -3,7 +3,6 @@
 Anapaya appliance configuration
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **advanced** | [**ConfigAdvanced**](ConfigAdvanced.md) |  | [optional] 

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.debug_services_group import DebugServicesGroup
+from ansible.module_utils.appliance_api_client.models.debug_services_group import DebugServicesGroup  # noqa: E501
 
 class TestDebugServicesGroup(unittest.TestCase):
     """DebugServicesGroup unit test stubs"""
@@ -34,7 +34,7 @@ class TestDebugServicesGroup(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DebugServicesGroup`
         """
-        model = DebugServicesGroup()
+        model = DebugServicesGroup()  # noqa: E501
         if include_optional:
             return DebugServicesGroup(
                 group = '',

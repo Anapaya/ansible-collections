@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.sibling_interface_up import SiblingInterfaceUp
+from ansible.module_utils.appliance_api_client.models.sibling_interface_up import SiblingInterfaceUp  # noqa: E501
 
 class TestSiblingInterfaceUp(unittest.TestCase):
     """SiblingInterfaceUp unit test stubs"""
@@ -34,7 +34,7 @@ class TestSiblingInterfaceUp(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SiblingInterfaceUp`
         """
-        model = SiblingInterfaceUp()
+        model = SiblingInterfaceUp()  # noqa: E501
         if include_optional:
             return SiblingInterfaceUp(
                 data = ansible.module_utils.appliance_api_client.models.sibling_interface_up_data.SiblingInterfaceUpData(

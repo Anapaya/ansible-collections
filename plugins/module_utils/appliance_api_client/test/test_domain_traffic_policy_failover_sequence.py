@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.domain_traffic_policy_failover_sequence import DomainTrafficPolicyFailoverSequence
+from ansible.module_utils.appliance_api_client.models.domain_traffic_policy_failover_sequence import DomainTrafficPolicyFailoverSequence  # noqa: E501
 
 class TestDomainTrafficPolicyFailoverSequence(unittest.TestCase):
     """DomainTrafficPolicyFailoverSequence unit test stubs"""
@@ -34,7 +34,7 @@ class TestDomainTrafficPolicyFailoverSequence(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DomainTrafficPolicyFailoverSequence`
         """
-        model = DomainTrafficPolicyFailoverSequence()
+        model = DomainTrafficPolicyFailoverSequence()  # noqa: E501
         if include_optional:
             return DomainTrafficPolicyFailoverSequence(
                 name = '',

@@ -3,7 +3,6 @@
 TUN configuration.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **mtu** | **int** | The MTU (Maximum Transmission Unit) to be used on this TUN. | [optional] [default to 1500]

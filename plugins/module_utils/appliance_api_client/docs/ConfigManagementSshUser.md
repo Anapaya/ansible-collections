@@ -3,7 +3,6 @@
 List of users that are authorized to access the Anapaya appliance.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ssh_keys** | [**List[ConfigManagementSshUserSshKey]**](ConfigManagementSshUserSshKey.md) | List of SSH keys that are authorized for the given user. This list is authoritative and overwrites the list of existing SSH keys in the user&#39;s authorized_keys file. | [optional] 

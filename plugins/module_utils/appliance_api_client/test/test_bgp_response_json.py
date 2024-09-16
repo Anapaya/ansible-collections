@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.bgp_response_json import BGPResponseJson
+from ansible.module_utils.appliance_api_client.models.bgp_response_json import BGPResponseJson  # noqa: E501
 
 class TestBGPResponseJson(unittest.TestCase):
     """BGPResponseJson unit test stubs"""
@@ -34,7 +34,7 @@ class TestBGPResponseJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BGPResponseJson`
         """
-        model = BGPResponseJson()
+        model = BGPResponseJson()  # noqa: E501
         if include_optional:
             return BGPResponseJson(
                 configuration = ansible.module_utils.appliance_api_client.models.bgp_config.BGPConfig(

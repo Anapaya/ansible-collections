@@ -3,7 +3,6 @@
 The configuration data for the cloudsmith repository. This section is provided only when the remote repository is cloudsmith.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **access_token** | **str** | The token used to access the remote cloudsmith repository. It must be of the form &lt;api_key&gt;#&lt;entitlement_token&gt; | [optional] 

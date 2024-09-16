@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.config_management_api_basic_auth_user import ConfigManagementApiBasicAuthUser
+from ansible.module_utils.appliance_api_client.models.config_management_api_basic_auth_user import ConfigManagementApiBasicAuthUser  # noqa: E501
 
 class TestConfigManagementApiBasicAuthUser(unittest.TestCase):
     """ConfigManagementApiBasicAuthUser unit test stubs"""
@@ -34,7 +34,7 @@ class TestConfigManagementApiBasicAuthUser(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ConfigManagementApiBasicAuthUser`
         """
-        model = ConfigManagementApiBasicAuthUser()
+        model = ConfigManagementApiBasicAuthUser()  # noqa: E501
         if include_optional:
             return ConfigManagementApiBasicAuthUser(
                 password_hashed = '$2y$10$QNodxwKFABMWu4XlFPmZDOSfqxrsqNvrSn487lCi7tJ/4nTsT/f02',

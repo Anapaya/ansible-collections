@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.with_service_info import WithServiceInfo
+from ansible.module_utils.appliance_api_client.models.with_service_info import WithServiceInfo  # noqa: E501
 
 class TestWithServiceInfo(unittest.TestCase):
     """WithServiceInfo unit test stubs"""
@@ -34,7 +34,7 @@ class TestWithServiceInfo(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `WithServiceInfo`
         """
-        model = WithServiceInfo()
+        model = WithServiceInfo()  # noqa: E501
         if include_optional:
             return WithServiceInfo(
                 component = 'appliance',

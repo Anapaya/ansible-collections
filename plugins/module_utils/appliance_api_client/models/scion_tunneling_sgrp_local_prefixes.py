@@ -19,63 +19,45 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List
-from pydantic import BaseModel
-from pydantic import Field
+from typing import List
+from pydantic import BaseModel, Field, conlist
 from ansible.module_utils.appliance_api_client.models.scion_tunneling_sgrp_local_prefixes_bgp import ScionTunnelingSGRPLocalPrefixesBGP
 from ansible.module_utils.appliance_api_client.models.scion_tunneling_sgrp_local_prefixes_static import ScionTunnelingSGRPLocalPrefixesStatic
 from ansible.module_utils.appliance_api_client.models.scion_tunneling_sgrp_local_prefixes_static_probed import ScionTunnelingSGRPLocalPrefixesStaticProbed
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class ScionTunnelingSGRPLocalPrefixes(BaseModel):
     """
     ScionTunnelingSGRPLocalPrefixes
-    """ # noqa: E501
-    static: ScionTunnelingSGRPLocalPrefixesStatic
-    static_probed: List[ScionTunnelingSGRPLocalPrefixesStaticProbed] = Field(alias="static-probed")
-    bgp: ScionTunnelingSGRPLocalPrefixesBGP
-    __properties: ClassVar[List[str]] = ["static", "static-probed", "bgp"]
+    """
+    static: ScionTunnelingSGRPLocalPrefixesStatic = Field(...)
+    static_probed: conlist(ScionTunnelingSGRPLocalPrefixesStaticProbed) = Field(..., alias="static-probed")
+    bgp: ScionTunnelingSGRPLocalPrefixesBGP = Field(...)
+    __properties = ["static", "static-probed", "bgp"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ScionTunnelingSGRPLocalPrefixes:
         """Create an instance of ScionTunnelingSGRPLocalPrefixes from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of static
         if self.static:
             _dict['static'] = self.static.to_dict()
@@ -92,17 +74,17 @@ class ScionTunnelingSGRPLocalPrefixes(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> ScionTunnelingSGRPLocalPrefixes:
         """Create an instance of ScionTunnelingSGRPLocalPrefixes from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return ScionTunnelingSGRPLocalPrefixes.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = ScionTunnelingSGRPLocalPrefixes.parse_obj({
             "static": ScionTunnelingSGRPLocalPrefixesStatic.from_dict(obj.get("static")) if obj.get("static") is not None else None,
-            "static-probed": [ScionTunnelingSGRPLocalPrefixesStaticProbed.from_dict(_item) for _item in obj.get("static-probed")] if obj.get("static-probed") is not None else None,
+            "static_probed": [ScionTunnelingSGRPLocalPrefixesStaticProbed.from_dict(_item) for _item in obj.get("static-probed")] if obj.get("static-probed") is not None else None,
             "bgp": ScionTunnelingSGRPLocalPrefixesBGP.from_dict(obj.get("bgp")) if obj.get("bgp") is not None else None
         })
         return _obj

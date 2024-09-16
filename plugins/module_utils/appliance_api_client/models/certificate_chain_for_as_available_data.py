@@ -20,16 +20,11 @@ import pprint
 import re  # noqa: F401
 
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, field_validator
+from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from ansible.module_utils.appliance_api_client.models.certificate_chain_for_as_available_info import CertificateChainForASAvailableInfo
 from ansible.module_utils.appliance_api_client.models.certificate_chain_for_as_available_not_found import CertificateChainForASAvailableNotFound
-from typing import Union, Any, List, TYPE_CHECKING, Optional, Dict
-from typing_extensions import Literal
+from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 CERTIFICATECHAINFORASAVAILABLEDATA_ONE_OF_SCHEMAS = ["CertificateChainForASAvailableInfo", "CertificateChainForASAvailableNotFound"]
 
@@ -41,16 +36,16 @@ class CertificateChainForASAvailableData(BaseModel):
     oneof_schema_1_validator: Optional[CertificateChainForASAvailableInfo] = None
     # data type: CertificateChainForASAvailableNotFound
     oneof_schema_2_validator: Optional[CertificateChainForASAvailableNotFound] = None
-    actual_instance: Optional[Union[CertificateChainForASAvailableInfo, CertificateChainForASAvailableNotFound]] = None
-    one_of_schemas: List[str] = Literal["CertificateChainForASAvailableInfo", "CertificateChainForASAvailableNotFound"]
+    if TYPE_CHECKING:
+        actual_instance: Union[CertificateChainForASAvailableInfo, CertificateChainForASAvailableNotFound]
+    else:
+        actual_instance: Any
+    one_of_schemas: List[str] = Field(CERTIFICATECHAINFORASAVAILABLEDATA_ONE_OF_SCHEMAS, const=True)
 
-    model_config = {
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
+    class Config:
+        validate_assignment = True
 
-
-    discriminator_value_class_map: Dict[str, str] = {
+    discriminator_value_class_map = {
     }
 
     def __init__(self, *args, **kwargs) -> None:
@@ -63,9 +58,9 @@ class CertificateChainForASAvailableData(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = CertificateChainForASAvailableData.model_construct()
+        instance = CertificateChainForASAvailableData.construct()
         error_messages = []
         match = 0
         # validate data type: CertificateChainForASAvailableInfo
@@ -88,13 +83,13 @@ class CertificateChainForASAvailableData(BaseModel):
             return v
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: dict) -> CertificateChainForASAvailableData:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> CertificateChainForASAvailableData:
         """Returns the object represented by the json string"""
-        instance = cls.model_construct()
+        instance = CertificateChainForASAvailableData.construct()
         error_messages = []
         match = 0
 
@@ -131,7 +126,7 @@ class CertificateChainForASAvailableData(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict:
+    def to_dict(self) -> dict:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
@@ -145,6 +140,6 @@ class CertificateChainForASAvailableData(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.model_dump())
+        return pprint.pformat(self.dict())
 
 

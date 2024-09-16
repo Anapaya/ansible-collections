@@ -3,7 +3,6 @@
 Configuration for SSH access to the Anapaya appliance.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **enable_password_login** | **bool** | Whether password login is enabled for SSH access to the Anapaya appliance. | [optional] [default to False]

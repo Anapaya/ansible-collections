@@ -3,7 +3,6 @@
 The SCION tunneling endpoint on the peer appliance.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **allowed_interfaces** | [**List[ConfigClusterPeerScionTunnelingEndpointAllowedInterfaces]**](ConfigClusterPeerScionTunnelingEndpointAllowedInterfaces.md) | The SCION interfaces for each SCION AS that is configured on the peer, that are allowed to be used by this IP-in-SCION tunneling endpoint. This can be used to control incoming traffic, e.g., if a tunnel endpoint should only be reachable via SCION interfaces 1 and 2, allowed-interfaces should list them explicitly. Remote tunnel endpoints will then only choose paths entering the respective local AS via SCION interface 1 or 2. If the IP-in-SCION tunneling endpoint on the peer appliance should be reachable via a SCION interface of another appliance, the allowed-interfaces list must be configured with the respective SCION interfaces. By default the list is empty, in this case the appliance will automatically configure the SCION interfaces that are configured on the peer as allowed-interfaces. Automatic configuration can be disabled by setting disable_auto_allowed_interfaces. | [optional] 

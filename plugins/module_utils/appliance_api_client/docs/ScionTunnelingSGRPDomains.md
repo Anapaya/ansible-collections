@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **domains** | [**Dict[str, ScionTunnelingSGRPDomain]**](ScionTunnelingSGRPDomain.md) |  | 

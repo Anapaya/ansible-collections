@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.install_status import InstallStatus
+from ansible.module_utils.appliance_api_client.models.install_status import InstallStatus  # noqa: E501
 
 class TestInstallStatus(unittest.TestCase):
     """InstallStatus unit test stubs"""

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from ansible.module_utils.appliance_api_client.models.validity import Validity
+from ansible.module_utils.appliance_api_client.models.validity import Validity  # noqa: E501
 
 class TestValidity(unittest.TestCase):
     """Validity unit test stubs"""
@@ -34,7 +34,7 @@ class TestValidity(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Validity`
         """
-        model = Validity()
+        model = Validity()  # noqa: E501
         if include_optional:
             return Validity(
                 not_before = '2021-01-04T09:59:33Z',

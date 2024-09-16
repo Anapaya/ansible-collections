@@ -3,7 +3,6 @@
 The configuration for the SCION control service. The address configures where the control service is exposed. Clients connect to this address to request control plane data.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | The address of the control service. The address must be specified as host:port. If the port is 0 it will be automatically allocated. | [optional] 
