@@ -3,6 +3,7 @@
 SCION AS
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ca_service** | [**ConfigSCIONASCAService**](ConfigSCIONASCAService.md) |  | [optional] 

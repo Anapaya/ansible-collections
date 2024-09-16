@@ -3,6 +3,7 @@
 A maximum value or the string \"unlimited\". 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

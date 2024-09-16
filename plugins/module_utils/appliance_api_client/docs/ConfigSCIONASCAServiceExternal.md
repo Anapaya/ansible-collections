@@ -3,6 +3,7 @@
 The configuration data for the External SCION CPPKI CA service. This section is provided only when the CA service is of type External, i.e., is not operated by Anapaya.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | The address where the external SCION CPPKI CA service can be reached. | [optional] 

@@ -3,6 +3,7 @@
 Describes the features that are allowed. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **management** | [**ManagementFeatures**](ManagementFeatures.md) |  | [optional] 

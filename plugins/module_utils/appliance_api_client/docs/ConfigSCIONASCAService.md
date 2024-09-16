@@ -3,6 +3,7 @@
 SCION CPPKI (Control Plane Public Key Infrastructure) CA service configuration data. This section defines how the anapaya-scion interacts with the SCION CPPKI CA service backend. It is only required for SCION ASes that act as a CA in their respective ISD.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **anapaya_vault** | [**ConfigSCIONASCAServiceAnapayaVault**](ConfigSCIONASCAServiceAnapayaVault.md) |  | [optional] 

@@ -19,6 +19,7 @@ Get the currently installed public  signing keys.
 
 ### Example
 
+
 ```python
 import time
 import os
@@ -51,6 +52,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -67,6 +69,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Public signing keys. |  -  |
@@ -84,6 +87,7 @@ Get the specified signatures
 Get the specified signatures.
 
 ### Example
+
 
 ```python
 import time
@@ -120,6 +124,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **str**|  | 
@@ -139,6 +144,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Signatures. |  -  |
@@ -156,6 +162,7 @@ Install new public signing keys.
 Install new public signing keys. 
 
 ### Example
+
 
 ```python
 import time
@@ -189,6 +196,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **keys** | [**Keys**](Keys.md)|  | 
@@ -207,6 +215,7 @@ No authorization required
  - **Accept**: application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Public signing keys. |  -  |
@@ -224,6 +233,7 @@ Install signatures.
 Install signatures.
 
 ### Example
+
 
 ```python
 import time
@@ -259,6 +269,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **str**|  | 
@@ -279,6 +290,7 @@ No authorization required
  - **Accept**: application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Public signing keys. |  -  |

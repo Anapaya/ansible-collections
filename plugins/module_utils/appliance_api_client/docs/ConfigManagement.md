@@ -3,6 +3,7 @@
 The necessary configuration data for the management of the  Anapaya appliance.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **api** | [**ConfigManagementApi**](ConfigManagementApi.md) |  | [optional] 

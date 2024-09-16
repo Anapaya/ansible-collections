@@ -3,6 +3,7 @@
 List of virtual function interfaces.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **accept_ra** | **bool** | Whether to accept the route advertisements for the corresponding interface. (This is currently supported only for the interfaces that are using the Linux driver.) | [optional] [default to False]

@@ -3,6 +3,7 @@
 List of VRRP configurations.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **addresses** | **List[str]** | The list of virtual IP addresses. It must contain at least one IP address. Each sequence entry is in CIDR notation. | 

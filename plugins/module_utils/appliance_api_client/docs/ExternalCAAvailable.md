@@ -3,6 +3,7 @@
 Check data for an explanation of this health check. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**ExternalCAAvailableData**](ExternalCAAvailableData.md) |  | 

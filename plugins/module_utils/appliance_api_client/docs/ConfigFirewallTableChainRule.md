@@ -3,6 +3,7 @@
 List of firewall rules.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **comment** | **str** | Description, or comment, for the firewall rule. | [optional] 

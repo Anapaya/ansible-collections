@@ -3,6 +3,7 @@
 List of traffic policies.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** | The optional description of the traffic policy. | [optional] 

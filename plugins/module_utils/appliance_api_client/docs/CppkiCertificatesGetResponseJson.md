@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **certificate_chains** | [**List[ChainBrief]**](ChainBrief.md) | List of certificate chains | 

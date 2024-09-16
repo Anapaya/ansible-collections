@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **interfaces** | [**List[DebugScionInterface]**](DebugScionInterface.md) |  | 

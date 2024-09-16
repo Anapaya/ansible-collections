@@ -3,6 +3,7 @@
 The configuration for the appliance cluster.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **features** | [**ConfigClusterFeatures**](ConfigClusterFeatures.md) |  | [optional] 

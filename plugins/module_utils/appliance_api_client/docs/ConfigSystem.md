@@ -3,6 +3,7 @@
 The necessary configuration data for the system of the Anapaya appliance.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **dns** | [**ConfigSystemDns**](ConfigSystemDns.md) |  | [optional] 

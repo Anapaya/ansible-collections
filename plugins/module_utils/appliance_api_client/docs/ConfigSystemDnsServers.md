@@ -3,6 +3,7 @@
 List of DNS servers.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | IP address of a DNS server. | [optional] 

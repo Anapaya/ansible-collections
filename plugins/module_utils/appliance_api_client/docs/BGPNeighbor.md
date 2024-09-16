@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **remote_asn** | **int** | The AS number of the neighbor in the BGP session. | 

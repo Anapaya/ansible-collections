@@ -3,6 +3,7 @@
 List of SSH keys that are authorized to access the Anapaya appliance, as a specific user.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** | Description or comment for the key. | [optional] 

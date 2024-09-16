@@ -3,6 +3,7 @@
 Configuration and state data for the control service in the peer.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | The address of the control service. The address must be specified as host:port. | [optional] 

@@ -3,6 +3,7 @@
 List of path filters. A path filter filters the set of paths that can be used for IP-in-SCION tunneling. The filter must include an ACL and/or a hop pattern. A path is included if it is accepted by both the ACL and the hop pattern (if specified).
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **acl** | **List[str]** | The ACL that is applied on the path. An ACL consists of a list of ACL entries. Each ACL entry has the form &#x60;action hop-predicate&#x60;, where the action can either be accept (+) or deny (-). The hop predicate is optional and has the form &#x60;isd-as#interface&#x60;, where &#x60;isd&#x60; is the ISD identifier, &#x60;as&#x60; is the AS identifier, and &#x60;interface&#x60; is the interface identifier of a SCION path hop. The hop predicate can be fully or partially qualified, i.e., all entries of the hop predicate are optional or can include wildcards (0). If no hop predicate is specified the action matches every hop, i.e., a single &#39;+&#39; is the default accept action and a single &#39;-&#39; is the default deny action. The ACL is applied by sequentially applying all ACL entries to paths. If the ACL is empty, it defaults to accepting all paths. | [optional] 

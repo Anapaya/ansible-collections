@@ -3,6 +3,7 @@
 List of NTP servers.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | Address of a NTP server. This may be expressed as an IP address or a FQDN. | [optional] 

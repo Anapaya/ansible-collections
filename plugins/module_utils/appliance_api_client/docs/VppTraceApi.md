@@ -21,6 +21,7 @@ Action path to execute free form packet trace.
 
 ### Example
 
+
 ```python
 import time
 import os
@@ -58,6 +59,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **n** | **str**| VPP node to trace. | [optional] [default to &#39;&#39;]
@@ -80,6 +82,7 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -93,6 +96,7 @@ No authorization required
 Action path to execute a trace for packets entering via DPDK.
 
 ### Example
+
 
 ```python
 import time
@@ -128,6 +132,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -147,6 +152,7 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -160,6 +166,7 @@ No authorization required
 Action path to execute a trace for packets entering via memif.
 
 ### Example
+
 
 ```python
 import time
@@ -195,6 +202,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -214,6 +222,7 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -227,6 +236,7 @@ No authorization required
 Action path that starts a trace without timeout. The trace can be stopped with the `/vpp/trace/stop` endpoint.
 
 ### Example
+
 
 ```python
 import time
@@ -264,6 +274,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **n** | **str**| VPP node to trace. | [optional] [default to &#39;&#39;]
@@ -285,6 +296,7 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -298,6 +310,7 @@ No authorization required
 Action path that stops tracing.
 
 ### Example
+
 
 ```python
 import time
@@ -332,6 +345,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **p** | **int**| maximum number of packets to return. | [optional] [default to 50]
@@ -350,6 +364,7 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -363,6 +378,7 @@ No authorization required
 Action path to execute a trace for IPv4 packets entering via VPP UDP socket.
 
 ### Example
+
 
 ```python
 import time
@@ -398,6 +414,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -417,6 +434,7 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -430,6 +448,7 @@ No authorization required
 Action path to execute a trace for IPv6 packets entering via VPP UDP socket.
 
 ### Example
+
 
 ```python
 import time
@@ -465,6 +484,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -484,6 +504,7 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |
@@ -497,6 +518,7 @@ No authorization required
 Action path to execute a trace for packets entering via TUN/TAP.
 
 ### Example
+
 
 ```python
 import time
@@ -532,6 +554,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **t** | **int**| Timeout (in ms) for the trace to be stopped. | [optional] [default to 500]
@@ -551,6 +574,7 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Statuspage invocation response. |  -  |

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **domains** | [**List[ScionTunnelingDomainConfig]**](ScionTunnelingDomainConfig.md) | A list of the configured SCION tunneling domains. | 

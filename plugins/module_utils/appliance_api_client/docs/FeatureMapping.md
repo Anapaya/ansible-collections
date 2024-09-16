@@ -3,6 +3,7 @@
 Describes for each product and tier what features are allowed. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **edge** | [**TierMapping**](TierMapping.md) |  | [optional] 

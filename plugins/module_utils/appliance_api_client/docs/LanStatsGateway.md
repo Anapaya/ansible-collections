@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **probe_address** | **str** | IP address and port used to send probes to the gateway. | 

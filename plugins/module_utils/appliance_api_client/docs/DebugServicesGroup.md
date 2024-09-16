@@ -3,6 +3,7 @@
 The service group and its services.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **group** | **str** | The group name. | 

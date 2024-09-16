@@ -3,6 +3,7 @@
 The necessary configuration data for firewalling the Anapaya appliance.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **mode** | **str** | The firewall mode declares how the appliance handles firewall rules. Depending on the mode, the appliance either generates a default set of rules, prepends some custom rules, or uses only the specified custom rules. | [optional] 

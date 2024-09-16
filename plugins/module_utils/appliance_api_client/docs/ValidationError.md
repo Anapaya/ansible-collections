@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **violations** | [**List[ValidationViolation]**](ValidationViolation.md) | A list of validation violations that indicate exactly which fields of the configuration were invalid. | [optional] 

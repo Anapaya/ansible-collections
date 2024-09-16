@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**DomainHasReachableRemoteGatewaysData**](DomainHasReachableRemoteGatewaysData.md) |  | 

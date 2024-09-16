@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **local_prefixes** | [**ScionTunnelingSGRPLocalPrefixes**](ScionTunnelingSGRPLocalPrefixes.md) |  | 

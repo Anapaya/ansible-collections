@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **public_keys** | [**List[PublicKey]**](PublicKey.md) | a list of public signing keys | 

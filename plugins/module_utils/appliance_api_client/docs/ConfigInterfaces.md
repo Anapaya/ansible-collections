@@ -3,6 +3,7 @@
 Top-level configuration and state for interfaces.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bonds** | [**List[ConfigInterfacesBond]**](ConfigInterfacesBond.md) | Top-level configuration and state for the bond interfaces. | [optional] 

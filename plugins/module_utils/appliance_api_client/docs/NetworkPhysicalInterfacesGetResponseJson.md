@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **interfaces** | [**List[PhysicalInterface]**](PhysicalInterface.md) | List of physical interfaces | 

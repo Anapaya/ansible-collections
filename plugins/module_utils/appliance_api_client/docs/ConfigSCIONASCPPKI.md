@@ -3,6 +3,7 @@
 SCION CPPKI configuration for the SCION AS.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **disable_auto_renewal** | **bool** | Whether automatic renewal of AS certificates should be disabled. Usually, this value should not be set. By disabling certificate renewal, the appliance is set into a manual mode where new AS certificates must be provisioned manually and periodically. | [optional] 

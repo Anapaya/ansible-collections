@@ -3,6 +3,7 @@
 List of named counters that are part of an nftables table, uniquely idenified by their name.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the counter. | 

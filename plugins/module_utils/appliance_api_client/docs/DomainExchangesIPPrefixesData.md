@@ -3,6 +3,7 @@
 Indicates the number of accepted prefixes from remote gateways and the number of announced prefixes.  If either received or announced or both are zero, the status is `notice`. Otherwise, the status is `passing`. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **domain** | **str** | The name of the routing domain.  | 

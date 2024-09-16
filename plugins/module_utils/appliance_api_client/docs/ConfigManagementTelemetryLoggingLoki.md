@@ -3,6 +3,7 @@
 Loki configuration.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **basic_auth** | [**ConfigManagementTelemetryLoggingLokiBasicAuth**](ConfigManagementTelemetryLoggingLokiBasicAuth.md) |  | [optional] 

@@ -3,6 +3,7 @@
 The list restarted services of the group.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **services** | **List[str]** | Successfully restarted services. | 

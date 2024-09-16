@@ -3,6 +3,7 @@
 Describes for each tier what features are allowed. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **lite** | [**ProductTierFeatures**](ProductTierFeatures.md) |  | [optional] 

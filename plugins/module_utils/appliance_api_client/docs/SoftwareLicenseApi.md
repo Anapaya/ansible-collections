@@ -23,6 +23,7 @@ Gets the feature set mapping. That defines for the different product tiers what 
 
 ### Example
 
+
 ```python
 import time
 import os
@@ -55,6 +56,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -71,6 +73,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -86,6 +89,7 @@ Update the feature set mapping.
 Updates the feature set mapping. That defines for the different product tiers what features are available. 
 
 ### Example
+
 
 ```python
 import time
@@ -122,6 +126,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **software_license_features_put_request** | [**SoftwareLicenseFeaturesPutRequest**](SoftwareLicenseFeaturesPutRequest.md)| The feature set mapping. | 
@@ -140,6 +145,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -156,6 +162,7 @@ Get the license request data.
 Get the data for a license request for this specific appliance. The license request can be used to request a valid license from Anapaya for the given appliance. 
 
 ### Example
+
 
 ```python
 import time
@@ -189,6 +196,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -205,6 +213,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -220,6 +229,7 @@ Get the status of the software license.
 The status of the software license indicates whether a valid license is present, or whether the device runs in grace period or in restricted mode. 
 
 ### Example
+
 
 ```python
 import time
@@ -253,6 +263,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -269,6 +280,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -284,6 +296,7 @@ Get the list of licenses present on the appliance.
 Get the list of licenses present on the appliance. 
 
 ### Example
+
 
 ```python
 import time
@@ -317,6 +330,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -333,6 +347,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -349,6 +364,7 @@ Delete a specific license.
 Delete the license with the given ID. 
 
 ### Example
+
 
 ```python
 import time
@@ -381,6 +397,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The license ID. | 
@@ -399,6 +416,7 @@ No authorization required
  - **Accept**: application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | License deleted |  -  |
@@ -415,6 +433,7 @@ Get a specific license.
 Get the license with the given ID. 
 
 ### Example
+
 
 ```python
 import time
@@ -450,6 +469,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The license ID. | 
@@ -468,6 +488,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -484,6 +505,7 @@ Add a new license.
 Add a new license to the appliance. 
 
 ### Example
+
 
 ```python
 import time
@@ -520,6 +542,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **software_licenses_post_request** | [**SoftwareLicensesPostRequest**](SoftwareLicensesPostRequest.md)| The license to be pushed to the appliance. | 
@@ -538,6 +561,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |

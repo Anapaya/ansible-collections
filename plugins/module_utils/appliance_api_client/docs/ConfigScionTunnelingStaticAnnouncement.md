@@ -3,6 +3,7 @@
 List of static announcements.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** | Description, or comment, for the target. | [optional] 

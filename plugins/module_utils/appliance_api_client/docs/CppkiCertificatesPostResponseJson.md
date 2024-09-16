@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **certificate_chain** | [**ChainBrief**](ChainBrief.md) |  | 

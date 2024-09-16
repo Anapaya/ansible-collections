@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tables** | [**List[FirewallTable]**](FirewallTable.md) | List of firewall tables on the appliance. | 

@@ -3,6 +3,7 @@
 List of IP prefix matchers to filter the announced and received prefixes.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **accept_filter** | [**List[ConfigScionTunnelingDomainPrefixesAcceptFilterEntry]**](ConfigScionTunnelingDomainPrefixesAcceptFilterEntry.md) | List of IP prefix matchers to define which prefixes announced by remotes ISD ASes are accepted. Only the matching subset of a prefix announced by a remote ISD-AS is is accepted for routing. | [optional] 

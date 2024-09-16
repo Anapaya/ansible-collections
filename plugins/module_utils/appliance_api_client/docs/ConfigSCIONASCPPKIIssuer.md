@@ -3,6 +3,7 @@
 The configuration for an issuing AS.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **isd_as** | **str** | The ISD-AS identifier of the issuing AS. | 

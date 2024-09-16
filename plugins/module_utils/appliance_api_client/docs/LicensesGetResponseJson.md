@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **licenses** | [**List[LicensePayloadJson]**](LicensePayloadJson.md) | List of licenses. | 

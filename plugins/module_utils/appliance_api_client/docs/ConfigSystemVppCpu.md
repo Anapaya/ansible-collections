@@ -3,6 +3,7 @@
 CPU configuration.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **corelist_workers** | **str** | The list of CPU cores to be used by the workers. The cores are pinned to the workers in the order they are listed. The format for the list is A,B1-Bn,C1-Cn. This setting is mutually exclusive with workers and the list must not contain the main-core. | [optional] 

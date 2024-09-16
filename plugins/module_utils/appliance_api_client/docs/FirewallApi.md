@@ -19,6 +19,7 @@ Get a specific set of rules specified by their chain and table name of the appli
 
 ### Example
 
+
 ```python
 import time
 import os
@@ -54,6 +55,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **table_name** | **str**|  | 
@@ -73,6 +75,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Firewall chain. |  -  |
@@ -89,6 +92,7 @@ Generate the default firewall configuration for the given appliance configuratio
 Validates a configuration and returns the firewall configuration which would be applied for the given appliance configuration.
 
 ### Example
+
 
 ```python
 import time
@@ -126,6 +130,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **config_put_request** | [**ConfigPutRequest**](ConfigPutRequest.md)| The config to be validated. | 
@@ -145,6 +150,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Firewall configuration. |  -  |
@@ -161,6 +167,7 @@ Get the firewall configuration of the appliance.
 Get the installed firewall configuration of the appliance, including the tables, named counters, chains and rules. 
 
 ### Example
+
 
 ```python
 import time
@@ -194,6 +201,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -210,6 +218,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Firewall configuration. |  -  |
@@ -225,6 +234,7 @@ Get a specific firewall table.
 Get a specific firewall table of the appliance by name, including the named counters, chains, and their rules. 
 
 ### Example
+
 
 ```python
 import time
@@ -260,6 +270,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **table_name** | **str**|  | 
@@ -278,6 +289,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Firewall table. |  -  |

@@ -3,6 +3,7 @@
 SCION AS configuration in the peer that is relevant to this appliance.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **control** | [**ConfigClusterPeerScionASControl**](ConfigClusterPeerScionASControl.md) |  | [optional] 

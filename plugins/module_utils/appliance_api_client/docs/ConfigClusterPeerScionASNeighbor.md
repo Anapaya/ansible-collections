@@ -3,6 +3,7 @@
 Neighbor SCION AS.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **interfaces** | [**List[ConfigClusterPeerScionASNeighborInterface]**](ConfigClusterPeerScionASNeighborInterface.md) | The list of interfaces on the peer for this neighbor AS. | [optional] 

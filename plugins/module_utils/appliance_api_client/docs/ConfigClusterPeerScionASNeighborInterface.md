@@ -3,6 +3,7 @@
 SCION interface that links to the neighbor AS.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **interface_id** | **int** | SCION interface identifier. It must be unique in the SCION AS. | 

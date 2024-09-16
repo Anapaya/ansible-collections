@@ -3,6 +3,7 @@
 SCION path state specific to a tunneling session.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fingerprint** | **str** | Fingerprint on the SCION path. | 

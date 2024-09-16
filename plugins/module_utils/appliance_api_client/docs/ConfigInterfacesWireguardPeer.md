@@ -3,6 +3,7 @@
 List of Wireguard peer configurations.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **allowed_ips** | **List[str]** | A list of IPv4/IPv6 addresses with a CIDR mask. The list indicates the addresses from which the peer is allowed to connect. Catch all are expressed as 0.0.0.0/0 (IPv4) and ::/0 (IPv6) | [optional] 

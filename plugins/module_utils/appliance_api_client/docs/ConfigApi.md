@@ -4,224 +4,10 @@ All URIs are relative to *https://localhost:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**config_advanced_service_customization_get**](ConfigApi.md#config_advanced_service_customization_get) | **GET** /config/advanced/service-customization/{service_type} | Get the customization for a service.
-[**config_advanced_service_customization_template_get**](ConfigApi.md#config_advanced_service_customization_template_get) | **GET** /config/advanced/service-customization/{service_type}/template | Get the custom template for a service.
-[**config_advanced_service_customization_template_put**](ConfigApi.md#config_advanced_service_customization_template_put) | **PUT** /config/advanced/service-customization/{service_type}/template | Put a custom template for a service.
 [**config_get**](ConfigApi.md#config_get) | **GET** /config | Get the current configuration
 [**config_put**](ConfigApi.md#config_put) | **PUT** /config | Put a new configuration
 [**config_validate_post**](ConfigApi.md#config_validate_post) | **POST** /config/validate | Validates a configuration
 
-
-# **config_advanced_service_customization_get**
-> ConfigServiceCustomizationResponseJson config_advanced_service_customization_get(service_type)
-
-Get the customization for a service.
-
-Get the configured customization for a service, along with its state.
-
-### Example
-
-```python
-import time
-import os
-import ansible.module_utils.appliance_api_client
-from ansible.module_utils.appliance_api_client.models.config_service_customization_response_json import ConfigServiceCustomizationResponseJson
-from ansible.module_utils.appliance_api_client.models.service_type import ServiceType
-from ansible.module_utils.appliance_api_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://localhost:443/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ansible.module_utils.appliance_api_client.Configuration(
-    host = "https://localhost:443/api/v1"
-)
-
-
-# Enter a context with an instance of the API client
-with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = ansible.module_utils.appliance_api_client.ConfigApi(api_client)
-    service_type = ansible.module_utils.appliance_api_client.ServiceType() # ServiceType | Service Type
-
-    try:
-        # Get the customization for a service.
-        api_response = api_instance.config_advanced_service_customization_get(service_type)
-        print("The response of ConfigApi->config_advanced_service_customization_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConfigApi->config_advanced_service_customization_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **service_type** | [**ServiceType**](.md)| Service Type | 
-
-### Return type
-
-[**ConfigServiceCustomizationResponseJson**](ConfigServiceCustomizationResponseJson.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, application/json+problem
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | success |  -  |
-**404** | not found |  -  |
-**500** | internal error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **config_advanced_service_customization_template_get**
-> str config_advanced_service_customization_template_get(service_type)
-
-Get the custom template for a service.
-
-Get the configured custom template for a service, along with its state.
-
-### Example
-
-```python
-import time
-import os
-import ansible.module_utils.appliance_api_client
-from ansible.module_utils.appliance_api_client.models.service_type import ServiceType
-from ansible.module_utils.appliance_api_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://localhost:443/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ansible.module_utils.appliance_api_client.Configuration(
-    host = "https://localhost:443/api/v1"
-)
-
-
-# Enter a context with an instance of the API client
-with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = ansible.module_utils.appliance_api_client.ConfigApi(api_client)
-    service_type = ansible.module_utils.appliance_api_client.ServiceType() # ServiceType | Service Type
-
-    try:
-        # Get the custom template for a service.
-        api_response = api_instance.config_advanced_service_customization_template_get(service_type)
-        print("The response of ConfigApi->config_advanced_service_customization_template_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConfigApi->config_advanced_service_customization_template_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **service_type** | [**ServiceType**](.md)| Service Type | 
-
-### Return type
-
-**str**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json+problem
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | success |  -  |
-**404** | not found |  -  |
-**500** | internal error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **config_advanced_service_customization_template_put**
-> ConfigServiceCustomizationResponseJson config_advanced_service_customization_template_put(service_type, body)
-
-Put a custom template for a service.
-
-Put a new custom template for a service, along with its state.
-
-### Example
-
-```python
-import time
-import os
-import ansible.module_utils.appliance_api_client
-from ansible.module_utils.appliance_api_client.models.config_service_customization_response_json import ConfigServiceCustomizationResponseJson
-from ansible.module_utils.appliance_api_client.models.service_type import ServiceType
-from ansible.module_utils.appliance_api_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://localhost:443/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ansible.module_utils.appliance_api_client.Configuration(
-    host = "https://localhost:443/api/v1"
-)
-
-
-# Enter a context with an instance of the API client
-with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = ansible.module_utils.appliance_api_client.ConfigApi(api_client)
-    service_type = ansible.module_utils.appliance_api_client.ServiceType() # ServiceType | Service Type
-    body = 'body_example' # str | The custom service template to be pushed to the appliance.
-
-    try:
-        # Put a custom template for a service.
-        api_response = api_instance.config_advanced_service_customization_template_put(service_type, body)
-        print("The response of ConfigApi->config_advanced_service_customization_template_put:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConfigApi->config_advanced_service_customization_template_put: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **service_type** | [**ServiceType**](.md)| Service Type | 
- **body** | **str**| The custom service template to be pushed to the appliance. | 
-
-### Return type
-
-[**ConfigServiceCustomizationResponseJson**](ConfigServiceCustomizationResponseJson.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: text/plain
- - **Accept**: application/json, application/json+problem
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | success |  -  |
-**404** | not found |  -  |
-**500** | internal error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **config_get**
 > ConfigGetResponseJson config_get(if_none_match=if_none_match, suppress_secrets=suppress_secrets)
@@ -231,6 +17,7 @@ Get the current configuration
 Get the currently active appliance configuration.
 
 ### Example
+
 
 ```python
 import time
@@ -267,6 +54,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **if_none_match** | **str**|  | [optional] 
@@ -286,6 +74,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -303,6 +92,7 @@ Put a new configuration
 Put a new configuration to the appliance.
 
 ### Example
+
 
 ```python
 import time
@@ -342,6 +132,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **config_put_request** | [**ConfigPutRequest**](ConfigPutRequest.md)| The config to be pushed to the appliance. | 
@@ -363,6 +154,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -380,6 +172,7 @@ Validates a configuration
 Validates a configuration.
 
 ### Example
+
 
 ```python
 import time
@@ -417,6 +210,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **config_put_request** | [**ConfigPutRequest**](ConfigPutRequest.md)| The config to be validated. | 
@@ -436,6 +230,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |

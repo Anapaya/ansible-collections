@@ -3,6 +3,7 @@
 Statically defined prefixes with probing. The prefixes are announced only if the next hop address is reachable. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **next_hop** | **str** | IP address to probe. | 

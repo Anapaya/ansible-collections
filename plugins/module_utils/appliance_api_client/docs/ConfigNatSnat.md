@@ -3,6 +3,7 @@
 Top-level configuration and state for the source NAT.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address_pool** | **List[str]** | The list of IP prefixes to use as the source NAT pool. | [optional] 

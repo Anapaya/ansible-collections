@@ -3,6 +3,7 @@
 The configuration for the SCION router service. The address configures where the router is exposed. AS internal hosts send SCION data plane traffic to this address for forwarding over the local SCION interfaces.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **enabled** | **bool** | Whether the service is enabled. | 

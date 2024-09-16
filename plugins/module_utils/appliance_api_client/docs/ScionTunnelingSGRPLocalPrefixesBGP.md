@@ -3,6 +3,7 @@
 Local network prefixes received from BGP.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **prefixes** | **List[str]** | IP prefixes in CIDR format. | 

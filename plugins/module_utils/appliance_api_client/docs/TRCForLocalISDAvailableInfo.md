@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **validity** | [**SchemasValidity**](SchemasValidity.md) |  | 

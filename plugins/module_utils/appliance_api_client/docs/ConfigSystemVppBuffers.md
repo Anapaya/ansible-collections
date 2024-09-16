@@ -3,6 +3,7 @@
 Buffers configuration.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data_size** | **int** | The size of VPP internal buffers, in bytes. | [optional] [default to 9000]

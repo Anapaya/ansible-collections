@@ -3,6 +3,7 @@
 List of Wireguard interfaces.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **addresses** | **List[str]** | The addresses configured on this interface. Each address must be a valid IP prefix in CIDR notation. | [optional] 

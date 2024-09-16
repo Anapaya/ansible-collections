@@ -3,6 +3,7 @@
 The list of JWT verification keys specified as a JSON Web Key Set (JWKS).  Each key set contains keys that enable the appliance to verify tokens signed by corresponding private keys. This is useful in case the appliance API is not accessed via a browser where the OAuth redirect flow of the identity provider likely does not work. This list is not required if the browser redirect flow is enough for your use case.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The identifier of the key. Must be unique among all keys. | [optional] 

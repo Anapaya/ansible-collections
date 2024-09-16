@@ -3,6 +3,7 @@
 Transport session parameters for the BGP neighbor
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **local_address** | **str** | Set the local IPv4 address to be used for the session when sending BGP update messages. This may be expressed as either an IP address or the name of an interface. | [optional] 

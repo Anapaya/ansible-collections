@@ -3,6 +3,7 @@
 Top-level configuration and state for the SCION protocol.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ases** | [**List[ConfigSCIONAS]**](ConfigSCIONAS.md) | List of SCION ASes that this device is part of identified by their ISD-AS identifier. | [optional] 

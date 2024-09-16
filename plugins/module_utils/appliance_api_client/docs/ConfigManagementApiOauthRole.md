@@ -3,6 +3,7 @@
 List of roles which are used for OAuth.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **aliases** | **List[str]** | List of aliases for the role. This is useful for mapping different role names from different identity providers to the same role in the appliance. If no alias are configured for a role the default aliases are &#39;appliance.&lt;role&gt;&#39;, &#39;appliance/&lt;role&gt;&#39;, and &#39;appliance:&lt;role&gt;&#39;. | [optional] 

@@ -3,6 +3,7 @@
 Anapaya appliance NTP configuration.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **root_distance_max** | **str** | Maximum acceptable root distance, i.e. the maximum estimated time required for a packet to travel to the server we are connected to from the server with the reference clock. If the current server does not satisfy this limit, the appliance will switch to a different server. | [optional] [default to '5s']

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **configuration** | [**BGPConfig**](BGPConfig.md) |  | 

@@ -3,6 +3,7 @@
 List of configurations for allowed interfaces.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **interfaces** | **List[int]** | List of allowed interfaces for this SCION AS | [optional] 

@@ -3,6 +3,7 @@
 The entry in the announce filter matches at least one prefix that is announced in a domain. While it is not invalid to have an announce filter entry that does not match anything, it is certainly curious. This health check is meant to help operators identify such cases. This only applies to the entries with action `accept`.  If `count` is zero, the status is `notice`. Otherwise, the status is `passing`. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **domain** | **str** | The domain the announce filter entry is part of.  | 

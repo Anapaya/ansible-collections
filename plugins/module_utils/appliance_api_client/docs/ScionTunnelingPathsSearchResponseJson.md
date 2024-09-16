@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **paths** | [**List[ScionTunnelingPathDataJson]**](ScionTunnelingPathDataJson.md) | List of paths and their data. | 

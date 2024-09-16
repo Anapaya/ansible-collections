@@ -3,6 +3,7 @@
 List of management API listeners which define where the API is exposed.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | An address that is used to expose the Anapaya appliance management API. This can be either a combination of an IP address and a fixed port, or a SCION address. The address must be specified as ip:port for IPv4, [ip]:port for IPv6 and [ISD-AS,ip]:port for SCION. | [optional] 

@@ -3,6 +3,7 @@
 The component that the health check applies to. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

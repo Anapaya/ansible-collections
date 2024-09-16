@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **scion_packet_size** | **int** | Size of the entire SCION packet in bytes. This includes the SCION common header, and the SCION path header. | 

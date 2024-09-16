@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **install_info** | [**SoftwarePackageInstallInfo**](SoftwarePackageInstallInfo.md) |  | 

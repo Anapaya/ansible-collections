@@ -46,6 +46,7 @@ Get the BGP configuration of the host.
 
 ### Example
 
+
 ```python
 import time
 import os
@@ -78,6 +79,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -94,6 +96,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | BGP configuration. |  -  |
@@ -110,6 +113,7 @@ Get the state of the BGP neighbors.
 Get the state of the BGP neighbors.
 
 ### Example
+
 
 ```python
 import time
@@ -143,6 +147,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -159,6 +164,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | BGP neighbor state. |  -  |
@@ -175,6 +181,7 @@ Get the cluster status.
 Get the status of the cluster. The status includes for each peer the name, the address, the time of the last synchronization, the status of said synchronization, and if the attempt failed the reason for the failure. 
 
 ### Example
+
 
 ```python
 import time
@@ -208,6 +215,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -224,6 +232,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The cluster status. |  -  |
@@ -239,6 +248,7 @@ Get LAN statistics.
 Get LAN statistics. 
 
 ### Example
+
 
 ```python
 import time
@@ -272,6 +282,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -288,6 +299,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | LAN statistics |  -  |
@@ -303,6 +315,7 @@ Retrieve logs via systemd-journal-gatewayd compatible interface.
 Endpoint that implemenets the interface exposed via the /entries endpoint of the systemd-journal-gatewayd service. By default, all systemd-journal logs are exposed.  See also: https://www.freedesktop.org/software/systemd/man/latest/systemd-journal-gatewayd.service.html 
 
 ### Example
+
 
 ```python
 import time
@@ -336,6 +349,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **range** | **str**| The range of requested log entries. See systemd-journal-gatewayd documentation. | [optional] 
@@ -355,6 +369,7 @@ No authorization required
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Journald entries |  -  |
@@ -370,6 +385,7 @@ Network interfaces summary.
 Network interfaces summary.
 
 ### Example
+
 
 ```python
 import time
@@ -405,6 +421,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interface_name** | **str**|  | [optional] 
@@ -423,6 +440,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Network interfaces. |  -  |
@@ -439,6 +457,7 @@ The graph of planner nodes.
 The graph of planner nodes. The graph is in dot format and can be rendered by graphviz, or one of the online dot-rendering tools. 
 
 ### Example
+
 
 ```python
 import time
@@ -471,6 +490,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -487,6 +507,7 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The planner graph. |  -  |
@@ -502,6 +523,7 @@ Network routes summary.
 Network routes summary.
 
 ### Example
+
 
 ```python
 import time
@@ -537,6 +559,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ip** | **str**|  | [optional] 
@@ -555,6 +578,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Network routes. |  -  |
@@ -571,6 +595,7 @@ Get if the periodic appliance-controller notifications are enabled.
 Check if the controller notifications are enabled or not. For context: If notifications are enabled, the appliance-controller periodically sends notifications with the latest configuration, which eventually overwrites any manual changes. By default, the controller notifications should be enabled. However, in the case of manual troubleshooting, it may be convenient to temporarily disable the controller notifications. 
 
 ### Example
+
 
 ```python
 import time
@@ -604,6 +629,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -620,6 +646,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Get the status of appliance-controller notifications |  -  |
@@ -635,6 +662,7 @@ Trigger a notification from the appliance-controller.
 Triggering a notification will reapply the lastest stored configuration. 
 
 ### Example
+
 
 ```python
 import time
@@ -665,6 +693,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -681,6 +710,7 @@ No authorization required
  - **Accept**: application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The notification was triggered |  -  |
@@ -696,6 +726,7 @@ Enable or disable periodic notifications from the appliance-controller.
 Enable or disable the appliance-controller notifications. Optionally, a deadline can be provided, either as absolute time or as a relative duration. The deadline indicates until when the appliance-controller notifications should be disabled. If both absolute and relative times are given, the minimum is taken. For context: If notifications are enabled (default), the appliance-controller periodically sends notifications with the latest configuration, which overwrites any manual changes. Note that disabling notifications should only happen when debugging the configuration of the host. It should not be treated as a permanent solution to configuration changes, meaning that eventually the appliance-controller notifications should be re-enabled. 
 
 ### Example
+
 
 ```python
 import time
@@ -731,6 +762,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **debug_notify_status_json** | [**DebugNotifyStatusJson**](DebugNotifyStatusJson.md)|  | 
@@ -749,6 +781,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Status of appliance-controller notifications |  -  |
@@ -765,6 +798,7 @@ Get the SCION interfaces.
 Get a list of all the SCION interfaces configured on the host. 
 
 ### Example
+
 
 ```python
 import time
@@ -802,6 +836,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **local_isd_as** | **str**|  | [optional] 
@@ -822,6 +857,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of SCION interfaces. |  -  |
@@ -839,6 +875,7 @@ Discovery of tunneling peers.
 Discovery of tunneling peers.
 
 ### Example
+
 
 ```python
 import time
@@ -872,6 +909,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -888,6 +926,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Tunneling peers discovery. |  -  |
@@ -903,6 +942,7 @@ Get the SCION tunneling domains configuration.
 Get the SCION tunneling domains configuration. 
 
 ### Example
+
 
 ```python
 import time
@@ -938,6 +978,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **domain** | **str**|  | [optional] 
@@ -956,6 +997,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | SCION tunneling domains configuration. |  -  |
@@ -972,6 +1014,7 @@ List of all SCION paths with their stats.
 Returns a list of all SCION paths and their stats.
 
 ### Example
+
 
 ```python
 import time
@@ -1005,6 +1048,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1021,6 +1065,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of all SCION paths and their stats. |  -  |
@@ -1036,6 +1081,7 @@ List of SCION paths with their stats.
 Returns a list of all SCION paths and their stats filtered by the fingerprints provided in the request body.
 
 ### Example
+
 
 ```python
 import time
@@ -1072,6 +1118,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scion_tunneling_paths_search_post_request_json** | [**ScionTunnelingPathsSearchPostRequestJson**](ScionTunnelingPathsSearchPostRequestJson.md)|  | [optional] 
@@ -1090,6 +1137,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of all SCION paths and their stats filtered by the fingerprints provided in the request body.. |  -  |
@@ -1106,6 +1154,7 @@ The graph of the planner nodes and dependencies.
 The graph of the planner nodes and dependencies. The graph is in the dot format and can be rendered by graphviz, or one of the online dot-rendering tools. 
 
 ### Example
+
 
 ```python
 import time
@@ -1138,6 +1187,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1154,6 +1204,7 @@ No authorization required
  - **Accept**: text/plain, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The planner graph. |  -  |
@@ -1169,6 +1220,7 @@ Reset the SAs of the SCION tunnels.
 Reset the SAs of the SCION tunnels.
 
 ### Example
+
 
 ```python
 import time
@@ -1199,6 +1251,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1215,6 +1268,7 @@ No authorization required
  - **Accept**: application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successfully reset the SAs of the SCION tunnels. |  -  |
@@ -1230,6 +1284,7 @@ SGRP domains.
 SGRP domains with the associated network prefixes.
 
 ### Example
+
 
 ```python
 import time
@@ -1265,6 +1320,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **domain** | **str**|  | [optional] 
@@ -1283,6 +1339,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | SGRP domains. |  -  |
@@ -1300,6 +1357,7 @@ Known local network prefixes.
 Known local network prefixes, including their source. These are afterwards filtered according to domain definitions and eventually sent to SGRP peers. 
 
 ### Example
+
 
 ```python
 import time
@@ -1333,6 +1391,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1349,6 +1408,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Known local network prefixes. |  -  |
@@ -1364,6 +1424,7 @@ SGRP peers.
 SGRP peers. Peer is a remote SGRP-capable application accessed from a specific local ISD-AS. 
 
 ### Example
+
 
 ```python
 import time
@@ -1400,6 +1461,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **local_isd_as** | **str**|  | [optional] 
@@ -1419,6 +1481,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | SGRP peers. |  -  |
@@ -1435,6 +1498,7 @@ The full current state of the gateway.
 The full current state of the gateway.
 
 ### Example
+
 
 ```python
 import time
@@ -1467,6 +1531,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1483,6 +1548,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The full current state of the gateway. |  -  |
@@ -1498,6 +1564,7 @@ The user-provided domain configuration.
 The user-provided domain configuration.
 
 ### Example
+
 
 ```python
 import time
@@ -1530,6 +1597,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1546,6 +1614,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The user-provided domain configuration. |  -  |
@@ -1561,6 +1630,7 @@ The state monitored by the gateway.
 The state monitored by the gateway.
 
 ### Example
+
 
 ```python
 import time
@@ -1593,6 +1663,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1609,6 +1680,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The state monitored by the gateway. |  -  |
@@ -1624,6 +1696,7 @@ The full dump of observability data.
 The full dump of observability data.
 
 ### Example
+
 
 ```python
 import time
@@ -1658,6 +1731,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter** | [**List[str]**](str.md)| A list of subsections to return, separated by commas. If empty, all subsections are returned.  | [optional] 
@@ -1676,6 +1750,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The full dump of observability data. |  -  |
@@ -1691,6 +1766,7 @@ Get summary of the SCION tunneling infrastructure.
 Get summary of the SCION tunneling infrastructure. 
 
 ### Example
+
 
 ```python
 import time
@@ -1724,6 +1800,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1740,6 +1817,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | SCION tunneling infrastructure summary |  -  |
@@ -1755,6 +1833,7 @@ Restart group of services.
 Trigger restart of all the services in a group.
 
 ### Example
+
 
 ```python
 import time
@@ -1790,6 +1869,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_name** | **str**| Name of the service groups to restart. | 
@@ -1808,6 +1888,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -1824,6 +1905,7 @@ Get the list of appliance services and service groups.
 Get the list of services and service groups that must be running on the appliance.
 
 ### Example
+
 
 ```python
 import time
@@ -1857,6 +1939,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1873,6 +1956,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The list of services and groups. |  -  |
@@ -1889,6 +1973,7 @@ Indicate the service health.
 Present the health of the service along with the executed health checks.
 
 ### Example
+
 
 ```python
 import time
@@ -1924,6 +2009,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **service_name** | **str**| Name of the service to get health of. | 
@@ -1942,6 +2028,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Service health information. |  -  |
@@ -1958,6 +2045,7 @@ Summary of all service health checks.
 Present the health of all the services along with the executed health checks.
 
 ### Example
+
 
 ```python
 import time
@@ -1991,6 +2079,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2007,6 +2096,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Service health information. |  -  |
@@ -2022,6 +2112,7 @@ Restarts the given service.
 Restarts the given service.
 
 ### Example
+
 
 ```python
 import time
@@ -2056,6 +2147,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **service_name** | **str**| Name of the service to restart. | 
@@ -2074,6 +2166,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful restart |  -  |

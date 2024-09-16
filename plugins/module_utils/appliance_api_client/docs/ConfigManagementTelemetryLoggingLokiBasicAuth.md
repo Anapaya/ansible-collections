@@ -3,6 +3,7 @@
 Basic auth configuration for sending log lines to Loki.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **password** | **str** | The password to use for basic auth. | [optional] 

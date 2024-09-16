@@ -3,6 +3,7 @@
 The configuration data of the Anapaya SCION CPPKI CA service. This section is provided only when the CA service type is Anapaya Vault, i.e., is operated by Anapaya.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **addresses** | **List[str]** | The list of addresses where the Anapaya Vault backend can be reached. This list must be non-empty. | [optional] 

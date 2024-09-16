@@ -3,6 +3,7 @@
 Neighbor SCION AS.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** | Description, or comment, for the neighbor AS. | [optional] 

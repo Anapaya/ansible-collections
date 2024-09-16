@@ -3,6 +3,7 @@
 The synchronization configuration for this peer. This can be used to configure the automatic synchronization of topology information and supported features. Automatic synchronization of topology and supported features is not recommended for EDGE deployments. Instead static configuration is recommended. This field can not be set together with the scion, scion-tunneling, and features field.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | The gRPC address of this peer, used for synchronization of appliance information | [optional] 

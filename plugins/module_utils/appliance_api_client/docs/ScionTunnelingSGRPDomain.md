@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **announced** | **List[str]** | Announced IP prefixes in CIDR format. | 

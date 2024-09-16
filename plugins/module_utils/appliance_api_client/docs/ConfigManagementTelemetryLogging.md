@@ -3,6 +3,7 @@
 Configuration for shipping logs to a remote log aggregation system.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **logging_type** | **str** | The type of log aggregation system which is used. | [optional] 

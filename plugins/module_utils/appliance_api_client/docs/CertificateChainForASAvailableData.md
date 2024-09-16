@@ -3,6 +3,7 @@
 The certificate chain for the AS is available. A certificate chain is required to sign the SCION control plane messages. If the certificate chain is not present, the local AS will not be able to fully join the SCION network. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **isd_as** | **str** |  | 

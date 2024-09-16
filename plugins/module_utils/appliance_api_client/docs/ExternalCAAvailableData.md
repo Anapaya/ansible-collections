@@ -3,6 +3,7 @@
 The external CA can be reached and is available. This check is only exposed if the SCION control service is configured to use an external CA for issuing new certificates. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **str** | The status of the external CA.  | 

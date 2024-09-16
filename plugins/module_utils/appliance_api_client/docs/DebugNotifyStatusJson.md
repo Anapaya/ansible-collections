@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **disabled** | **bool** | Whether the appliance-controller notifications are disabled. | 

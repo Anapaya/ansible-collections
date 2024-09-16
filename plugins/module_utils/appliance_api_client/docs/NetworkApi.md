@@ -18,6 +18,7 @@ List the available physical interfaces of the appliance. The result includes the
 
 ### Example
 
+
 ```python
 import time
 import os
@@ -50,6 +51,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -66,6 +68,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -82,6 +85,7 @@ Get list of Wireguard interfaces.
 List the configured wireguard interfaces. The result includes the interface name and the public key. 
 
 ### Example
+
 
 ```python
 import time
@@ -115,6 +119,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -131,6 +136,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |
@@ -147,6 +153,7 @@ Get a Wireguard interface.
 Returns the configured wireguard interface and the public key. 
 
 ### Example
+
 
 ```python
 import time
@@ -182,6 +189,7 @@ with ansible.module_utils.appliance_api_client.ApiClient(configuration) as api_c
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interface_name** | **str**| Name of the interface to list. | 
@@ -200,6 +208,7 @@ No authorization required
  - **Accept**: application/json, application/json+problem
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | success |  -  |

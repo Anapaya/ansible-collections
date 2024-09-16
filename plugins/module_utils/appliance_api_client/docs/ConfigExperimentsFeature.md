@@ -3,6 +3,7 @@
 The list of features
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the feature | [optional] 

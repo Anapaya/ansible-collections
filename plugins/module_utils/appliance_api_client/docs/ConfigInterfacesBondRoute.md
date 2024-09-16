@@ -3,11 +3,12 @@
 List of routes belonging to this interface.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **comment** | **str** | An optional human-readable string to comment on this route. | [optional] 
 **var_from** | **str** | The source IP address for traffic going through the route. | [optional] 
-**metric** | **int** | The metric for the route. The lower its value, the higher its priority. | [optional] [default to 10]
+**metric** | **int** | The metric for the route. The lower its value, the higher its priority. | [optional] [default to 0]
 **sequence_id** | **int** | The sequence id determines the order of the route entries. | 
 **to** | **str** | The destination prefix in CIDR notation of this route. | 
 **via** | **str** | The next hop address which should be used for the prefix. | 

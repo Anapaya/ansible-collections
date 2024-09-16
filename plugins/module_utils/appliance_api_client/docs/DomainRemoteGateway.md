@@ -3,6 +3,7 @@
 A remote gateway instance in a domain. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **isd_as** | **str** | The ISD-AS of the remote gateway.  | 

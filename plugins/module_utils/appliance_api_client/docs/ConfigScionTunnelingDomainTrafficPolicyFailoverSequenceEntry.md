@@ -3,6 +3,7 @@
 The list of failover sequence entries, each of them associated with a path filter.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **path_filter** | **str** | Name of the path filter associated with the failover sequence entry. | 

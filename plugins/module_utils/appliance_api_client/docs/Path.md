@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fingerprint** | **str** | Hex-string representing the paths fingerprint. | 

@@ -3,6 +3,7 @@
 Configuration for the flow-metrics feature. The gateway collects information about outgoing flows, such as the source and destination ISD-AS and IP address, in order to export then number of gateway users. The flow information is sent to the flow-collector for storage and processing.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cleanup_task_interval** | **str** | Time interval at which expired flows are cleaned up. | [optional] [default to '60s']
