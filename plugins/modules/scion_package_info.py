@@ -59,7 +59,6 @@ def main():
     if module.check_mode:
         module.exit_json(**result)
 
-
     # See configuration.py for a list of all supported configuration parameters.
     configuration = Configuration(
         host = "https://localhost/api/v1"
@@ -68,8 +67,15 @@ def main():
     if module.params['address']:
         configuration.host = module.params['address']+ "/api/v1"
 
+    header_name = 'Authorization'
+    # Configure HTTP basic authorization: basic
+    # header_value = 'Basic <base64encodeduser:password>'
+
+    # Configure token-based authorization
+    # header_value = 'Bearer <token>'
+
     # Enter a context with an instance of the API client
-    with ApiClient(configuration) as api_client:
+    with ApiClient(configuration, header_name, header_value) as api_client:
         api_instance = software_api.SoftwareApi(api_client)
 
         try:
@@ -78,7 +84,7 @@ def main():
             result['checksum'] = api_response.checksum
             result['version'] = api_response.version
         except ApiException as e:
-            print("Exception when calling software_api: %s\n" % e)
+            module.fail_json(msg='Exception when calling software_api: %s\n' % e, **result)
 
     module.exit_json(**result)
 
